@@ -42,6 +42,11 @@ def index(request):
     return render(request, 'users/index.html', context)
 
 
+def login(request):
+    context = {}
+    return render(request, 'users/login.html', context)
+
+
 class UserDelete(DeleteView):
     model = User
     success_url = reverse_lazy('users:lista_usuarios')
