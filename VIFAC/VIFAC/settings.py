@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'dashboard.apps.DashboardConfig',
     'donations.apps.DonationsConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks'
-    
+    'widget_tweaks',
+    'rolepermissions',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +127,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/usuarios/'
+LOGIN_REDIRECT_URL = '/'
+
+ROLEPERMISSIONS_MODULE = 'VIFAC.roles'

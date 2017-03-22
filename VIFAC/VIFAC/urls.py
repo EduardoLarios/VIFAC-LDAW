@@ -16,8 +16,12 @@ Including another URLconf
 
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.views import logout
 
 urlpatterns = [
+    url(r'^$', include('dashboard.urls', namespace='dashboard')),
     url(r'^usuarios/', include('users.urls', namespace="users")),
     url(r'^admin/', admin.site.urls),
+    url(r'^logout/$',logout, {'next_page': '/usuarios/login'}
+),
 ]
