@@ -5,7 +5,9 @@ from .forms import UserForm, UpdateForm
 from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-
+from rolepermissions.checkers import has_permission
+from django.http import Http404
+from VIFAC.roles import *
 
 class UserFormView(View):
     form_class = UserForm
@@ -38,8 +40,17 @@ class UserFormView(View):
     
     
 def index(request):
-    context = {}
-    return render(request, 'users/index.html', context)
+    user = None
+    if request.user.is_authenticated():
+        user = request.user.username
+    else:
+        raise Http404
+    
+    if has_permission(user,Consejo):
+        context = {}
+        return render(request, 'users/index.html', context)
+    else:
+        raise Http404
 
 
 def login(request):
