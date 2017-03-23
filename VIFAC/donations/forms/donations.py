@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from django import forms
-from .fields import *
 from ..models.categories import Category
 from ..models.donors import Donor
+from django import forms
+from .fields import *
 
 
 
@@ -25,3 +25,5 @@ class DonationForm(forms.Form):
         empty_label = 'Donador',
         label_fn = lambda c: c.full_name
     )
+    
+    

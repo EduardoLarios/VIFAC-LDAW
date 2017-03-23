@@ -22,7 +22,7 @@ class Category(models.Model):
     )
     
     def __str__(self) -> str:
-        return '%s-%s' % (self.name, self.description)
+        return '%s' % (self.name)
     
     class Meta(object):
         verbose_name = 'category'

@@ -113,7 +113,7 @@ class Donor(models.Model):
 
 
     def __str__(self) -> str:
-        return '%s-%s,%s' % (self.full_name, self.state, self.city)
+        return '%s' % (self.full_name)
 
     class Meta(object):
         verbose_name = 'donor'

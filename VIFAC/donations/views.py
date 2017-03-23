@@ -51,7 +51,7 @@ def new_donation(request):
     
     donors = Donor.objects.all().values('id', 'full_name')
     categories = Category.objects.all().values('id', 'name')
-    context = {'today': datetime.datetime.now(), 'categories': categories, 'donations': donors}
+    context = {'categories': categories, 'donations': donors}
     
     if request.method == "POST":
         
