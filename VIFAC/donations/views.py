@@ -1,6 +1,10 @@
 from django.views.generic import DeleteView
-from django.urls import reverse_lazy
 from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.shortcuts import render
+import datetime
+import logging
+
 
 from .forms.categories import CategoriesForm
 from .forms.donations import DonationForm
@@ -10,9 +14,6 @@ from .models.categories import Category
 from .models.donations import Donation
 from .models.donors import Donor
 
-from django.shortcuts import render
-import datetime
-import logging
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -117,36 +118,43 @@ def list_donation(request):
     
     return render(request, 'donations/list_donations.html', {'donations': donations})
 
+#Delete from DB
+
 class CategoryDelete(DeleteView):
     model = Category
     success_url = reverse_lazy('donations:list_categories')
     
-class CategoryUpdate(UpdateView):
-    model = Category
-    fields = ['name', 'description']
-    template_name = 'donations/category_edit_form.html'
-    slug_field = 'name'
-    slug_url_kwarg = 'slug'
-    success_url = '/donaciones/lista_categorias'
-
-
 class DonorDelete(DeleteView):
     model = Donor
     success_url = reverse_lazy('donations:list_donors')
 
+class DonationDelete(DeleteView):
+    model = Donation
+    success_url = reverse_lazy('donations:list_donations')
+
+#Update DB entries
+
 class DonorUpdate(UpdateView):
     model = Donor
-    fields = ['full_name', 'integration_date', 'state', 'city', 'street', 'number', 'reference', 'contact_name', 'contact_phone_number', 'contact_email', 'contact_birthday', 'contact_anniversary']
+    fields = [
+        'full_name',
+        'integration_date',
+        'state',
+        'city',
+        'street',
+        'number',
+        'reference',
+        'contact_name',
+        'contact_phone_number',
+        'contact_email',
+        'contact_birthday',
+        'contact_anniversary'
+    ]
     template_name = 'donations/donor_edit_form.html'
     slug_field = 'full_name'
     slug_url_kwarg = 'slug'
     success_url = '/donaciones/lista_donadores'
     
-    
-class DonationDelete(DeleteView):
-    model = Donation
-    success_url = reverse_lazy('donations:list_donations')
-
 class DonationUpdate(UpdateView):
     model = Donation
     fields = ['donor', 'description', 'category']
@@ -155,5 +163,12 @@ class DonationUpdate(UpdateView):
     slug_url_kwarg = 'slug'
     success_url = '/donaciones/lista_donaciones'
 
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = ['name', 'description']
+    template_name = 'donations/category_edit_form.html'
+    slug_field = 'name'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_categorias'
 
 
