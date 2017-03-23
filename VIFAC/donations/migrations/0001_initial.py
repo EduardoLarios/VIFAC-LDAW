@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name': 'donor',
-                'verbose_name_plural': 'donors',
+                'verbose_name_plural': 'donations',
             },
         ),
         migrations.AddField(

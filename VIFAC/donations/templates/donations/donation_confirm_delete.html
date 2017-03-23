@@ -1,0 +1,4 @@
+<form method="post">{% csrf_token %}
+    ¿Estás seguro que deseas borrar la donación de "{{ donation.donor.full_name }}"?
+    <input type="submit" value="Submit" />
+</form>

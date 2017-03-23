@@ -3,11 +3,11 @@
 {% block content %}
 
     <!-- Contact Section -->
-    <section id="donaciones">
+<section id="donaciones" xmlns:donations="http://www.w3.org/1999/xhtml">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Donaciones</h2>
+                    <h2>Categorías</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -17,27 +17,25 @@
         <table class="table table-striped">
           <thead class="thead-default">
             <tr>
-              <th>Donador</th>
-              <th>Descripción </th>
-              <th>Categoría</th>
-              <th>Fecha</th>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
 
-          {% for donation in donations %}
+          {% for category in categories %}
             <tr>
-              <td>{{ donation.donor.full_name }}</td>
-              <td>{{ donation.description }}</td>
-              <td>{{ donation.category.name }}</td>
-              <td>{{ donation.date }}</td>
+              <td>{{ category.id }}</td>
+              <td>{{ category.name }}</td>
+              <td>{{ category.description }}</td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  <a href="{% url "donations:category_update" category.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
               </td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a href="{% url "donations:category_delete" category.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
           {% endfor %}

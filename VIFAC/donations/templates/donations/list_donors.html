@@ -3,7 +3,7 @@
 {% block content %}
 
     <!-- Contact Section -->
-    <section id="donaciones">
+<section id="donaciones" xmlns:donations="http://www.w3.org/1999/xhtml">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -32,14 +32,14 @@
             <tr>
               <td>{{ donor.full_name }}</td>
               <td>{{ donor.integration_date }}</td>
-              <td>{{ donor.city }} , {{ donor.state }}</td>
+              <td>{{ donor.city }}</td>
               <td>{{ donor.street }} {{ donor.number }}</td>
               <td>{{ donor.reference }}</td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  <a href="{% url "donations:donor_update" donor.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
               </td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a href="{% url "donations:donor_delete" donor.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
           {% endfor %}

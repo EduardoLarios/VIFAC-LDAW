@@ -1,3 +1,7 @@
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView
+
 from .forms.categories import CategoriesForm
 from .forms.donations import DonationForm
 from .forms.donors import DonorForm
@@ -15,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     context = {}
-    return render(request, 'donors/index.html', context)
+    return render(request, 'donations/index.html', context)
 
 def new_donor(request):
      context = { 'today': datetime.datetime.now() }
@@ -31,23 +35,22 @@ def new_donor(request):
              # Get form variables
              # Create donor object
              context['donor'] = Donor.objects.create(**new_donor_form.cleaned_data)
-             context['donors'] = Donor.objects.all().values()
-             return render(request, 'donors/donor_created.html', context, status = 201)
+             return list_donor(request)
 
          context['form'] = new_donor_form
-         return render(request, 'donors/new_donor.html', context)
+         return render(request, 'donations/new_donor.html', context)
 
      else: new_donor_form = DonorForm()
 
      context['form'] = new_donor_form
      
-     return render(request, 'donors/new_donor.html', context)
+     return render(request, 'donations/new_donor.html', context)
 
 def new_donation(request):
     
     donors = Donor.objects.all().values('id', 'full_name')
     categories = Category.objects.all().values('id', 'name')
-    context = {'today': datetime.datetime.now(), 'categories': categories, 'donors': donors}
+    context = {'today': datetime.datetime.now(), 'categories': categories, 'donations': donors}
     
     if request.method == "POST":
         
@@ -59,22 +62,21 @@ def new_donation(request):
             # Get form variables
             # Create donation object
             context['donation'] = Donation.objects.create(**new_donation_form.cleaned_data)
-            context['donations'] = Donation.objects.all().values()
-            return render(request, 'donors/donation_created.html', context, status = 201)
+            return list_donation(request)
         
         context['form'] = new_donation_form
-        return render(request, 'donors/new_donation.html', context)
+        return render(request, 'donations/new_donation.html', context)
     
     else:
         new_donation_form = DonationForm()
     
     context['form'] = new_donation_form
     
-    return render(request, 'donors/new_donation.html', context)
+    return render(request, 'donations/new_donation.html', context)
 
 
 def new_category(request):
-    context = {'today': datetime.datetime.now()}
+    context = {}
     
     if request.method == "POST":
         
@@ -86,37 +88,72 @@ def new_category(request):
             # Get form variables
             # Create category object
             context['category'] = Category.objects.create(**new_category_form.cleaned_data)
-            name = new_category_form['name']
-            return render(request, 'donors/category_created.html', context, {'name': name}, status = 201)
+            return list_category(request)
         
         context['form'] = new_category_form
-        return render(request, 'donors/new_category.html', context)
+        return render(request, 'donations/new_category.html', context)
     
     else:
         new_category_form = CategoriesForm()
     
     context['form'] = new_category_form
     
-    return render(request, 'donors/new_category.html', context)
+    return render(request, 'donations/new_category.html', context)
 
 #List CRUDs
 
 def list_donor(request):
-    queryset = Donor.objects.all().values()
+    donors = Donor.objects.all().values()
 
-    return render(request, 'donors/donor_created.html', {'donors': queryset})
+    return render(request, 'donations/list_donors.html', {'donors': donors})
 
 def list_category(request):
-    queryset = Category.objects.all().values()
+    categories = Category.objects.all().values()
 
-    return render(request, 'donors/category_created.html', {'categories': queryset})
+    return render(request, 'donations/list_categories.html', {'categories': categories})
 
 def list_donation(request):
-    
     donations = Donation.objects.all()
-    context = {'donations': donations}
     
-    return render(request, 'donors/donation_created.html', context)
+    return render(request, 'donations/list_donations.html', {'donations': donations})
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('donations:list_categories')
+    
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = ['name', 'description']
+    template_name = 'donations/category_edit_form.html'
+    slug_field = 'name'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_categorias'
+
+
+class DonorDelete(DeleteView):
+    model = Donor
+    success_url = reverse_lazy('donations:list_donors')
+
+class DonorUpdate(UpdateView):
+    model = Donor
+    fields = ['full_name', 'integration_date', 'state', 'city', 'street', 'number', 'reference', 'contact_name', 'contact_phone_number', 'contact_email', 'contact_birthday', 'contact_anniversary']
+    template_name = 'donations/donor_edit_form.html'
+    slug_field = 'full_name'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_donadores'
+    
+    
+class DonationDelete(DeleteView):
+    model = Donation
+    success_url = reverse_lazy('donations:list_donations')
+
+class DonationUpdate(UpdateView):
+    model = Donation
+    fields = ['donor', 'description', 'category']
+    template_name = 'donations/donation_edit_form.html'
+    slug_field = 'description'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_donaciones'
 
 
 

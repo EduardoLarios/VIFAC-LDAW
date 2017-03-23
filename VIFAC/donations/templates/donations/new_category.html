@@ -42,7 +42,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<h2>Registrar Donador</h2>
+					<h2>Registrar Categoría</h2>
 					<hr class="star-primary">
 				</div>
 			</div>
@@ -65,71 +65,18 @@
 						{% csrf_token %}
 						<div class="row">
 							<div class="col-md-12">
-								<h3>Introduce información del donador</h3>
+								<h3>Introduce información de la categoría</h3>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<label for="full_name">Nombre:</label>
-								{{ form.full_name | add_class:'form-control' }}
+								<label for="name">Nombre:</label>
+								{{ form.name | add_class:'form-control' }}
 							</div>
 
 							<div class="col-md-6">
-								<label for="integration_date">Fecha de integración:</label>
-								{{ form.integration_date | add_class:'form-control' }}
-							</div>
-						</div>
-						<div class="row addmargin">
-							<div class="col-md-2">
-								<label for="state">Estado:</label>
-								{{ form.state | add_class:'form-control' }}
-							</div>
-							<div class="col-md-4">
-								<label for="city">Calle:</label>
-								{{ form.street | add_class:'form-control' }}
-							</div>
-							<div class="col-md-4">
-								<label for="city">Ciudad:</label>
-								{{ form.city | add_class:'form-control' }}
-							</div>
-							<div class="col-md-2">
-								<label for="number">Número:</label>
-								{{ form.number | add_class:'form-control' }}
-							</div>
-						</div>
-						<div class="row addmargin">
-							<div class="col-xs-12">
-								<label for="reference">Referencia:</label>
-								{{ form.reference | add_class:'form-control' }}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<h3>Contacto principal</h3>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label for="contact_name">Nombre Contacto:</label>
-								{{ form.contact_name | add_class:'form-control' }}
-							</div>
-							<div class="col-md-4">
-								<label for="contact_phone_number">Teléfono Contacto:</label>
-								{{ form.contact_phone_number | add_class:'form-control' }}
-							</div>
-							<div class="col-md-4">
-								<label for="contact_email">Email Contacto:</label>
-								{{ form.contact_email | add_class:'form-control' }}
-							</div>
-						</div>
-						<div class="row addmargin">
-							<div class="col-md-6">
-								<label for="contact_birthday">Fecha de nacimiento:</label>
-								{{ form.contact_birthday | add_class:'form-control' }}
-							</div>
-							<div class="col-md-6">
-								<label for="contact_anniversary">Fecha de aniversario:</label>
-								{{ form.contact_anniversary | add_class:'form-control' }}
+								<label for="description">Descripción:</label>
+								{{ form.description | add_class:'form-control' }}
 							</div>
 						</div>
 						<div class="row addmargin5">

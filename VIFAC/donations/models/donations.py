@@ -8,7 +8,8 @@ class Donation(models.Model):
     
     donor = models.ForeignKey(Donor,
         related_name = 'donations',
-        related_query_name = 'donation'
+        related_query_name = 'donation',
+        on_delete = models.PROTECT
     )
     
     description = models.CharField(
@@ -21,7 +22,8 @@ class Donation(models.Model):
         verbose_name = 'Category',
         help_text = 'How one would classify the donation: money, food, etc.',
         related_name = 'donations',
-        related_query_name = 'donation'
+        related_query_name = 'donation',
+        on_delete = models.PROTECT
     )
 
     date = models.DateField(
