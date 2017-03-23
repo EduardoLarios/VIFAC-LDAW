@@ -1,0 +1,39 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <!-- Contact Section -->
+    <section id="detalle_panfleta">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Panfleta No: </h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+        </div>
+
+        <!--div class="container">
+            <table class="table table-striped">
+              <thead class="thead-default">
+                <tr>
+                  <th>Pertenece a</th>
+                  <th>Devuelta</th>
+                  <th>Monto recibido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td>{{ panfleta.participante }}</td>
+                <td>{{ panfleta.participante }}</td>
+                <td>{{ panfleta.participante }}</td>
+              </tbody>
+            </table>
+        </div-->
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+    </section>
+
+{% endblock content %}

@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/layout.html' %}
+{% block content %}
+    <section id="panfleta">
+        {% if panfleta %}
+                        <ul class="messagelist">
+                            <li class="list-group-item list-group-item-success">La panfleta "<a href="{% url 'raffles:raffle_detail' panfleta.id %}">{{ panfleta.folio }}</a>" fue agregada satisfactoriamente. Puedes agregar más abajo.</li>
+                        </ul>
+        {% endif %}
+    <div class="container">
+    <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Agregar nueva panfleta</h3>
 
-</body>
-</html>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="participant" value="{{ participant }}">
+                        {% include 'raffles/form_template.html' %}
+                            <div class="row">
+                                <button type="submit" name="_addother" class="btn btn-primary">Guarda y agregar una nueva</button>
+                                <button type="submit" name="_save" class="btn btn-success">Guardar y volver</button>
+                            </div>
+                    </form>
+                </div>
+    </div>
+    </div>
+    </section>
+{% endblock content %}

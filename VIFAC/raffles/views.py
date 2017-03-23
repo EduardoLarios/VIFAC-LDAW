@@ -1,49 +1,86 @@
-from django.shortcuts import render, reverse
-from django.http import HttpResponse
-
+from django.shortcuts import render, get_object_or_404
+from .forms import AsignPanfletForm, PanfletForm, Participante
+from .models import Panfleta, Participante
+from django.views.generic.edit import UpdateView
+from django.core.urlresolvers import reverse_lazy
 # Create your views here.
-#from .models import
 
 def index(request):
     return render(request, 'raffles/index.html')
 
-def create_song(request, album_id):
-    form = SongForm(request.POST or None, request.FILES or None)
-    album = get_object_or_404(Album, pk=album_id)
+def assign_form(request, participant_id):
+    form = AsignPanfletForm(request.POST or None)
+    part = get_object_or_404(Participante, pk=participant_id)
     if form.is_valid():
-        albums_songs = album.song_set.all()
-        for s in albums_songs:
-            if s.song_title == form.cleaned_data.get("song_title"):
+        folios_part = part.panfleta_set.all()
+        for pan in folios_part:
+            if pan.folio == form.cleaned_data.get("folio"):
                 context = {
-                    'album': album,
+                    'participante': part,
                     'form': form,
-                    'error_message': 'You already added that song',
+                    'error_message': 'Ese folio ya existía',
                 }
-                return render(request, 'music/create_song.html', context)
-        song = form.save(commit=False)
-        song.album = album
-        song.audio_file = request.FILES['audio_file']
-        file_type = song.audio_file.url.split('.')[-1]
-        file_type = file_type.lower()
-        if file_type not in AUDIO_FILE_TYPES:
-            context = {
-                'album': album,
-                'form': form,
-                'error_message': 'Audio file must be WAV, MP3, or OGG',
-            }
-            return render(request, 'music/create_song.html', context)
+                return render(request, 'raffles/new_raffle.html', context)
+        panfleta = form.save(commit=False)
+        panfleta.participante = part
+        panfleta.save()
 
-        song.save()
-        return render(request, 'music/detail.html', {'album': album})
+        if '_addother' in request.POST:
+            form = AsignPanfletForm()
+            context = {
+                'participante': part,
+                'panfleta': panfleta,
+                'form': form,
+            }
+            return render(request, 'raffles/new_raffle.html', context)
+        else:
+            return reverse_lazy('raffles:index')
+        # return render(request, 'raffles/index.html', {'album': album})
+
     context = {
-        'album': album,
+        'participante': part,
         'form': form,
     }
-    return render(request, 'music/create_song.html', context)
+    return render(request, 'raffles/new_raffle.html', context)
 
 
-def delete_album(request, album_id):
-    album = Album.objects.get(pk=album_id)
-    album.delete()
-    albums = Album.objects.filter(user=request.user)
-    return render(request, 'music/index.html', {'albums': albums})
+def new_participant(request, participant_id):
+    form = AsignPanfletForm(request.POST or None)
+    part = get_object_or_404(Participante, pk=participant_id)
+    if form.is_valid():
+        folios_part = part.panfleta_set.all()
+        for pan in folios_part:
+            if pan.folio == form.cleaned_data.get("folio"):
+                context = {
+                    'participante': part,
+                    'form': form,
+                    'error_message': 'Ese folio ya existía',
+                }
+                return render(request, 'raffles/new_raffle.html', context)
+        panfleta = form.save(commit=False)
+        panfleta.participante = part
+        panfleta.save()
+
+        if '_addother' in request.POST:
+            form = AsignPanfletForm()
+            context = {
+                'participante': part,
+                'panfleta': panfleta,
+                'form': form,
+            }
+            return render(request, 'raffles/new_raffle.html', context)
+        else:
+            return reverse_lazy('raffles:index')
+        # return render(request, 'raffles/index.html', {'album': album})
+
+    context = {
+        'participante': part,
+        'form': form,
+    }
+    return render(request, 'raffles/new_raffle.html', context)
+
+class PanfletaEdit(UpdateView):
+    model = Panfleta
+    template_name = 'raffles/panfleta_detail.html'
+    success_url = reverse_lazy('raffles:index')
+    fields = ['devuelta', 'monto_entregado']

@@ -11,3 +11,9 @@ class PanfletForm(forms.ModelForm):
     class Meta:
         model = Panfleta
         fields = ['devuelta', 'monto_entregado']
+
+class ParticipanteForm(forms.ModelForm):
+
+    class Meta:
+        model = Participante
+        fields = ['full_name', 'phone_number']
