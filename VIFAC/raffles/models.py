@@ -9,7 +9,7 @@ class Participante(models.Model):
         verbose_name='Participante Name',
         help_text="Participante's name"
     )
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=15)
 
     def __str__(self):
         return self.full_name
