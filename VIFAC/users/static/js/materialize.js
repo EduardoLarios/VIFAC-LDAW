@@ -27,7 +27,7 @@ if (typeof(jQuery) === 'undefined') {
  * Copyright © 2008 George McGinley Smith
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
+ * Redistribution and use in source and binary formas, with or without modification,
  * are permitted provided that the following conditions are met:
  *
  * Redistributions of source code must retain the above copyright notice, this list of
@@ -196,7 +196,7 @@ jQuery.extend( jQuery.easing,
  * Copyright © 2001 Robert Penner
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
+ * Redistribution and use in source and binary formas, with or without modification,
  * are permitted provided that the following conditions are met:
  *
  * Redistributions of source code must retain the above copyright notice, this list of
@@ -2151,7 +2151,7 @@ if (jQuery) {
     /**
      * Attach Waves to an input element (or any element which doesn't
      * bubble mouseup/mousedown events).
-     *   Intended to be used with dynamically loaded forms/inputs, or
+     *   Intended to be used with dynamically loaded formas/inputs, or
      * where the user doesn't want a delegated click handler.
      */
     Waves.attach = function(element) {
@@ -7362,7 +7362,7 @@ return _.node(
 
      +
 
-    // * For Firefox forms to submit, make sure to set the buttons’ `type` attributes as “button”.
+    // * For Firefox formas to submit, make sure to set the buttons’ `type` attributes as “button”.
     _.node(
         'div',
         _.node( 'button', settings.today, "btn-flat picker__today",

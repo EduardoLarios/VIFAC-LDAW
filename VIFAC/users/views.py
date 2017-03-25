@@ -5,9 +5,11 @@ from .forms import UserForm, UpdateForm
 from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from rolepermissions.checkers import has_permission
+from rolepermissions.roles import assign_role, remove_role
+from rolepermissions.checkers import has_role
 from django.http import Http404
 from VIFAC.roles import *
+
 
 class UserFormView(View):
     form_class = UserForm
@@ -37,25 +39,17 @@ class UserFormView(View):
                     login(request, user)
                     return redirect('/usuarios/lista_usuarios')
         return render(request, self.template_name, {'form': form})
-    
+            
     
 def index(request):
-    user = None
-    if request.user.is_authenticated():
-        user = request.user.username
-    else:
-        raise Http404
-    
-    if has_permission(user,Consejo):
-        context = {}
-        return render(request, 'users/index.html', context)
-    else:
-        raise Http404
-
-
-def login(request):
     context = {}
-    return render(request, 'users/login.html', context)
+    if request.user.is_authenticated():
+        if has_role(request.user, ['consejo', 'admin']):
+            return render(request, 'users/index.html', context)
+        else:
+            raise Http404
+    else:
+        return redirect('/usuarios/login/')
 
 
 class UserDelete(DeleteView):
@@ -75,3 +69,7 @@ class UserUpdate(UpdateView):
     slug_field = 'username'
     slug_url_kwarg = 'slug'
     success_url = '/usuarios/lista_usuarios'
+
+def login(request):
+    context = {}
+    return render(request, 'users/login.html', context)
