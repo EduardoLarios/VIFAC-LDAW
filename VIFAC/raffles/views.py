@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import AsignPanfletForm, PanfletForm, ParticipanteForm
+from .forms import AsignPanfletForm, ParticipanteForm
 from .models import Panfleta, Participante
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 # Create your views here.
+app_name = 'raffles'
 
 def index(request):
     return render(request, 'raffles/index.html')
@@ -36,7 +37,7 @@ def assign_form(request, participant_id):
             }
             return render(request, 'raffles/new_raffle.html', context)
         else:
-            return reverse_lazy('raffles:index')
+            return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))
         # return render(request, 'raffles/index.html', {'album': album})
 
     context = {
@@ -45,6 +46,14 @@ def assign_form(request, participant_id):
     }
     return render(request, 'raffles/new_raffle.html', context)
 
+def panfletas_part(request, participant_id):
+    part = get_object_or_404(Participante, pk=participant_id)
+    panfletas = part.panfleta_set.all()
+    context = {
+        'participante': part,
+        'panfletas': panfletas,
+    }
+    return render(request, 'raffles/panfleta_part.html', context)
 
 def nuevo_participante(request):
     if request.method == "POST":
@@ -62,3 +71,10 @@ class PanfletaEdit(UpdateView):
     template_name = 'raffles/panfleta_detail.html'
     success_url = reverse_lazy('raffles:index')
     fields = ['devuelta', 'monto_entregado']
+
+def delete_panfleta(request, pk):
+
+    panfleta = get_object_or_404(Panfleta, pk=pk)
+    part = panfleta.participante
+    panfleta.delete()
+    return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))

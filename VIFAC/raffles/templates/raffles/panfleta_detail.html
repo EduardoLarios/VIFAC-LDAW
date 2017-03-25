@@ -31,7 +31,12 @@
         </div-->
         <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>
+        {{ form.devuelta|add_class:'form-control' }}
+        </p>
+        <p>
+        {{ form.monto_entregado|add_class:'form-control' }}
+        </p>
         <input type="submit" value="Submit" />
     </form>
     </section>
