@@ -32,3 +32,18 @@ def list_escuelas(request):
 
 class EscuelasListView(ListView):
     model = Escuela
+
+
+class EscuelaUpdate(UpdateView):
+    model = Escuela
+    fields = ['name', 'estado', 'ciudad']
+    template_name = 'scholar/escuelaedit.html'
+    slug_field = 'description'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('scholar:list_escuela')
+
+
+def delete_escuela(request, pk):
+    escuela = get_object_or_404(Escuela, pk=pk)
+    escuela.delete()
+    return HttpResponseRedirect(reverse('scholar:list_escuela'))

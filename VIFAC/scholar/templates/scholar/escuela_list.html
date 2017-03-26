@@ -19,6 +19,7 @@
               <th>Nombre</th>
               <th>Estado</th>
               <th>Ciudad</th>
+              <th>Listar materiales</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
@@ -31,10 +32,13 @@
               <td>{{ escuela.estado }}</td>
               <td>{{ escuela.ciudad }}</td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil text-center"></span></a>
+              </td>
+                <td>
+                  <a href="{% url "scholar:escuela_update" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
               </td>
               <td>
-                  <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a href="{% url "scholar:escuela_delete" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
           {% endfor %}
