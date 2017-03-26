@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import EscuelasListView
+from .views import EscuelasListView, MaterialEdit
 
 app_name = 'scholar'
 
@@ -15,4 +15,7 @@ urlpatterns = [
     
     url(r'^asignar_material/(?P<escuela_id>[0-9]+)$', views.asignar_material, name='assign_material'),
     url(r'^material_escuela/(?P<escuela_id>[0-9]+)/$', views.material_escuela, name='material_escuela'),
+    url(r'^modificar_material/(?P<pk>[0-9]+)/$', MaterialEdit.as_view() , name='edit_material'),
+    url(r'^borrar_material/(?P<pk>[0-9]+)$', views.delete_material, name='material_delete'),
+
 ]

@@ -66,7 +66,7 @@ def asignar_material(request, escuela_id):
             }
             return render(request, 'scholar/new_material.html', context)
         else:
-            return HttpResponseRedirect(reverse('scholar:list_escuela'))
+            return HttpResponseRedirect(reverse('scholar:material_escuela', args=(escuela.id,)))
             #return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))
 
     context = {
@@ -84,3 +84,18 @@ def material_escuela(request, escuela_id):
         'materiales': materiales,
     }
     return render(request, 'scholar/materiales_escuela.html', context)
+
+
+class MaterialEdit(UpdateView):
+    model = Material
+    template_name = 'scholar/material_edit.html'
+    success_url = reverse_lazy('scholar:list_escuela')
+    fields = ['descripcion', 'categoria']
+    
+    
+def delete_material(request, pk):
+    material = get_object_or_404(Material, pk=pk)
+    escuela = material.escuela
+    
+    material.delete()
+    return HttpResponseRedirect(reverse('scholar:material_escuela', args=(escuela.pk,)))

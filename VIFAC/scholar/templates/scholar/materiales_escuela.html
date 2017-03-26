@@ -42,6 +42,8 @@
               <th>Nombre</th>
               <th>Categoría</th>
               <th>Responsable</th>
+              <th>Editar</th>
+              <th>Borrar</th>
             </tr>
           </thead>
           <tbody>
@@ -51,6 +53,12 @@
               <td>{{ material.descripcion }} </td>
               <td>{{ material.categoria }}</td>
               <td>{{ material.entrego }}</td>
+                <td>
+                  <a href="{% url "scholar:edit_material" material.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+              </td>
+              <td>
+                  <a href="{% url "scholar:material_delete" material.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+              </td>
             </tr>
           {% endfor %}
           </tbody>
