@@ -1,10 +1,11 @@
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views.generic import DeleteView
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.urls import reverse
 import datetime
 import logging
-
 
 from .forms.categories import CategoriesForm
 from .forms.donations import DonationForm
@@ -21,6 +22,8 @@ logger = logging.getLogger(__name__)
 def index(request):
     context = {}
     return render(request, 'donations/index.html', context)
+
+# New DB entries
 
 def new_donor(request):
      context = { 'today': datetime.datetime.now() }
@@ -75,7 +78,6 @@ def new_donation(request):
     
     return render(request, 'donations/new_donation.html', context)
 
-
 def new_category(request):
     context = {}
     
@@ -120,17 +122,20 @@ def list_donation(request):
 
 #Delete from DB
 
-class CategoryDelete(DeleteView):
-    model = Category
-    success_url = reverse_lazy('donations:list_categories')
-    
-class DonorDelete(DeleteView):
-    model = Donor
-    success_url = reverse_lazy('donations:list_donors')
+def DonorDelete(request, pk):
+    model = get_object_or_404(Donor, pk=pk)
+    model.delete()
+    return HttpResponseRedirect(reverse('donations:list_donors'))
 
-class DonationDelete(DeleteView):
-    model = Donation
-    success_url = reverse_lazy('donations:list_donations')
+def DonationDelete(request, pk):
+    model = get_object_or_404(Donation, pk=pk)
+    model.delete()
+    return HttpResponseRedirect(reverse('donations:list_donations'))
+ 
+def CategoryDelete(request, pk):
+    model = get_object_or_404(Category, pk=pk)
+    model.delete()
+    return HttpResponseRedirect(reverse('donations:list_categories'))
 
 #Update DB entries
 

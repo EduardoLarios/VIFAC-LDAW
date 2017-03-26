@@ -23,7 +23,6 @@ class Donation(models.Model):
         help_text = 'How one would classify the donation: money, food, etc.',
         related_name = 'donations',
         related_query_name = 'donation',
-        on_delete = models.PROTECT
     )
 
     date = models.DateField(

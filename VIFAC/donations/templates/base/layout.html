@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">{% load static %}
+<html lang="en" xmlns:donations="http://www.w3.org/1999/xhtml">{% load static %}
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
 	    <meta name="author" content="">
 
 	    <title>VIFAC - Donaciones</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="{% static "css/reset.css" %}"> <!-- CSS reset -->
 		<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- Resource style -->
 		<script src="{% static "js/modernizr.js" %}"></script>
@@ -42,7 +43,20 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="{% url "donations:list_donors" %}">Donadores</a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="{% url "donations:list_donations" %}">Donaciones</a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="{% url "donations:list_categories" %}">Categorías</a>
+                            </li>
+                        </ul>
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django import forms
 from phonenumber_field.formfields import PhoneNumberField
 from ..models.donors import State
-
+from django import forms
 
 
 class DonorForm(forms.Form):
@@ -56,7 +55,9 @@ class DonorForm(forms.Form):
         help_text = "Introduzca un correo electrónico válido"
     )
     
-    contact_phone_number = PhoneNumberField()
+    contact_phone_number = PhoneNumberField(
+        initial = '+52'
+    )
     
     contact_birthday = forms.DateField(
         widget = forms.DateInput(attrs = { 'type': 'date' })

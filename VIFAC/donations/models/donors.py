@@ -6,39 +6,39 @@ from datetime import *
 __all__ = [ 'Donors', 'State' ]
 
 State = (
-    (0, 'Ninguno'),
-    (1, 'Aguascalientes'),
-    (2, 'Baja California'),
-    (3, 'Baja California Sur'),
-    (4, 'Campeche'),
-    (5, 'Chiapas'),
-    (6, 'Chihuahua'),
-    (7, 'Ciudad de México'),
-    (8, 'Coahuila de Zaragoza'),
-    (9, 'Colima'),
-    (10, 'Durango'),
-    (11,'Guanajuato'),
-    (12, 'Guerrero'),
-    (13, 'Hidalgo'),
-    (14, 'Jalisco'),
-    (15, 'Estado de México'),
-    (16, 'Michoacán de Ocampo'),
-    (17, 'Morelos'),
-    (18, 'Nayarit'),
-    (19, 'Nuevo León'),
-    (20, 'Oaxaca'),
-    (21, 'Puebla'),
-    (22, 'Querétaro de Arteaga'),
-    (23, 'Quintana Roo'),
-    (24, 'San Luis Potosí'),
-    (25, 'Sinaloa'),
-    (26, 'Sonora'),
-    (27, 'Tabasco'),
-    (28, 'Tamaulipas'),
-    (29, 'Tlaxcala'),
-    (30, 'Veracruz'),
-    (31, 'Yucatán'),
-    (32, 'Zacatecas')
+    ('Ninguno', 'Ninguno'),
+    ('Aguascalientes', 'Aguascalientes'),
+    ('Baja California', 'Baja California'),
+    ('Baja California Sur', 'Baja California Sur'),
+    ('Campeche', 'Campeche'),
+    ('Chiapas', 'Chiapas'),
+    ('Chihuahua', 'Chihuahua'),
+    ('CDMX', 'Ciudad de México'),
+    ('Coahuila', 'Coahuila'),
+    ('Colima', 'Colima'),
+    ('Durango', 'Durango'),
+    ('Guanajuato','Guanajuato'),
+    ('Guerrero', 'Guerrero'),
+    ('Hidalgo', 'Hidalgo'),
+    ('Jalisco', 'Jalisco'),
+    ('Estado de México', 'Estado de México'),
+    ('Michoacán', 'Michoacán'),
+    ('Morelos', 'Morelos'),
+    ('Nayarit', 'Nayarit'),
+    ('Nuevo León', 'Nuevo León'),
+    ('Oaxaca', 'Oaxaca'),
+    ('Puebla', 'Puebla'),
+    ('Querétaro', 'Querétaro'),
+    ('Quintana Roo', 'Quintana Roo'),
+    ('San Luis Potosí', 'San Luis Potosí'),
+    ('Sinaloa', 'Sinaloa'),
+    ('Sonora', 'Sonora'),
+    ('Tabasco', 'Tabasco'),
+    ('Tamaulipas', 'Tamaulipas'),
+    ('Tlaxcala', 'Tlaxcala'),
+    ('Veracruz', 'Veracruz'),
+    ('Yucatán', 'Yucatán'),
+    ('Zacatecas', 'Zacatecas')
 )
 
 
@@ -57,9 +57,10 @@ class Donor(models.Model):
         help_text = "Date when the donor is integrated into Vifac"
     )
 
-    state = models.PositiveIntegerField(
+    state = models.CharField(
         choices = State,
-        default = 0,
+        default = '',
+        max_length = 256,
         verbose_name = "State"
     )
 
