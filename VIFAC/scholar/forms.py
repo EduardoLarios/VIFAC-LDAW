@@ -6,7 +6,7 @@ class AsignarMaterial(forms.ModelForm):
     
     class Meta:
         model = Material
-        fields = ['descripcion', 'categoria']
+        fields = ['descripcion', 'categoria', 'entrego']
     
         
 class EscuelaForm(forms.ModelForm):

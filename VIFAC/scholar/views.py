@@ -13,6 +13,7 @@ app_name = 'scholar'
 def index(request):
     return render(request, 'scholar/index.html')
 
+
 def nueva_escuela(request):
     if request.method == "POST":
         name = request.POST['name']
@@ -47,3 +48,39 @@ def delete_escuela(request, pk):
     escuela = get_object_or_404(Escuela, pk=pk)
     escuela.delete()
     return HttpResponseRedirect(reverse('scholar:list_escuela'))
+
+
+def asignar_material(request, escuela_id):
+    form = AsignarMaterial(request.POST or None)
+    escuela = get_object_or_404(Escuela, pk=escuela_id)
+    if form.is_valid():
+        material = form.save(commit=False)
+        material.escuela = escuela
+        material.save()
+
+        if '_addother' in request.POST:
+            form = AsignarMaterial()
+            context = {
+                'Escuela': escuela,
+                'form': form,
+            }
+            return render(request, 'scholar/new_material.html', context)
+        else:
+            return HttpResponseRedirect(reverse('scholar:list_escuela'))
+            #return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))
+
+    context = {
+        'escuela': escuela,
+        'form': form,
+    }
+    return render(request, 'scholar/new_material.html', context)
+
+
+def material_escuela(request, escuela_id):
+    escuela = get_object_or_404(Escuela, pk=escuela_id)
+    materiales = escuela.material_set.all()
+    context = {
+        'escuela': escuela,
+        'materiales': materiales,
+    }
+    return render(request, 'scholar/materiales_escuela.html', context)

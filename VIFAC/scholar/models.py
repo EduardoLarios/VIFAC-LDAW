@@ -25,12 +25,12 @@ class Escuela(models.Model):
 class Material(models.Model):
     categoria = models.CharField(
         max_length=128,
-        verbose_name='Category Name',
+        verbose_name='Categoria de material',
         help_text="Nombre de categoria"
     )
     descripcion = models.CharField(
         max_length=256,
-        verbose_name='Description',
+        verbose_name='Descripcion',
         help_text='Descripcion del producto'
     )
     entrego = models.CharField(

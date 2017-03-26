@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^lista_escuelas/$', EscuelasListView.as_view(), name='list_escuela'),
     url(r'^editar_escuela/(?P<pk>\d+)/$', views.EscuelaUpdate.as_view(), name="escuela_update"),
     url(r'^borrar_escuela/(?P<pk>[0-9]+)$', views.delete_escuela, name='escuela_delete'),
+    
+    url(r'^asignar_material/(?P<escuela_id>[0-9]+)$', views.asignar_material, name='assign_material'),
+    url(r'^material_escuela/(?P<escuela_id>[0-9]+)/$', views.material_escuela, name='material_escuela'),
 ]
