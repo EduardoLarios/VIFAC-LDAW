@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.views.generic import View
-from .forms import UserForm, UpdateForm
 from django.views.generic.edit import DeleteView, UpdateView
-from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse_lazy
 from rolepermissions.roles import assign_role, remove_role
+from django.contrib.auth import authenticate, login
+from django.core.urlresolvers import reverse_lazy
 from rolepermissions.checkers import has_role
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from .forms import UserForm, UpdateForm
+from django.views.generic import View
 from django.http import Http404
 from VIFAC.roles import *
 
