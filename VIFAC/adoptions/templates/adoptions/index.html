@@ -1,0 +1,22 @@
+{% extends 'base/layout.html' %}
+{% block content %}
+
+    <section id="donaciones">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Módulo Adopciones</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div id="btn_lun">
+                <div class="btn-group-vertical" role="group" aria-label="...">
+                    <a href="{% url 'add' %}"><button type="button" class="btn btn-default">Agregar Familia</button></a>
+                    <a href="{% url 'read' %}"><button type="button" class="btn btn-default">Ver Familias</button></a>
+                    <a href="https://www.youtube.com/watch?v=hTWKbfoikeg"><button type="button" class="btn btn-default">Soy una verga</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
