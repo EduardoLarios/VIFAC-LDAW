@@ -1,8 +1,9 @@
+from .views import EscuelasListView, MaterialEdit
 from django.conf.urls import url
 from . import views
-from .views import EscuelasListView, MaterialEdit
 
 app_name = 'scholar'
+
 
 urlpatterns = [
     

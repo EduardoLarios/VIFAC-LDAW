@@ -1,14 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView
-
-from .forms import AsignarMaterial, EscuelaForm
-from .models import Escuela, Material
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
+from django.views.generic import ListView
+from .models import Escuela, Material
+from .forms import AsignarMaterial
 from django.urls import reverse
 
+
 app_name = 'scholar'
+
 
 def index(request):
     return render(request, 'scholar/index.html')
