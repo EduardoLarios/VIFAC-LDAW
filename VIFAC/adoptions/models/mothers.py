@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from .families import Family
 
 State = (
 	(0, 'Ninguno'),
@@ -39,6 +40,10 @@ State = (
 
 
 class Mother(models.Model):
+	family = models.ForeignKey(Family,
+		on_delete=models.CASCADE,
+	)
+	
 	nombre = models.CharField(
 		max_length=256,
 		null=False,

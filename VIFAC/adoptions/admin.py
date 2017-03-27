@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models.families import Family
+from .models.fathers import Father
+from .models.mothers import Mother
 
-# Register your models here.
+admin.site.register(Family)
+admin.site.register(Father)
+admin.site.register(Mother)
+
