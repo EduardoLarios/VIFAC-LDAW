@@ -9,6 +9,33 @@ from django.urls import reverse
 app_name = 'raffles'
 
 def index(request):
+    if request.method == "GET":
+        if 'busqueda_part' in request.GET:
+            name = request.GET["busqueda_part"]
+            query = Participante.objects.filter(full_name__icontains=name)
+            if query:
+                context = {
+                    'participantes': query
+                }
+            else:
+                res = True
+                context = {
+                    'no_results': res
+                }
+            return render(request, 'raffles/index.html', context)
+        if 'busqueda_panf' in request.GET:
+            folio = request.GET["busqueda_panf"]
+            query = Panfleta.objects.filter(folio__icontains=folio)
+            if query:
+                context = {
+                    'panfletas': query
+                }
+            else:
+                res = True
+                context = {
+                    'no_results': res
+                }
+            return render(request, 'raffles/index.html', context)
     return render(request, 'raffles/index.html')
 
 def assign_form(request, participant_id):
@@ -72,9 +99,15 @@ class PanfletaEdit(UpdateView):
     success_url = reverse_lazy('raffles:index')
     fields = ['devuelta', 'monto_entregado']
 
-def delete_panfleta(request, pk):
 
-    panfleta = get_object_or_404(Panfleta, pk=pk)
-    part = panfleta.participante
-    panfleta.delete()
+def delete_panfleta(request):
+
+    if request.method == "POST":
+        Panfleta.objects.filter(pk__in=request.POST.getlist('item')).delete()
+        part = Participante.objects.filter(pk=request.POST["id_part"])
     return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))
+
+class ParticipanteEdit(UpdateView):
+    model = Participante
+    template_name = 'raffles/participante_detail.html'
+    success_url = reverse_lazy('raffles:index')

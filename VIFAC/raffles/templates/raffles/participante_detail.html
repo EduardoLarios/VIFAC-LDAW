@@ -32,10 +32,10 @@
         <form method="post">
         {% csrf_token %}
         <p>
-        {{ form.devuelta }}
+        {{ form.full_name }}
         </p>
         <p>
-        {{ form.monto_entregado|add_class:'form-control' }}
+        {{ form.phone_number }}
         </p>
         <input type="submit" value="Submit" />
     </form>
