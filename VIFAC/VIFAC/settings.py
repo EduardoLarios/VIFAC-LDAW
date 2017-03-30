@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'VIFAC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vifacdb',
+        'NAME': 'vifac1db',
         'USER': 'esteban',
         'PASSWORD': 'gordolobo1',
         'HOST': 'localhost',

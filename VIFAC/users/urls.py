@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^lista_usuarios/$', views.list_users, name='lista_usuarios'),
     url(r'^editar_usuario/(?P<pk>\d+)/$', views.UserUpdate.as_view(), name="user-update"),
     url(r'^login/$', login, {'template_name':'users/login.html'}, name='login'),
-    #url(r'^asignar_rol/$', views.asignar_rol, name='asignar-rol')
+    url(r'^asignar_rol/(?P<user_id>\d+)/$', views.asignar_rol, name='asignar_rol')
 ]

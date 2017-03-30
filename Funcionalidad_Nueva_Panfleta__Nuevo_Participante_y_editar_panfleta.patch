@@ -1,0 +1,142 @@
+Index: VIFAC/raffles/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- VIFAC/raffles/models.py	(revision e228a3cadd703c7c3e8942fd0ba9d51934402289)
++++ VIFAC/raffles/models.py	(revision )
+@@ -9,7 +9,7 @@
+         verbose_name='Participante Name',
+         help_text="Participante's name"
+     )
+-    phone_number = PhoneNumberField()
++    phone_number = models.CharField(max_length=15)
+ 
+     def __str__(self):
+         return self.full_name
+Index: VIFAC/raffles/templates/raffles/panfleta_detail.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- VIFAC/raffles/templates/raffles/panfleta_detail.html	(revision e228a3cadd703c7c3e8942fd0ba9d51934402289)
++++ VIFAC/raffles/templates/raffles/panfleta_detail.html	(revision )
+@@ -7,7 +7,7 @@
+         <div class="container">
+             <div class="row">
+                 <div class="col-lg-12 text-center">
+-                    <h2>Panfleta No: </h2>
++                    <h2>Panfleta No: {{ panfleta.folio }}</h2>
+                     <hr class="star-primary">
+                 </div>
+             </div>
+Index: VIFAC/raffles/urls.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- VIFAC/raffles/urls.py	(revision e228a3cadd703c7c3e8942fd0ba9d51934402289)
++++ VIFAC/raffles/urls.py	(revision )
+@@ -9,6 +9,6 @@
+ 
+     url(r'^$', views.index, name='index'),
+     url(r'^detalle_panfleta/(?P<pk>[0-9]+)/$', views.PanfletaEdit.as_view() , name='raffle_detail'),
+-    #url(r'^nuevo_participante/$', views.nuevo_participante, name='nuevo_participante'),
+-    url(r'^(?P<participant_id>[0-9]+)/nueva_panfleta/$', views.assign_form, name='assign_form'),
++    url(r'^nuevo_participante/$', views.nuevo_participante, name='nuevo_participante'),
++    url(r'^(?P<participant_id>[0-9]+)/asignar_panfleta/$', views.assign_form, name='assign_panflet'),
+ ]
+\ No newline at end of file
+Index: VIFAC/raffles/templates/raffles/new_participant.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- VIFAC/raffles/templates/raffles/new_participant.html	(revision e228a3cadd703c7c3e8942fd0ba9d51934402289)
++++ VIFAC/raffles/templates/raffles/new_participant.html	(revision )
+@@ -14,7 +14,16 @@
+         </div>
+ 
+     <div class="container">
+-
++        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
++            {% csrf_token %}
++            <input type="text" name="name" class="form-control" placeholder="Nombre Completo" >
++            <br>
++            <input type="text" name="phone" class="form-control" placeholder="Número de teléfono" >
++            <br>
++                <div class="row">
++                    <button type="submit" name="_addother" class="btn btn-primary">Guarda y agregar una nueva panfleta</button>
++                </div>
++        </form>
+     </div>
+     </section>
+ 
+Index: VIFAC/raffles/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- VIFAC/raffles/views.py	(revision e228a3cadd703c7c3e8942fd0ba9d51934402289)
++++ VIFAC/raffles/views.py	(revision )
+@@ -1,8 +1,10 @@
+ from django.shortcuts import render, get_object_or_404
+-from .forms import AsignPanfletForm, PanfletForm, Participante
++from .forms import AsignPanfletForm, PanfletForm, ParticipanteForm
+ from .models import Panfleta, Participante
+ from django.views.generic.edit import UpdateView
+ from django.core.urlresolvers import reverse_lazy
++from django.http import HttpResponseRedirect, HttpResponse
++from django.urls import reverse
+ # Create your views here.
+ 
+ def index(request):
+@@ -44,40 +46,16 @@
+     return render(request, 'raffles/new_raffle.html', context)
+ 
+ 
+-def new_participant(request, participant_id):
+-    form = AsignPanfletForm(request.POST or None)
+-    part = get_object_or_404(Participante, pk=participant_id)
+-    if form.is_valid():
+-        folios_part = part.panfleta_set.all()
+-        for pan in folios_part:
+-            if pan.folio == form.cleaned_data.get("folio"):
+-                context = {
+-                    'participante': part,
+-                    'form': form,
+-                    'error_message': 'Ese folio ya existía',
+-                }
+-                return render(request, 'raffles/new_raffle.html', context)
+-        panfleta = form.save(commit=False)
+-        panfleta.participante = part
+-        panfleta.save()
++def nuevo_participante(request):
++    if request.method == "POST":
++        name = request.POST['name']
++        phone = request.POST['phone']
++        part = Participante(full_name=name, phone_number=phone)
++        part.save()
++        return HttpResponseRedirect(reverse('raffles:assign_panflet', args=(part.id,)))
+ 
+-        if '_addother' in request.POST:
+-            form = AsignPanfletForm()
+-            context = {
+-                'participante': part,
+-                'panfleta': panfleta,
+-                'form': form,
+-            }
+-            return render(request, 'raffles/new_raffle.html', context)
+-        else:
+-            return reverse_lazy('raffles:index')
+-        # return render(request, 'raffles/index.html', {'album': album})
+ 
+-    context = {
+-        'participante': part,
+-        'form': form,
+-    }
+-    return render(request, 'raffles/new_raffle.html', context)
++    return render(request, 'raffles/new_participant.html')
+ 
+ class PanfletaEdit(UpdateView):
+     model = Panfleta
