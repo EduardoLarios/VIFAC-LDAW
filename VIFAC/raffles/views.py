@@ -111,3 +111,10 @@ class ParticipanteEdit(UpdateView):
     model = Participante
     template_name = 'raffles/participante_detail.html'
     success_url = reverse_lazy('raffles:index')
+
+
+def delete_participante(request, participant_id):
+
+    part = Participante.objects.get(pk=participant_id)
+    part.delete()
+    return reverse_lazy('raffles:index')
