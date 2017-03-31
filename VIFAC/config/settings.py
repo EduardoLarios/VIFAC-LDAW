@@ -81,11 +81,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vifacdb',
-        #'USER': 'eduardo',
-        'USER': 'postgres',
+        'USER': 'eduardo',
+        #'USER': 'postgres',
         'PASSWORD': 'Haswell1150',
         'HOST': 'localhost',
-        'PORT': '5432',
+        #'PORT': '5432',
     }
 }
 
