@@ -30,7 +30,7 @@
 	    <![endif]-->
 
 	</head>
-	<body id="page-top" class="index">
+
         <!-- Navigation -->
             <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
                 <div class="container">
@@ -40,6 +40,7 @@
                             <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                         </button>
                         <img src="../../../static/img/logo.png" width="40%">
+                        <a href="{% url "donations:index" %}">Menu Inicio</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -73,5 +74,6 @@
 		<script src="{% static "js/jqBootstrapValidation.js" %}"></script>
 		<script src="{% static "js/contact_me.js" %}"></script>
 		<script src="{% static "js/freelancer.min.js" %}"></script>
-	</body>
+	</div>
+
 </html>
