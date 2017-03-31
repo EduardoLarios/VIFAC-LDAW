@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'scholar.apps.ScholarConfig',
     'dashboard.apps.DashboardConfig',
     'donations.apps.DonationsConfig',
     'users.apps.UsersConfig',
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'VIFAC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vifac1db',
+        'NAME': 'vifacdb',
         'USER': 'esteban',
         'PASSWORD': 'gordolobo1',
         'HOST': 'localhost',
