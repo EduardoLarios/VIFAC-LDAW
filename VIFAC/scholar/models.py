@@ -1,5 +1,5 @@
 from django.db import models
-
+#exampleee
 
 class Escuela(models.Model):
     name = models.CharField(
