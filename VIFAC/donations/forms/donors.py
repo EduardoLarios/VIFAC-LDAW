@@ -40,7 +40,7 @@ class DonorForm(forms.Form):
     reference = forms.CharField(
         max_length = 256,
         label = 'Referencia',
-        help_text = "Persona quien introdujo al donador a VIFAC"
+        help_text = "Persona quien introdujo al donador a config"
     )
     
     contact_name = forms.CharField(
