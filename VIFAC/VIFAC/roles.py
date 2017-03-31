@@ -14,6 +14,7 @@ class Admin(AbstractUserRole):
     }
 
 
+
 class Consejo(AbstractUserRole):
     available_permissions = {
         'donaciones': True,

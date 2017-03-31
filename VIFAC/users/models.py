@@ -2,9 +2,9 @@ from django.db import models
 
 
 Roles = (
-    'Admin',
-    'Consejo',
-    'Expedientes',
-    'Medico',
-    'Adopciones'
+    ('admin', 'Administrador'),
+    ('consejo', 'Consejo'),
+    ('expedientes', 'Expedientes'),
+    ('medico', 'Medico'),
+    ('adopciones', 'Adopciones')
 )

@@ -1,5 +1,6 @@
+from rolepermissions.roles import assign_role, remove_role, get_user_roles, clear_roles
 from django.views.generic.edit import DeleteView, UpdateView
-from rolepermissions.roles import assign_role, remove_role
+from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from rolepermissions.checkers import has_role
@@ -7,7 +8,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import UserForm, UpdateForm
 from django.views.generic import View
-from django.http import Http404
+from django.urls import reverse
+
 from VIFAC.roles import *
 
 
@@ -58,8 +60,19 @@ class UserDelete(DeleteView):
 
 
 def list_users(request):
-    queryset = User.objects.all().values()
-    return render(request, 'users/list_users.html', {'users': queryset})
+    queryset = User.objects.all()
+    role = []
+    count = 0
+    for user in queryset:
+        role.append(get_user_roles(user))
+        count += 1
+        print(role)
+
+    context = {
+        'users': queryset,
+        'roles': role,
+    }
+    return render(request, 'users/list_users.html', context)
 
 
 class UserUpdate(UpdateView):
@@ -73,3 +86,17 @@ class UserUpdate(UpdateView):
 def login(request):
     context = {}
     return render(request, 'users/login.html', context)
+
+def asignar_rol(request, user_id):
+    user = User.objects.get(pk=user_id)
+    if request.method == "POST":
+        rol = request.POST["rol"]
+        clear_roles(user)
+        assign_role(user, rol)
+        return HttpResponseRedirect(reverse('users:asignar_rol', args=(user_id)))
+    else:
+
+        context = {
+            'user': user,
+        }
+        return render(request, 'users/assign_role.html', context)
