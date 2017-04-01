@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+Roles = (
+    ('admin', 'Administrador'),
+    ('consejo', 'Consejo'),
+    ('expedientes', 'Expedientes'),
+    ('medico', 'Medico'),
+    ('adopciones', 'Adopciones')
+)
