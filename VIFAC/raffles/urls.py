@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^(?P<participant_id>[0-9]+)/asignar_panfleta/$', views.assign_form, name='assign_panflet'),
     url(r'^borrar_panfletas/$', views.delete_panfleta, name='panfleta_delete'),
     url(r'^borrar_participante/(?P<participant_id>[0-9]+)/$', views.delete_participante, name='borrar_participante'),
+    url(r'^editar_participante/(?P<participant_id>[0-9]+)/$', views.delete_participante, name='borrar_participante'),
 
 ]

@@ -29,16 +29,26 @@
               </tbody>
             </table>
         </div-->
-        <form method="post">
-        {% csrf_token %}
-        <p>
-        {{ form.devuelta }}
-        </p>
-        <p>
-        {{ form.monto_entregado|add_class:'form-control' }}
-        </p>
-        <input type="submit" value="Submit" />
-    </form>
+        <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Detalle</h3>
+          </div>
+          <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                <p>
+                {{ form.devuelta }}
+                </p>
+                <p>
+                {{ form.monto_entregado|add_class:'form-control' }}
+                </p>
+                <input type="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+        </div>
+
     </section>
 
 {% endblock content %}
