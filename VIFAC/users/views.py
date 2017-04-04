@@ -76,9 +76,11 @@ class UserUpdate(UpdateView):
     slug_url_kwarg = 'slug'
     success_url = '/usuarios/lista_usuarios'
 
+
 def login(request):
     context = {}
     return render(request, 'users/login.html', context)
+
 
 def asignar_rol(request, user_id):
     user = User.objects.get(pk=user_id)
