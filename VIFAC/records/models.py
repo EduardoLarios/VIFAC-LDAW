@@ -56,6 +56,17 @@ Estado_Civil = (
     ('Unión Libre', 'Unión Libre'),
 )
 
+Referencia = (
+    ('Amistad', 'Amistad'),
+    ('Periodico', 'Periodico'),
+    ('Familiar', 'Familiar'),
+    ('Trabajo', 'Trabajo'),
+    ('Volante', 'Volante'),
+    ('Sopt TV', 'Sopt TV'),
+    ('Página web', 'Página web'),
+    ('Migración', 'Migración')
+)
+
 class Expediente(models.Model):
     #Datos Generales
     nombre = models.CharField(
@@ -83,9 +94,9 @@ class Expediente(models.Model):
     )
     
     telefono_casa = models.CharField(
-        max_length = 8,
-        default = '',
-        blank = True,
+        max_length=8,
+        default='',
+        blank=True,
         verbose_name= "Telefono de casa",
         help_text='Telefono de casa'
     )
@@ -450,3 +461,84 @@ class Expediente(models.Model):
         verbose_name='Encargado de tu crianza',
         help_text='Encargado de tu crianza'
     )
+    
+    #ocupacion
+    
+    trabajado_antes = models.BooleanField(
+        blank=True,
+        default=False
+    )
+    
+    puesto  = models.CharField(
+        max_length=256,
+        blank=True,
+        verbose_name='Puesto de trabajo',
+        help_text='Puesto'
+    )
+    
+    lugar_trabajo = models.CharField(
+        max_length=256,
+        blank=True,
+        verbose_name='Lugar trabajo',
+        help_text='Lugar de trabajo'
+    )
+    
+    jefe_inmediato = models.CharField(
+        max_length=256,
+        blank=True,
+        default='',
+        verbose_name='Jefe inmediato',
+        help_text='Jefe inmediato'
+    )
+    
+    telefono_jefe = models.CharField(
+        max_length=24,
+        blank=True,
+        default=''
+    )
+
+    trabajo_estado = models.CharField(
+        blank=True,
+        choices=State,
+        default='',
+        max_length=256,
+        verbose_name="Estado",
+        help_text='Estado'
+    )
+
+    trabajo_ciudad = models.CharField(
+        blank=True,
+        max_length=256,
+        default='',
+        verbose_name="Ciudad",
+        help_text='Ciudad'
+    )
+
+    trabajo_calle = models.CharField(
+        blank=True,
+        max_length=256,
+        default='',
+        verbose_name="Calle",
+        help_text='Calle'
+    )
+
+    trabajo_codigo_postal = models.CharField(
+        blank=True,
+        max_length=128,
+        default='',
+        verbose_name='Codigo Postal',
+        help_text='Codigo Postal'
+    )
+    
+    # Como conociste vida y familia
+    
+    referencia =  models.CharField(
+        blank=True,
+        choices=Referencia,
+        default='',
+        max_length=256,
+        verbose_name="Referencia",
+        help_text='Cómo conoció VIFAC'
+    )
+    
+    
