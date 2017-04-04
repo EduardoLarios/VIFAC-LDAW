@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^', include('dashboard.urls', namespace='dashboard')),
     url(r'^usuarios/', include('users.urls', namespace="users")),
     url(r'^admin/', admin.site.urls),
-    url(r'^logout/$',logout, {'next_page': '/usuarios/login'}
-),
+    url(r'^logout/$',logout, {'next_page': '/usuarios/login'}),
+    url(r'^escolar/', include('scholar.urls', namespace="scolar")),
+
 ]

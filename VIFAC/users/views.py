@@ -1,6 +1,6 @@
 from rolepermissions.roles import assign_role, remove_role, get_user_roles, clear_roles
 from django.views.generic.edit import DeleteView, UpdateView
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from rolepermissions.checkers import has_role
@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from .forms import UserForm, UpdateForm
 from django.views.generic import View
 from django.urls import reverse
-
+import csv
 from VIFAC.roles import *
 
 
@@ -32,14 +32,7 @@ class UserFormView(View):
             user.set_password(password)
             user.save()
             
-            #return User if credentials correct
-            user = authenticate(username=username, password=password)
-            
-            if user is not None:
-                
-                if user.is_active:
-                    login(request, user)
-                    return redirect('/usuarios/lista_usuarios')
+           
         return render(request, self.template_name, {'form': form})
             
     
@@ -100,3 +93,17 @@ def asignar_rol(request, user_id):
             'user': user,
         }
         return render(request, 'users/assign_role.html', context)
+
+
+def export_users_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Usuario', 'Nombre', 'Apellidos', 'Email'])
+
+    users = User.objects.all().values_list('username', 'first_name', 'last_name', 'email')
+    for user in users:
+        writer.writerow(user)
+
+    return response
