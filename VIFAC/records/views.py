@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 import datetime
 
-from VIFAC.records.models import Expediente
+from .models import Expediente
 from .forms import RecordForm
 
 # Create your views here.

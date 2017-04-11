@@ -6,50 +6,42 @@ from django import forms
 
 class RecordForm(forms.Form):
     nombre = forms.CharField(
-        max_length = 256,
         help_text = 'Nombre',
         label = 'Nombre de la beneficiaria'
     )
 
     apellido_paterno = forms.CharField(
-        max_length = 256,
         help_text = 'Apellido Paterno',
         label = 'Apellido Paterno'
     )
     
     apellido_materno = forms.CharField(
-        max_length = 256,
         help_text = 'Apellido Materno',
         label = 'Apellido Materno'
     )
 
     edad = forms.IntegerField(
-        blank = True,
         help_text = 'Edad',
         label = 'Edad'
     )
     
     telefono_casa = forms.CharField(
-        max_length = 10,
         initial = '+52',
         help_text = 'Teléfono de casa',
         label = 'Teléfono de casa'
     )
     
     telefono_particular = forms.CharField(
-        max_length = 10,
         initial = '+52',
         help_text = 'Teléfono de particular',
         label = 'Teléfono de particular'
     )
     
     fecha_nacimiento = forms.DateField(
-        blank = True,
         label = 'Fecha de nacimiento'
     )
     
-    estado_civil =  forms.CharField(
-        max_length = 128,
+    estado_civil =  forms.ChoiceField(
         choices = Estado_Civil,
         help_text = 'Estado Civil',
         label = 'Estado Civil'
@@ -59,85 +51,70 @@ class RecordForm(forms.Form):
         label = '¿Eres migrante?'
     )
 
-    estado = forms.CharField(
+    estado = forms.ChoiceField(
         choices = State,
-        max_length = 256,
         help_text = 'Estado',
         label = 'Estado'
     )
     
     ciudad = forms.CharField(
-        max_length = 256,
         help_text = 'Ciudad',
         label = 'Ciudad'
     )
     
     calle = forms.CharField(
-        max_length = 256,
         help_text = 'Calle',
         label = 'Calle'
     )
     
     codigo_postal =  forms.CharField(
-        max_length = 128,
         help_text = 'Código Postal',
         label = 'Código Postal'
     )
     
     vives_nombre = forms.CharField(
-        max_length = 256,
         help_text = 'Nombre',
         label = 'Nombre'
     )
 
     vives_apellido_paterno = forms.CharField(
-        max_length = 256,
         help_text = 'Apellido Paterno',
         label = 'Apellido Paterno'
     )
     
     vives_apellido_materno = forms.CharField(
-        max_length = 256,
         help_text = 'Apellido Materno',
         label = 'Apellido Materno'
     )
     
-    tipo_relacion_vives = forms.CharField(
-        max_length = 128,
+    tipo_relacion_vives = forms.ChoiceField(
         choices = Relacion_Vives,
         help_text = 'Con quien vives',
         label = 'Tipo de relación con quien vives'
     )
     
     telefono_vives = forms.CharField(
-        max_length = 8,
         help_text = 'Teléfono de la persona con quien vives',
         label = 'Teléfono de la persona con quien vives'
     )
     
-    estado_vives = forms.CharField(
+    estado_vives = forms.ChoiceField(
         choices = State,
-        max_length = 256,
         help_text = 'Estado',
         label = 'Estado'
     )
     
     ciudad_vives = forms.CharField(
-        max_length = 256,
         help_text = 'Ciudad',
         label = 'Ciudad'
     )
     
     calle_vives = forms.CharField(
-        blank = True,
-        max_length = 256,
         help_text = 'Calle',
         label = 'Calle'
     )
     
     codigo_postal_vives = forms.CharField(
-        max_length = 128,
-        verbose_name = 'Código Postal',
         help_text = 'Código Postal',
         label = 'Código Postal'
     )
@@ -147,78 +124,45 @@ class RecordForm(forms.Form):
     )
     
     padre_nombre = forms.CharField(
-        max_length = 256,
-        verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
 
     padre_apellido_paterno = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = 'Apellido Paterno',
         help_text = 'Apellido Paterno'
     )
 
     padre_apellido_materno = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = 'Apellido Materno',
         help_text = 'Apellido Materno'
     )
 
     padre_telefono_casa = forms.CharField(
-        max_length = 8,
-        blank = True,
-        verbose_name = "Teléfono de casa",
         help_text = 'Teléfono de casa'
     )
 
     padre_telefono_particular = forms.CharField(
-        max_length = 8,
-        blank = True,
-        verbose_name = "Teléfono particular",
         help_text = 'Teléfono de particular'
     )
 
-    padre_fecha_nacimiento = forms.DateField(
-        blank = True,
-        null = True,
-    )
+    padre_fecha_nacimiento = forms.DateField()
 
-    padre_estado_civil = forms.CharField(
-        blank =  True,
-        max_length = 128,
-        choices = Estado_Civil,
-        verbose_name = 'Estado Civil',
+    padre_estado_civil = forms.ChoiceField(
         help_text = 'Estado Civil'
     )
 
-    padre_estado = forms.CharField(
-        blank = True,
+    padre_estado = forms.ChoiceField(
         choices = State,
-        max_length =  256,
-        verbose_name = "Estado",
         help_text = 'Estado'
     )
 
     padre_ciudad = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = "Ciudad",
         help_text = 'Ciudad'
     )
 
     padre_calle = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = "Calle",
         help_text = 'Calle'
     )
 
     padre_codigo_postal = forms.CharField(
-        blank = True,
-        max_length =  128,
-        verbose_name = 'Código Postal',
         help_text = 'Código Postal'
     )
 
@@ -229,47 +173,28 @@ class RecordForm(forms.Form):
     )
 
     madre_nombre = forms.CharField(
-        max_length = 256,
-        verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
 
     madre_apellido_paterno = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = 'Apellido Paterno',
         help_text = 'Apellido Paterno'
     )
 
     madre_apellido_materno = forms.CharField(
-        blank = True,
-        max_length = 256,
-        verbose_name = 'Apellido Materno',
         help_text = 'Apellido Materno'
     )
 
     madre_telefono_casa = forms.CharField(
-        max_length = 8,
-        blank = True,
-        verbose_name = "Teléfono de casa",
         help_text = 'Teléfono de casa'
     )
 
     madre_telefono_particular = forms.CharField(
-        max_length = 8,
-        blank = True,
-        verbose_name = "Teléfono particular",
         help_text = 'Teléfono de particular'
     )
 
-    madre_fecha_nacimiento = forms.DateField(
-        blank = True,
-        null = True,
-    )
+    madre_fecha_nacimiento = forms.DateField()
 
-    madre_estado_civil = forms.CharField(
-        blank = True,
-        max_length = 128,
+    madre_estado_civil = forms.ChoiceField(
         choices = Estado_Civil,
         help_text = 'Estado Civil'
     )
@@ -277,63 +202,52 @@ class RecordForm(forms.Form):
     madre_migrante = forms.BooleanField(
     )
 
-    madre_estado = forms.CharField(
+    madre_estado = forms.ChoiceField(
         choices = State,
-        max_length = 256,
         help_text = 'Estado'
     )
 
     madre_ciudad = forms.CharField(
-        max_length = 256,
         help_text = 'Ciudad'
     )
 
     madre_calle = forms.CharField(
-        max_length = 256,
         help_text = 'Calle'
     )
 
     madre_codigo_postal = forms.CharField(
-        max_length = 128,
         help_text = 'Código Postal'
     )
 
     # formacion familia
 
     integrantes_familia = forms.IntegerField(
-        verbose_name = 'Número de integrantes',
         help_text = 'Número de integrantes en la familia'
     )
 
     numero_hermanos = forms.IntegerField(
         help_text = 'Numero de hermanos',
-        verbose_name = 'Número de hermanos'
     )
 
     lugar_dentro_familia = forms.CharField(
-        max_length = 128,
         help_text = 'Lugar dentro de la familia'
     )
 
     # relacion con:
 
     relacion_padre = forms.CharField(
-        max_length = 512,
         help_text = 'Relación con tu padre'
     )
 
     relacion_madre = forms.CharField(
-        max_length = 512,
         help_text = 'Relación con tu madre'
     )
 
     relacion_hermanos = forms.CharField(
-        max_length =  512,
         help_text = 'Relación con tus hermanos'
     )
 
     encargado_crianza = forms.CharField(
-        max_length = 256,
         help_text = 'Encargado de tu crianza'
     )
 
@@ -342,90 +256,58 @@ class RecordForm(forms.Form):
     trabajado_antes = forms.BooleanField()
 
     puesto = forms.CharField(
-        max_length = 256,
         help_text = 'Puesto'
     )
 
     lugar_trabajo = forms.CharField(
-        max_length = 256,
         help_text = 'Lugar de trabajo'
     )
 
     jefe_inmediato = forms.CharField(
-        max_length = 256,
         help_text = 'Jefe inmediato'
     )
 
-    telefono_jefe = forms.CharField(
-        max_length = 24,
-        blank = True,
-    )
+    telefono_jefe = forms.CharField()
 
-    trabajo_estado = forms.CharField(
+    trabajo_estado = forms.ChoiceField(
         choices = State,
-        max_length = 256,
         help_text = 'Estado'
     )
 
     trabajo_ciudad = forms.CharField(
-        max_length = 256,
-        verbose_name = "Ciudad",
         help_text = 'Ciudad'
     )
 
     trabajo_calle = forms.CharField(
-        max_length = 256,
         help_text = 'Calle'
     )
 
     trabajo_codigo_postal = forms.CharField(
-        max_length = 128,
-        verbose_name = 'Código Postal',
         help_text = 'Código Postal'
     )
 
     # Como conociste vida y familia
 
-    referencia = forms.CharField(
+    referencia = forms.ChoiceField(
         choices = Referencia,
-        max_length = 256,
         help_text = 'Cómo conoció VIFAC'
     )
 
-    visto_en = forms.CharField(
-        max_length = 256,
-        blank = True,
-        verbose_name = 'Dónde se ha visto la referencia'
-    )
+    visto_en = forms.CharField()
 
-    canal = forms.CharField(
-        max_length = 256,
-        verbose_name = 'Canal donde se ha visto la referencia'
-    )
+    canal = forms.CharField()
 
-    otros = forms.CharField(
-        max_length = 256,
-        verbose_name = 'Otro medio donde se ha visto la referencia'
-    )
+    otros = forms.CharField()
 
     # Datos Generales de la Persona
 
-    nombre_recomendacion = forms.CharField(
-        max_length = 64,
-        verbose_name = 'Nombre persona'
-    )
+    nombre_recomendacion = forms.CharField()
 
-    apellido_paterno_recomendacion = forms.CharField(
-        max_length = 64,
-        verbose_name = 'Apellido paterno'
-    )
+    apellido_paterno_recomendacion = forms.CharField()
 
-    apellido_materno_recomendacion = forms.CharField(
-        max_length = 64,
-    )
+    apellido_materno_recomendacion = forms.CharField()
 
-    relacion_recomendacion = forms.CharField(
-        max_length = 1024,
+    relacion_recomendacion = forms.ChoiceField(
         choices = Relacion_Vives,
     )
 
@@ -436,49 +318,39 @@ class RecordForm(forms.Form):
     # Dirección
 
     calle_recomendacion = forms.CharField(
-        max_length = 256,
         help_text = 'Calle'
     )
 
     numero_exterior = forms.CharField(
-        max_length = 8,
         help_text = 'Número'
     )
 
     codigo_postal_recomendacion = forms.CharField(
-        max_length = 8,
         help_text = 'Código Postal'
     )
 
     colonia = forms.CharField(
-        max_length = 128,
-        verbose_name = 'Colonia',
         help_text = 'Colonia'
     )
 
     ciudad_referencia = forms.CharField(
-        max_length = 64,
         help_text = 'Ciudad'
     )
 
-    estado_referencia = forms.CharField(
-        max_length = 1024,
+    estado_referencia = forms.ChoiceField(
         choices = State,
         help_text = 'Estado'
     )
 
-    tipo_de_ayuda = forms.CharField(
-        max_length = 1024,
+    tipo_de_ayuda = forms.ChoiceField(
         choices = Ayuda,
     )
 
     fecha_ultima_menstruacion = forms.DateField(
-        auto_now = False,
         help_text = 'Fecha de ultima menstruación'
     )
 
     fecha_de_parto_esperada = forms.DateField(
-        auto_now = False,
         help_text = 'Fecha esperada de parto'
     )
 
@@ -486,22 +358,18 @@ class RecordForm(forms.Form):
     # Contacto de Emergencia
 
     nombre_emergencia = forms.CharField(
-        max_length = 64,
         help_text = 'Nombre contacto de emergencia'
     )
 
     apellido_paterno_emergencia = forms.CharField(
-        max_length = 64,
         help_text = 'Apellido paterno'
     )
 
     apellido_materno_emergencia = forms.CharField(
-        max_length = 64,
         help_text = 'Apellido materno'
     )
 
-    relacion_emergencia = forms.CharField(
-        max_length = 1024,
+    relacion_emergencia = forms.ChoiceField(
         choices = Relacion_Vives,
         help_text = 'Relación con el contacto de emergencia'
     )
@@ -511,22 +379,18 @@ class RecordForm(forms.Form):
     )
 
     codigo_postal_emergencia = forms.CharField(
-        max_length = 8,
         help_text = 'Código Postal'
     )
 
     colonia_emergencia = forms.CharField(
-        max_length = 128,
         help_text = 'Colonia'
     )
 
     ciudad_emergencia = forms.CharField(
-        max_length = 64,
         help_text = 'Ciudad'
     )
 
-    estado_emergencia = forms.CharField(
-        max_length = 1024,
+    estado_emergencia = forms.ChoiceField(
         choices = State,
         help_text = 'Estado'
     )
@@ -538,17 +402,14 @@ class RecordForm(forms.Form):
     )
 
     enfermedades_padecidas = forms.CharField(
-        max_length = 128,
         help_text = 'Enfermedades Padecidas'
     )
 
     nombre_medico = forms.CharField(
-        max_length = 256,
         help_text = 'Nombre del médico a cargo'
     )
 
     nombre_clinica = forms.CharField(
-        max_length = 256,
         help_text = 'Nombre de la clínica'
     )
 
@@ -557,32 +418,24 @@ class RecordForm(forms.Form):
     )
 
     calle_medico = forms.CharField(
-        max_length = 256,
         help_text = 'Calle'
     )
 
     numero_exterior_medico = forms.CharField(
-        max_length = 8,
         help_text = 'Número de calle'
     )
 
     codigo_postal_medico = forms.CharField(
-        max_length = 8,
         help_text = 'Código Postal'
     )
 
-    colonia_medico = forms.CharField(
-        max_length = 128,
-        verbose_name = 'Colonia'
-    )
+    colonia_medico = forms.CharField()
 
     ciudad_medico = forms.CharField(
-        max_length = 256,
         help_text = 'Ciudad'
     )
 
-    estado_medico = forms.CharField(
-        max_length = 1024,
+    estado_medico = forms.ChoiceField(
         choices = State,
         help_text = 'Estado'
     )
@@ -590,56 +443,46 @@ class RecordForm(forms.Form):
     # Personal
 
     estado_de_animo = forms.CharField(
-        max_length = 1024,
         help_text = 'Estado de ánimo'
     )
 
     infancia = forms.CharField(
-        max_length = 1024,
         help_text = 'Descripción infancia'
     )
 
     # Embarazo
 
-    tipo_embarazo = forms.CharField(
-        max_length = 1024,
+    tipo_embarazo = forms.ChoiceField(
         choices = Embarazo,
         help_text = 'Tipo de embarazo'
     )
 
     reaccion = forms.CharField(
-        max_length = 1024,
         help_text = 'Reacción al embarazo'
     )
 
     apoyo_papa = forms.CharField(
-        max_length = 1024,
         help_text = 'Apoyo del papá'
     )
 
-    relacion_con_padre = forms.CharField(
-        max_length = 1024,
+    relacion_con_padre = forms.ChoiceField(
         choices = Relacion,
         help_text = 'Relación con el padre'
     )
 
     duracion_relacion = forms.CharField(
-        max_length = 64,
         help_text = 'Duración de la relación'
     )
 
     familiares = forms.CharField(
-        max_length = 512,
         help_text = 'Familiares que saben del embarazo'
     )
 
     actitud_familiares = forms.CharField(
-        max_length = 512,
         help_text = 'Actitud que espera de los familiares'
     )
 
-    relacion_voluntaria = forms.CharField(
-        max_length = 1024,
+    relacion_voluntaria = forms.ChoiceField(
         choices = Voluntario,
         help_text = 'Relaciones voluntarias'
     )
@@ -658,19 +501,16 @@ class RecordForm(forms.Form):
 
     # Escolaridad
 
-    maximo_grado_estudios = forms.CharField(
-        max_length = 1024,
+    maximo_grado_estudios = forms.ChoiceField(
         choices = Estudios,
         help_text = 'Máximo grado de estudios'
     )
 
     nombre_escuela = forms.CharField(
-        max_length = 128,
         help_text = 'Nombre de la institución escolar'
     )
 
-    tiempo_cursado = forms.CharField(
-        max_length = 1024,
+    tiempo_cursado = forms.ChoiceField(
         choices = Duracion,
         help_text = 'Años cursados'
     )
