@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .models import State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda
+from .models import State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante
 from phonenumber_field.formfields import PhoneNumberField
 from django import forms
 
@@ -41,14 +41,34 @@ class RecordForm(forms.Form):
         label = 'Fecha de nacimiento'
     )
     
+    estado_nacimiento = forms.ChoiceField(
+        label='Estado de Nacimiento',
+        choices=State,
+        help_text='Estado de nacimiento'
+    )
+    
     estado_civil =  forms.ChoiceField(
         choices = Estado_Civil,
         help_text = 'Estado Civil',
-        label = 'Estado Civil'
+        label = 'Estado Civil',
     )
     
-    migrante = forms.BooleanField(
-        label = '¿Eres migrante?'
+    religion =  forms.ChoiceField(
+        choices=Religiones,
+        help_text='Religión',
+        label='Religión',
+    )
+
+    tipo_poblacion = forms.ChoiceField(
+        choices=Poblacion,
+        help_text='Tipo de población',
+        label='Tipo de población',
+    )
+    
+    migrante = forms.ChoiceField(
+        choices=Migrante,
+        help_text='¿Eres migrante?',
+        label='¿Eres migrate?',
     )
 
     estado = forms.ChoiceField(
@@ -65,6 +85,11 @@ class RecordForm(forms.Form):
     calle = forms.CharField(
         help_text = 'Calle',
         label = 'Calle'
+    )
+    
+    colonia = forms.CharField(
+        help_text='Colonia',
+        label='Colonia'
     )
     
     codigo_postal =  forms.CharField(

@@ -58,6 +58,14 @@ Estado_Civil = (
     ('Unión Libre', 'Unión Libre'),
 )
 
+Religiones = (
+    ('Catolica', 'Catolica'),
+    ('Cristiana', 'Cristiana'),
+    ('Protestante', 'Protestante'),
+    ('Ninguna', 'Ninguna'),
+    ('Otra', 'Otra')
+)
+
 Referencia = (
     ('Amistad', 'Amistad'),
     ('Periodico', 'Periodico'),
@@ -120,6 +128,17 @@ Duracion = (
     ('Otro', 'Otro')
 )
 
+Poblacion = (
+    ('Rural', 'Rural'),
+    ('Urbana', 'Urbana'),
+    ('Indigena', 'Indigena')
+)
+
+Migrante = (
+    ('No', 'No'),
+    ('Si', 'Si')
+)
+
 class Expediente(models.Model):
     #Datos Generales
     nombre = models.CharField(
@@ -162,6 +181,15 @@ class Expediente(models.Model):
         help_text = 'Teléfono  de particular'
     )
     
+    estado_nacimiento = models.CharField(
+        blank=True,
+        choices=State,
+        default='',
+        max_length=256,
+        verbose_name="Estado de nacimiento",
+        help_text='Estado de nacimiento'
+    )
+    
     fecha_nacimiento = models.DateField(
         blank = True
     )
@@ -173,8 +201,29 @@ class Expediente(models.Model):
         help_text = 'Estado Civil'
     )
     
-    migrante = models.BooleanField(
-        default = False
+    religion = models.CharField(
+        blank=True,
+        default='',
+        max_length=128,
+        choices=Religiones,
+        verbose_name='Religión',
+        help_text='Religión'
+    )
+    
+    tipo_poblacion = models.CharField(
+        blank=True,
+        default='',
+        max_length=128,
+        choices=Poblacion,
+        verbose_name='Tipo de Población',
+        help_text='Tipo de Población'
+    )
+    
+    migrante = models.CharField(
+        max_length=12,
+        choices=Migrante,
+        verbose_name='Migrante',
+        help_text='Migrante'
     )
 
     estado = models.CharField(
@@ -200,6 +249,14 @@ class Expediente(models.Model):
         default = '',
         verbose_name = "Calle",
         help_text = 'Calle'
+    )
+    
+    colonia = models.CharField(
+        blank=True,
+        max_length=256,
+        default='',
+        verbose_name="Colonia",
+        help_text='Colonia'
     )
     
     codigo_postal =  models.CharField(
