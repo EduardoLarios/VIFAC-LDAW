@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^donaciones/', include('donations.urls', namespace = "donations")),
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$',logout, {'next_page': '/usuarios/login'}),
-    url(r'^escolar/', include('scholar.urls', namespace="scolar")),
+    url(r'^escolar/', include('scholar.urls', namespace="scholar")),
+    url(r'^expediente_medico/', include('medical.urls', namespace="medical")),
 ]
