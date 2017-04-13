@@ -51,10 +51,10 @@ Relacion_Vives = (
 )
 
 Estado_Civil = (
-    ('Soltera', 'Soltera'),
-    ('Casada', 'Casada'),
-    ('Divorciada', 'Divorciada'),
-    ('Viuda', 'Viuda'),
+    ('Soltero', 'Soltero'),
+    ('Casado', 'Casado'),
+    ('Divorciado', 'Divorciado'),
+    ('Viudo', 'Viudo'),
     ('Unión Libre', 'Unión Libre'),
 )
 
@@ -135,6 +135,17 @@ Poblacion = (
 )
 
 Migrante = (
+    ('No', 'No'),
+    ('Si', 'Si')
+)
+
+Vive = (
+    ('No sabe', 'No sabe'),
+    ('No', 'No'),
+    ('Si', 'Si')
+)
+
+Trabajado = (
     ('No', 'No'),
     ('Si', 'Si')
 )
@@ -329,18 +340,31 @@ class Expediente(models.Model):
         help_text = 'Calle'
     )
 
+    colonia_vives = models.CharField(
+        blank = True,
+        max_length = 256,
+        default = '',
+        verbose_name = "Colonia Vives",
+        help_text = 'Colonia'
+    )
+    
     codigo_postal_vives = models.CharField(
         blank = True,
         max_length = 128,
         default = '',
-        verbose_name = 'Código  Postal',
-        help_text = 'Código  Postal'
+        verbose_name = 'Código Postal',
+        help_text = 'Código Postal'
     )
     
     #info padre
     
-    vive_padre = models.BooleanField(
-        default = True,
+    vive_padre = models.CharField(
+        blank=True,
+        choices=Vive,
+        default='',
+        max_length=256,
+        verbose_name="Vive padre",
+        help_text='¿Tu padre vive?'
     )
 
     padre_nombre = models.CharField(
@@ -419,6 +443,14 @@ class Expediente(models.Model):
         help_text = 'Calle'
     )
 
+    padre_colonia = models.CharField(
+        blank = True,
+        max_length = 256,
+        default = '',
+        verbose_name = "Colonia",
+        help_text = 'Colonia'
+    )
+
     padre_codigo_postal = models.CharField(
         blank = True,
         max_length = 128,
@@ -427,10 +459,23 @@ class Expediente(models.Model):
         help_text = 'Código  Postal'
     )
     
+    padre_ocupacion = models.CharField(
+        blank = True,
+        max_length = 128,
+        default = '',
+        verbose_name = 'Ocupación',
+        help_text = 'Ocupación'
+    )
+    
     #Info madre
 
-    vive_madre = models.BooleanField(
-        default = True
+    vive_madre = models.CharField(
+        blank=True,
+        choices=Vive,
+        default='',
+        max_length=256,
+        verbose_name="Vive madre",
+        help_text='¿Tu madre vive?'
     )
 
     madre_nombre = models.CharField(
@@ -520,6 +565,22 @@ class Expediente(models.Model):
         help_text = 'Código  Postal'
     )
     
+    madre_colonia = models.CharField(
+        blank = True,
+        max_length = 256,
+        default = '',
+        verbose_name = "Colonia",
+        help_text = 'Colonia'
+    )
+    
+    madre_ocupacion = models.CharField(
+        blank = True,
+        max_length = 128,
+        default = '',
+        verbose_name = 'Ocupación',
+        help_text = 'Ocupación'
+    )
+    
     #formacion familia
     
     integrantes_familia = models.IntegerField(
@@ -575,9 +636,11 @@ class Expediente(models.Model):
     
     #ocupacion
     
-    trabajado_antes = models.BooleanField(
-        blank = True,
-        default = False
+    trabajado_antes = models.CharField(
+        max_length=12,
+        blank=True,
+        default='',
+        choices=Trabajado,
     )
     
     puesto  = models.CharField(
@@ -640,6 +703,14 @@ class Expediente(models.Model):
         verbose_name = 'Código  Postal',
         help_text = 'Código  Postal'
     )
+
+    trabajo_colonia = models.CharField(
+        blank = True,
+        max_length = 128,
+        default = '',
+        verbose_name = 'Colonia',
+        help_text = 'Colonia'
+    )
     
     # Como conociste vida y familia
 
@@ -651,7 +722,7 @@ class Expediente(models.Model):
         verbose_name = "Referencia",
         help_text = 'Cómo conoció VIFAC'
     )
-
+    
     visto_en = models.CharField(
         max_length = 256,
         blank = True,
@@ -854,6 +925,14 @@ class Expediente(models.Model):
         default = '',
         verbose_name = "Estado",
         help_text = 'Estado'
+    )
+    
+    calle_emergencia = models.CharField(
+        max_length = 1024,
+        blank = True,
+        default = '',
+        verbose_name = "Calle",
+        help_text = 'Calle'
     )
 
     # Referencia Médica

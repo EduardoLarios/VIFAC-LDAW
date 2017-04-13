@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .models import State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante
+from .models import State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante, Vive, Trabajado
 from phonenumber_field.formfields import PhoneNumberField
 from django import forms
 
@@ -120,6 +120,7 @@ class RecordForm(forms.Form):
     
     telefono_vives = forms.CharField(
         help_text = 'Teléfono de la persona con quien vives',
+        initial='+52',
         label = 'Teléfono de la persona con quien vives'
     )
     
@@ -139,13 +140,20 @@ class RecordForm(forms.Form):
         label = 'Calle'
     )
     
+    colonia_vives = forms.CharField(
+        help_text = 'Colonia',
+        label = 'Colonia'
+    )
+    
     codigo_postal_vives = forms.CharField(
         help_text = 'Código Postal',
         label = 'Código Postal'
     )
     
-    vive_padre = forms.BooleanField(
-        label = '¿Vive tu padre?'
+    vive_padre = forms.ChoiceField(
+        choices=Vive,
+        help_text='¿Tu padre vive?',
+        label='¿Vive tu padre?'
     )
     
     padre_nombre = forms.CharField(
@@ -171,6 +179,7 @@ class RecordForm(forms.Form):
     padre_fecha_nacimiento = forms.DateField()
 
     padre_estado_civil = forms.ChoiceField(
+        choices=Estado_Civil,
         help_text = 'Estado Civil'
     )
 
@@ -186,15 +195,26 @@ class RecordForm(forms.Form):
     padre_calle = forms.CharField(
         help_text = 'Calle'
     )
+    
+    padre_colonia = forms.CharField(
+        help_text = 'Colonia',
+        label = 'Colonia'
+    )
 
     padre_codigo_postal = forms.CharField(
         help_text = 'Código Postal'
     )
 
+    padre_ocupacion = forms.CharField(
+        help_text = 'Ocupación',
+        label = 'Ocupación'
+    )
     # Info madre
 
-    vive_madre = forms.BooleanField(
-        
+    vive_madre = forms.ChoiceField(
+        choices=Vive,
+        help_text='¿Tu madre vive?',
+        label='¿Vive tu madre?'
     )
 
     madre_nombre = forms.CharField(
@@ -243,6 +263,16 @@ class RecordForm(forms.Form):
     madre_codigo_postal = forms.CharField(
         help_text = 'Código Postal'
     )
+    
+    madre_colonia = forms.CharField(
+        help_text = 'Colonia',
+        label = 'Colonia'
+    )
+    
+    madre_ocupacion = forms.CharField(
+        help_text = 'Ocupación',
+        label = 'Ocupación'
+    )
 
     # formacion familia
 
@@ -278,7 +308,10 @@ class RecordForm(forms.Form):
 
     # ocupacion
 
-    trabajado_antes = forms.BooleanField()
+    trabajado_antes = forms.ChoiceField(
+        choices = Trabajado,
+        help_text='¿Has trabajado antes?'
+    )
 
     puesto = forms.CharField(
         help_text = 'Puesto'
@@ -292,7 +325,10 @@ class RecordForm(forms.Form):
         help_text = 'Jefe inmediato'
     )
 
-    telefono_jefe = forms.CharField()
+    telefono_jefe = PhoneNumberField(
+        initial='+52',
+        help_text='Teléfono'
+    )
 
     trabajo_estado = forms.ChoiceField(
         choices = State,
@@ -304,13 +340,19 @@ class RecordForm(forms.Form):
     )
 
     trabajo_calle = forms.CharField(
-        help_text = 'Calle'
+        help_text = 'Calle',
+        label = 'Calle'
     )
 
     trabajo_codigo_postal = forms.CharField(
-        help_text = 'Código Postal'
+        help_text = 'Código Postal',
+        label='Código Postal'
     )
-
+    
+    trabajo_colonia = forms.CharField(
+        help_text = 'Colonia',
+        label='Colonia'
+    )
     # Como conociste vida y familia
 
     referencia = forms.ChoiceField(
@@ -419,7 +461,11 @@ class RecordForm(forms.Form):
         choices = State,
         help_text = 'Estado'
     )
-
+    
+    calle_emergencia = forms.CharField(
+        help_text = 'Calle'
+    )
+    
     # Referencia Médica
 
     control_medico = forms.BooleanField(
