@@ -1108,24 +1108,30 @@ class Expediente(models.Model):
         verbose_name = 'Relaciones voluntarias'
     )
 
-    comunicacion_padre = models.BooleanField(
+    comunicacion_padre = models.CharField(
+        max_length = 1024,
+        choices = Voluntario,
         null = False,
         blank = True,
-        default = True,
+        default = '',
         verbose_name = 'Comunicación con el padre'
     )
 
-    aborto_considerado = models.BooleanField(
+    aborto_considerado = models.CharField(
+        max_length = 1024,
+        choices = Voluntario,
         null = False,
         blank = True,
-        default = False,
+        default = '',
         verbose_name = 'Se consideró el abortó'
     )
 
-    violencia_intrafamiliar = models.BooleanField(
+    violencia_intrafamiliar = models.CharField(
+        max_length = 1024,
+        choices = Voluntario,
         null = False,
         blank = True,
-        default = False,
+        default = '',
         verbose_name = 'Violencia intrafamiliar'
     )
 
@@ -1134,13 +1140,13 @@ class Expediente(models.Model):
     maximo_grado_estudios = models.CharField(
         max_length = 1024,
         null = False,
-        choices = Estudios,
+        choices = Duracion,
         blank = True,
         default = 'Otro',
         verbose_name = 'Máximo grado de estudios'
     )
 
-    nombre_escuela = models.CharField(
+    primaria_nombre = models.CharField(
         max_length = 128,
         null = False,
         blank = True,
@@ -1148,15 +1154,117 @@ class Expediente(models.Model):
         verbose_name = 'Nombre de la institución escolar'
     )
 
-    tiempo_cursado = models.CharField(
+    primaria_tiempo = models.CharField(
         max_length = 1024,
-        choices = Duracion,
+        choices = Estudios,
         null = False,
         blank = True,
         default = 'Otro',
         verbose_name = 'Años cursados'
     )
 
+    secundaria_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    secundaria_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+    
+    preparatoria_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    preparatoria_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+    
+    tecnica_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    tecnica_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+
+    licenciatura_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    licenciatura_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+    
+    posgrado_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    posgrado_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+    
+    otro_nombre = models.CharField(
+        max_length = 128,
+        null = False,
+        blank = True,
+        default = '',
+        verbose_name = 'Nombre de la institución escolar'
+    )
+
+    otro_tiempo = models.CharField(
+        max_length = 1024,
+        choices = Estudios,
+        null = False,
+        blank = True,
+        default = 'Otro',
+        verbose_name = 'Años cursados'
+    )
+    
     class Meta(object):
         verbose_name = 'Expediente'
         verbose_name_plural = 'Expedientes'

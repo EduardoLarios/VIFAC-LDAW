@@ -558,30 +558,87 @@ class RecordForm(forms.Form):
         help_text = 'Relaciones voluntarias'
     )
 
-    comunicacion_padre = forms.BooleanField(
+    comunicacion_padre = forms.ChoiceField(
+        choices=Voluntario,
         help_text = 'Comunicación con el padre'
     )
 
-    aborto_considerado = forms.BooleanField(
+    aborto_considerado = forms.ChoiceField(
+        choices=Voluntario,
         help_text = 'Se consideró el abortó'
     )
 
-    violencia_intrafamiliar = forms.BooleanField(
+    violencia_intrafamiliar = forms.ChoiceField(
+        choices=Voluntario,
         help_text = 'Violencia intrafamiliar'
     )
 
     # Escolaridad
 
     maximo_grado_estudios = forms.ChoiceField(
-        choices = Estudios,
+        choices = Duracion,
         help_text = 'Máximo grado de estudios'
     )
 
-    nombre_escuela = forms.CharField(
+    primaria_nombre = forms.CharField(
         help_text = 'Nombre de la institución escolar'
     )
 
-    tiempo_cursado = forms.ChoiceField(
-        choices = Duracion,
+    primaria_tiempo = forms.ChoiceField(
+        choices = Estudios,
         help_text = 'Años cursados'
+    )
+
+    secundaria_nombre = forms.CharField(
+        help_text = 'Nombre de la institución escolar'
+    )
+
+    secundaria_tiempo = forms.ChoiceField(
+        choices = Estudios,
+        help_text = 'Años cursados'
+    )
+    
+    preparatoria_nombre = forms.CharField(
+        help_text = 'Nombre de la institución escolar'
+    )
+
+    preparatoria_tiempo = forms.ChoiceField(
+        choices = Estudios,
+        help_text = 'Años cursados'
+    )
+
+    tecnica_nombre = forms.CharField(
+        help_text='Nombre de la institución escolar'
+    )
+
+    tecnica_tiempo = forms.ChoiceField(
+        choices=Estudios,
+        help_text='Años cursados'
+    )
+
+    licenciatura_nombre = forms.CharField(
+        help_text='Nombre de la institución escolar'
+    )
+
+    licenciatura_tiempo = forms.ChoiceField(
+        choices=Estudios,
+        help_text='Años cursados'
+    )
+    
+    posgrado_nombre = forms.CharField(
+        help_text='Nombre de la institución escolar'
+    )
+
+    posgrado_tiempo = forms.ChoiceField(
+        choices=Estudios,
+        help_text='Años cursados'
+    )
+    
+    otro_nombre = forms.CharField(
+        help_text='Nombre de la institución escolar'
+    )
+
+    otro_tiempo = forms.ChoiceField(
+        choices=Estudios,
+        help_text='Años cursados'
     )
