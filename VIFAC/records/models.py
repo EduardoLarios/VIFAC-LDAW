@@ -56,6 +56,7 @@ Estado_Civil = (
     ('Divorciado', 'Divorciado'),
     ('Viudo', 'Viudo'),
     ('Unión Libre', 'Unión Libre'),
+    ('Otro', 'Otro'),
 )
 
 Religiones = (
@@ -74,7 +75,8 @@ Referencia = (
     ('Volante', 'Volante'),
     ('Sopt TV', 'Sopt TV'),
     ('Página web', 'Página web'),
-    ('Migración', 'Migración')
+    ('Migración', 'Migración'),
+    ('Otro', 'Otro')
 )
 
 Ayuda = (
@@ -131,40 +133,48 @@ Duracion = (
 Poblacion = (
     ('Rural', 'Rural'),
     ('Urbana', 'Urbana'),
-    ('Indigena', 'Indigena')
+    ('Indigena', 'Indigena'),
+    ('Otro', 'Otro')
 )
 
 Migrante = (
+    ('Otro', 'Otro'),
     ('No', 'No'),
-    ('Si', 'Si')
+    ('Sí', 'Sí')
 )
 
 Vive = (
+    ('Otro', 'Otro'),
     ('No sabe', 'No sabe'),
     ('No', 'No'),
-    ('Si', 'Si')
+    ('Sí', 'Sí')
 )
 
 Trabajado = (
+    ('Otro', 'Otro'),
     ('No', 'No'),
-    ('Si', 'Si')
+    ('Sí', 'Sí')
 )
 
 class Expediente(models.Model):
+    
     #Datos Generales
     nombre = models.CharField(
+        blank = True,
         max_length = 256,
         verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
     
     apellido_paterno = models.CharField(
+        blank = True,
         max_length = 256,
         verbose_name = 'Apellido Paterno',
         help_text = 'Apellido Paterno'
     )
     
     apellido_materno = models.CharField(
+        blank = True,
         max_length = 256,
         verbose_name = 'Apellido Materno',
         help_text = 'Apellido Materno'
@@ -185,59 +195,62 @@ class Expediente(models.Model):
     )
     
     telefono_particular = models.CharField(
+        blank = True,
         max_length = 10,
         default = '',
-        blank = True,
         verbose_name =  "Teléfono  particular",
         help_text = 'Teléfono  de particular'
     )
     
     estado_nacimiento = models.CharField(
-        blank=True,
-        choices=State,
+        blank = True,
+        choices = State,
         default='',
-        max_length=256,
-        verbose_name="Estado de nacimiento",
-        help_text='Estado de nacimiento'
+        max_length = 256,
+        verbose_name = "Estado de nacimiento",
+        help_text = 'Estado de nacimiento'
     )
     
     fecha_nacimiento = models.DateField(
-        blank = True
+        blank = True,
+        null = True
     )
     
     estado_civil =  models.CharField(
+        blank = True,
         max_length = 128,
         choices = Estado_Civil,
         verbose_name = 'Estado Civil',
         help_text = 'Estado Civil'
     )
     
-    religion = models.CharField(
-        blank=True,
+    religion = models.CharField( 
+        blank = True,
         default='',
-        max_length=128,
-        choices=Religiones,
-        verbose_name='Religión',
-        help_text='Religión'
+        max_length = 128,
+        choices = Religiones,
+        verbose_name = 'Religión',
+        help_text = 'Religión'
     )
     
     tipo_poblacion = models.CharField(
-        blank=True,
+        blank = True,
         default='',
-        max_length=128,
-        choices=Poblacion,
-        verbose_name='Tipo de Población',
-        help_text='Tipo de Población'
+        max_length = 128,
+        choices = Poblacion,
+        verbose_name = 'Tipo de Población',
+        help_text = 'Tipo de Población'
     )
     
-    migrante = models.CharField(
-        max_length=12,
-        choices=Migrante,
-        verbose_name='Migrante',
-        help_text='Migrante'
+    migrante = models.CharField( 
+        blank = True,
+        max_length = 12,
+        choices = Migrante,
+        verbose_name = 'Migrante',
+        help_text = 'Migrante'
     )
 
-    estado = models.CharField(
+    estado = models.CharField( 
         blank = True,
         choices = State,
         default = '',
@@ -246,15 +259,15 @@ class Expediente(models.Model):
         help_text = 'Estado'
     )
 
-    ciudad = models.CharField(
-        blank =  True,
+    ciudad = models.CharField( 
+        blank = True,
         max_length = 256,
         default = '',
         verbose_name = "Ciudad",
         help_text = 'Ciudad'
     )
 
-    calle = models.CharField(
+    calle = models.CharField( 
         blank = True,
         max_length = 256,
         default = '',
@@ -262,15 +275,15 @@ class Expediente(models.Model):
         help_text = 'Calle'
     )
     
-    colonia = models.CharField(
-        blank=True,
-        max_length=256,
+    colonia = models.CharField( 
+        blank = True,
+        max_length = 256,
         default='',
-        verbose_name="Colonia",
-        help_text='Colonia'
+        verbose_name = "Colonia",
+        help_text = 'Colonia'
     )
     
-    codigo_postal =  models.CharField(
+    codigo_postal =  models.CharField( 
         blank = True,
         max_length = 128,
         default = '',
@@ -280,25 +293,28 @@ class Expediente(models.Model):
     
     #Historia Familiar
     
-    vives_nombre = models.CharField(
+    vives_nombre = models.CharField( 
+        blank = True,
         max_length = 256,
         verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
     
-    vives_apellido_paterno = models.CharField(
+    vives_apellido_paterno = models.CharField( 
+        blank = True,
         max_length = 256,
         verbose_name = 'Apellido Paterno',
         help_text = 'Apellido Paterno'
     )
 
-    vives_apellido_materno = models.CharField(
+    vives_apellido_materno = models.CharField( 
+        blank = True,
         max_length = 256,
         verbose_name = 'Apellido Materno',
         help_text = 'Apellido Materno'
     )
     
-    tipo_relacion_vives = models.CharField(
+    tipo_relacion_vives = models.CharField( 
         max_length = 128,
         blank = True,
         choices =  Relacion_Vives,
@@ -315,7 +331,7 @@ class Expediente(models.Model):
         help_text = 'Teléfono  de la persona con quien vives'
     )
 
-    estado_vives = models.CharField(
+    estado_vives = models.CharField( 
         blank = True,
         choices = State,
         default = '',
@@ -324,7 +340,7 @@ class Expediente(models.Model):
         help_text = 'Estado'
     )
 
-    ciudad_vives = models.CharField(
+    ciudad_vives = models.CharField( 
         blank = True,
         max_length = 256,
         default = '',
@@ -348,7 +364,7 @@ class Expediente(models.Model):
         help_text = 'Colonia'
     )
     
-    codigo_postal_vives = models.CharField(
+    codigo_postal_vives = models.CharField( 
         blank = True,
         max_length = 128,
         default = '',
@@ -358,40 +374,41 @@ class Expediente(models.Model):
     
     #info padre
     
-    vive_padre = models.CharField(
-        blank=True,
-        choices=Vive,
+    vive_padre = models.CharField( 
+        blank = True,
+        choices = Vive,
         default='',
-        max_length=256,
-        verbose_name="Vive padre",
-        help_text='¿Tu padre vive?'
+        max_length = 256,
+        verbose_name = "Vive padre",
+        help_text = '¿Tu padre vive?'
     )
 
-    padre_nombre = models.CharField(
+    padre_nombre = models.CharField( 
+        blank = True,
         default = '',
         max_length = 256,
         verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
 
-    padre_apellido_paterno = models.CharField(
-        blank =  True,
+    padre_apellido_paterno = models.CharField( 
+        blank = True,
         max_length = 256,
         verbose_name = 'Apellido Paterno',
         help_text = 'Apellido Paterno'
     )
 
-    padre_apellido_materno = models.CharField(
-        blank =  True,
+    padre_apellido_materno = models.CharField( 
+        blank = True,
         max_length = 256,
         verbose_name =   'Apellido Materno',
         help_text = 'Apellido Materno'
     )
 
-    padre_telefono_casa = models.CharField(
+    padre_telefono_casa = models.CharField( 
         max_length = 8,
         default = '',
-        blank =  True,
+        blank = True,
         verbose_name = "Teléfono  de casa",
         help_text = 'Teléfono  de casa'
     )
@@ -406,11 +423,10 @@ class Expediente(models.Model):
 
     padre_fecha_nacimiento = models.DateField(
         blank = True,
-        null = False,
-        default = None
+        null = True,
     )
 
-    padre_estado_civil = models.CharField(
+    padre_estado_civil = models.CharField( 
         blank =  True,
         max_length = 128,
         choices =  Estado_Civil,
@@ -435,7 +451,7 @@ class Expediente(models.Model):
         help_text = 'Ciudad'
     )
 
-    padre_calle = models.CharField(
+    padre_calle = models.CharField( 
         blank = True,
         max_length = 256,
         default = '',
@@ -443,7 +459,7 @@ class Expediente(models.Model):
         help_text = 'Calle'
     )
 
-    padre_colonia = models.CharField(
+    padre_colonia = models.CharField( 
         blank = True,
         max_length = 256,
         default = '',
@@ -451,7 +467,7 @@ class Expediente(models.Model):
         help_text = 'Colonia'
     )
 
-    padre_codigo_postal = models.CharField(
+    padre_codigo_postal = models.CharField( 
         blank = True,
         max_length = 128,
         default = '',
@@ -459,7 +475,7 @@ class Expediente(models.Model):
         help_text = 'Código  Postal'
     )
     
-    padre_ocupacion = models.CharField(
+    padre_ocupacion = models.CharField( 
         blank = True,
         max_length = 128,
         default = '',
@@ -469,23 +485,24 @@ class Expediente(models.Model):
     
     #Info madre
 
-    vive_madre = models.CharField(
-        blank=True,
-        choices=Vive,
+    vive_madre = models.CharField( 
+        blank = True,
+        choices = Vive,
         default='',
-        max_length=256,
-        verbose_name="Vive madre",
-        help_text='¿Tu madre vive?'
+        max_length = 256,
+        verbose_name = "Vive madre",
+        help_text = '¿Tu madre vive?'
     )
 
-    madre_nombre = models.CharField(
+    madre_nombre = models.CharField( 
+        blank = True,
         max_length = 256,
         default = '',
         verbose_name = 'Nombre',
         help_text = 'Nombre'
     )
 
-    madre_apellido_paterno = models.CharField(
+    madre_apellido_paterno = models.CharField( 
         blank = True,
         max_length = 256,
         verbose_name = 'Apellido Paterno',
@@ -499,7 +516,7 @@ class Expediente(models.Model):
         help_text = 'Apellido Materno'
     )
 
-    madre_telefono_casa = models.CharField(
+    madre_telefono_casa = models.CharField( 
         max_length = 8,
         default = '',
         blank = True,
@@ -520,7 +537,7 @@ class Expediente(models.Model):
         null = True,
     )
 
-    madre_estado_civil = models.CharField(
+    madre_estado_civil = models.CharField( 
         blank = True,
         max_length = 128,
         choices = Estado_Civil,
@@ -528,8 +545,10 @@ class Expediente(models.Model):
         help_text = 'Estado Civil'
     )
 
-    madre_migrante = models.BooleanField(
-        default = False
+    madre_migrante = models.NullBooleanField(
+        blank = True,
+        default = False,
+        help_text = 'La madre es migrante'
     )
 
     madre_estado = models.CharField(
@@ -558,7 +577,7 @@ class Expediente(models.Model):
     )
 
     madre_codigo_postal = models.CharField(
-        blank =  True,
+        blank = True,
         max_length = 128,
         default = '',
         verbose_name = 'Código  Postal',
@@ -637,10 +656,10 @@ class Expediente(models.Model):
     #ocupacion
     
     trabajado_antes = models.CharField(
-        max_length=12,
+        max_length = 12,
         blank=True,
         default='',
-        choices=Trabajado,
+        choices = Trabajado,
     )
     
     puesto  = models.CharField(
@@ -843,16 +862,16 @@ class Expediente(models.Model):
 
     fecha_ultima_menstruacion = models.DateField(
         auto_now = False,
-        null = False,
         blank = True,
+        null = True,
         default = None,
         verbose_name = 'Fecha de última menstruación'
     )
 
     fecha_de_parto_esperada = models.DateField(
         auto_now = False,
-        null = False,
         blank = True,
+        null = True,
         default = None,
         verbose_name = 'Fecha esperada de parto'
     )
@@ -937,8 +956,7 @@ class Expediente(models.Model):
 
     # Referencia Médica
 
-    control_medico = models.BooleanField(
-        null = False,
+    control_medico = models.NullBooleanField(
         blank = True,
         default = False,
         verbose_name = 'Ha tenido control médico'
@@ -969,7 +987,9 @@ class Expediente(models.Model):
     )
 
     telefono_medico = PhoneNumberField(
-        default = ''
+        default = '',
+        null = True,
+        blank = True
     )
 
     calle_medico = models.CharField(
