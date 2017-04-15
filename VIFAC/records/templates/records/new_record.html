@@ -105,10 +105,24 @@
             <div class="indicator" style="right: 1091.67px; left: 0px;"></div>
         </ul>
     </div>
+					{% if form.non_field_errors or form.errors %}
+					<div class="row">
+
+						{% for name, e in form.non_field_errors.items %}
+							<div class="alert">{{ e }}</div>
+						{% endfor %}
+
+						{% for name, e in form.errors.items %}
+							<div class="alert">{{ name }}: {{ e }}</div>
+						{% endfor %}
+
+					</div>
+    					{% endif %}
+
     <div id="Exp_Nuevo_menu" class="row">
         <div class="container">
             <form method="POST" id="forma" enctype="multipart/form-data">
-
+            {% csrf_token %}
                 <div id="Datos_Generales" class="col s12">
                     <div class="row">
                     <h5 id="Exp_Nuevo_Subtitulo">General</h5>
@@ -160,7 +174,7 @@
                             <div class="select-wrapper">
                                 {{ form.religion | add_class:'form-control' }}
                             </div>
-                            <label>Religión</label>
+                            <label for="religion">Religión</label>
 
                         </div>
                         <div class="input-field col s3">
@@ -702,11 +716,11 @@
                     <div class="row">
                         <div class="input-field col s3">
                             {{ form.colonia | add_class:'form-control' }}
-							<label for="estado">Colonia</label>
+							<label for="colonia">Colonia</label>
                         </div>
                         <div class="input-field col s3">
                             {{ form.codigo_postal | add_class:'form-control' }}
-							<label for="estado">Codigo postal</label>
+							<label for="codigo_postal">Codigo postal</label>
                         </div>
 
                     </div>
