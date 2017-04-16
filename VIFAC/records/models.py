@@ -600,6 +600,7 @@ class Expediente(models.Model):
     #formacion familia
     
     integrantes_familia = models.IntegerField(
+        null= True,
         blank = True,
         default = 0,
         verbose_name = 'Numero de integrantes',
