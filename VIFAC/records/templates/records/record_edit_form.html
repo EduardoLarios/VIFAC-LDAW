@@ -2,73 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
 <div contenteditable="true" style="position: absolute; left: -999px; width: 0px; height: 0px; overflow: hidden; outline: 0px; opacity: 0;"></div>
-<ul id="slide-out" class="side-nav" style="width: 320px; transform: translateX(-100%);">
-    <li>
-        <div class="userView">
-            <a href="index.php" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
-        </div>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <ul class="collapsible collapsible-accordion">
-        <li class="bold">
-            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Expediente</a>
-            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-                <ul>
-                    <li><a href="Exp_Nuevo.php">Crear<i class="tiny material-icons blue-text"></i></a></li>
-                    <li><a href="Modificar_Exp.php"><i class="tiny material-icons blue-text"></i>Modificar</a></li>
-                    <li><a href="Exp_Nuevo_Vista.html"><i class="tiny material-icons blue-text"></i>Consultar</a></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li class="bold"><a href="Expediente_Busqueda.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i> Exp. Médico</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <ul class="collapsible collapsible-accordion">
-        <li class="bold">
-            <a class="collapsible-header  waves-effect waves-teal"><i id="icon"> <img src="Med.png"> </i> Medicamentos</a>
-            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-                <ul>
-                    <li><a href="Nuevo_Medicamento.php">Nuevo Medicamento<i class="tiny material-icons blue-text">playlist_add</i></a></li>
-                    <li><a href="Medicamentos.php"><i class="tiny material-icons blue-text"></i>Modificar Medicamento</a></li>
-                    <li><a href="MedicamentosInventario.php"><i class="tiny material-icons blue-text"></i>Consultar Inventario</a></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <ul class="collapsible collapsible-accordion">
-        <li class="bold">
-            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Usuarios</a>
-            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-                <ul>
-                    <li><a href="Usu_Nuevo.php"><i class="tiny material-icons blue-text"></i>Crear</a></li>
-                    <li><a href="ModificarUsuario.php"><i class="tiny material-icons blue-text"></i>Modificar</a></li>
-                    <li><a href="Consulta_Usuarios.php"><i class="tiny material-icons blue-text"></i>Consultar</a></li>
-                    <li><a href="EliminarUsuario.php"><i class="tiny material-icons blue-text"></i>Eliminar</a></li>
-                    <li><a href="AsignarPrivilegios.php"><i class="tiny material-icons blue-text"></i>Asignar Rol</a></li>
-                    <li><a href="EliminarPrivilegios.php"><i class="tiny material-icons blue-text"></i>Eliminar Rol</a></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Vifac AC</a></li>
-</ul>
+
 <!--div class="fixed-action-btn" style="bottom: 42px; right: 28px;">
     <a id="btn_menu" data-activates="slide-out" class="button-collapse btn-floating btn-large orange">
       <i class="large material-icons">menu</i>
@@ -80,7 +14,7 @@
             <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
         </div>
         <div class="col s1 m1 l1">
-            <a class="white-text" href="logout.php"><i class="small material-icons white-text"></i>Salir</a>
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
         </div>
     </div>
 </div>

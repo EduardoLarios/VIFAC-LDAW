@@ -31,8 +31,8 @@ class UserFormView(View):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-            
-           
+            return redirect('/usuarios/lista_usuarios/')
+
         return render(request, self.template_name, {'form': form})
             
     

@@ -16,10 +16,11 @@
 	</head>
 	<body id="page-top" class="index">
 	<div contenteditable="true" style="position: absolute; left: -999px; width: 0px; height: 0px; overflow: hidden; outline: 0px; opacity: 0;"></div>
+
 <ul id="slide-out" class="side-nav" style="width: 320px; transform: translateX(-100%);">
     <li>
         <div class="userView">
-            <a href="index.php" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
+            <a href="/" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
         </div>
     </li>
     <li>
@@ -48,23 +49,38 @@
             <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Usuarios</a>
             <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
                 <ul>
-                    <li><a href="Usu_Nuevo.php"><i class="tiny material-icons blue-text"></i>Crear</a></li>
-                    <li><a href="ModificarUsuario.php"><i class="tiny material-icons blue-text"></i>Modificar</a></li>
-                    <li><a href="Consulta_Usuarios.php"><i class="tiny material-icons blue-text"></i>Consultar</a></li>
-                    <li><a href="EliminarUsuario.php"><i class="tiny material-icons blue-text"></i>Eliminar</a></li>
-                    <li><a href="AsignarPrivilegios.php"><i class="tiny material-icons blue-text"></i>Asignar Rol</a></li>
-                    <li><a href="EliminarPrivilegios.php"><i class="tiny material-icons blue-text"></i>Eliminar Rol</a></li>
+                    <li><a href="/usuarios/registrar/"><i class="tiny material-icons blue-text"></i>Crear</a></li>
+                    <li><a href="/usuarios/lista_usuarios/"><i class="tiny material-icons blue-text"></i>Listar / Editar</a></li>
                 </ul>
             </div>
         </li>
     </ul>
+
+    <div class="divider"></div>
+
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Donaciones</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
+                    <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+
     <li>
         <div class="divider"></div>
     </li>
+
     <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
     <li>
         <div class="divider"></div>
     </li>
+
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
 

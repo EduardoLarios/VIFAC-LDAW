@@ -5,121 +5,68 @@
 {% load static %}
 {% load permission_tags %}
   <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+<div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+</div>
+
+<main>
+
+    <div class="container">
+          <br><br>
+          <h1 class="header center orange-text">Sistema de gestión de VIFAC</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">Selecciona un módulo</h5>
+          </div>
+
+          <br><br>
+          <div class="row">
+
+                <div class="col s2 offset-s2">
+                    <img src="{% static "images/donaciones.png" %}" width="100%">
+                    <h5 style="text-align: center">Donaciones</h5>
+                </div>
+              <div class="col s2">
+                  <img src="{% static "images/folder.png" %}" width="100%">
+                  <h5 style="text-align: center">Expedientes</h5>
+                </div>
+              <div class="col s2">
+                    <img src="{% static "images/medico.png" %}" width="100%">
+                  <h5 style="text-align: center">Médico</h5>
+                </div>
+              <div class="col s2">
+                    <img src="{% static "images/escuela.png" %}" width="100%">
+                  <h5 style="text-align: center">Escolar</h5>
+                </div>
+          </div>
+    </div>
+
+
+</main>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
-            </div>
-
-            <!-- Collect the nav links, formas, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a href="/logout/">Cerrar sesión</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
         </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <!-- Header -->
-    <header>
-        <div class="container" id="maincontent" tabindex="-1">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <h1 class="name">VIFAC</h1>
-                        <hr class="star-light">
-                        <span class="skills">Aplicación de gestión</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Portfolio Grid Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Tus módulos {{ user.fist_name }}</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                {% if user|can:'usuarios' %}
-                <div class="col-sm-4 portfolio-item">
-                    <a href="/usuarios/" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/cabin.png" %}" class="img-responsive" alt="Cabin">
-                    </a>
-                </div>
-                {% endif %}
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/cake.png" %}" class="img-responsive" alt="Slice of cake">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/circus.png" %}" class="img-responsive" alt="Circus tent">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/game.png" %}" class="img-responsive" alt="Game controller">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/safe.png" %}" class="img-responsive" alt="Safe">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="{% static "img/portfolio/submarine.png" %}" class="img-responsive" alt="Submarine">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
 
 {% endblock content %}

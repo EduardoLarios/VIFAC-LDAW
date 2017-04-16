@@ -4,6 +4,7 @@ from django.contrib import admin
 
 
 urlpatterns = [
+    url(r'^', include('dashboard.urls', namespace='dashboard')),
     url(r'^expedientes/', include('records.urls', namespace = 'records')),
     url(r'^usuarios/', include('users.urls')),
     url(r'^donaciones/', include('donations.urls', namespace = 'donations')),
