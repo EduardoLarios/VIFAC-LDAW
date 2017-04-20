@@ -20,8 +20,6 @@ class PanfletaTest(TestCase):
         )
 
 
-        # Tests if a a categories' queryset can be retrieved
-
     def test_panfleta_can_be_viewed(self):
         panfletas = Panfleta.objects.all()
         self.assertIsInstance(panfletas, QuerySet)
@@ -31,21 +29,23 @@ class PanfletaTest(TestCase):
     def test_panfleta_can_be_edited(self):
         panf1 = Panfleta.objects.get(folio='T1')
         panf1.folio = 'T2'
-        self.assertEqual(panf1.name, 'T2')
+        self.assertEqual(panf1.folio, 'T2')
 
-        # Tests if a category can be deleted
 
     def test_panfleta_can_be_deleted(self):
-        panf1 = Panfleta.objects.get(name='T1')
+        panf1 = Panfleta.objects.get(folio='T1')
         panf1.delete()
         panf_counts = Panfleta.objects.filter(folio='T1').count()
         self.assertEqual(panf_counts, 0)
 
-        # Tests if a new category can be created
 
-    def test_category_be_created(self):
-        Panfleta.objects.create(folio='T1', participante=part)
-        panf_counts = Panfleta.objects.filter(name='Prueba 1').count()
+    def test_panfleta_be_created(self):
+        part = Participante.objects.create(
+            full_name='Tester',
+            phone_number='4611234567'
+        )
+        Panfleta.objects.create(folio='T2', participante=part)
+        panf_counts = Panfleta.objects.filter(folio='T2').count()
         self.assertEqual(panf_counts, 1)
 
 
