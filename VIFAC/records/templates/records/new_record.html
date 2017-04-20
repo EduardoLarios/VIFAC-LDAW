@@ -88,7 +88,7 @@
                             <label for="telefono_particular">Teléfono Particular</label>
                         </div>
                         <div class="input-field col s3">
-                            {{ form.fecha_nacimiento | add_class:'form-control' }}
+                            {% render_field form.fecha_nacimiento type="date" class="datepicker" %}
                             <label for="fecha_nacimiento">Fecha de Nacimiento*</label>
                         </div>
                     </div>
