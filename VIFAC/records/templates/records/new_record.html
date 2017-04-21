@@ -89,7 +89,7 @@
                         </div>
                         <div class="input-field col s3">
                             <!--{% render_field form.fecha_nacimiento type="date" class="datepicker" %}-->
-                            {{ form.fecha_nacimiento }}
+                            {{ form.fecha_nacimiento | add_class:'datepicker'}}
 
                             <label for="fecha_nacimiento">Fecha de Nacimiento*</label>
                         </div>
