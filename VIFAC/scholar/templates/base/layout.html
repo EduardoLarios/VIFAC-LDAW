@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-{% load static %}
+<html lang="en">{% load static %}
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,36 +7,102 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 
-	    <title>VIFAC - Donaciones</title>
-		<link rel="stylesheet" href="{% static "css/reset.css" %}"> <!-- CSS reset -->
-		<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- Resource style -->
-		<script src="{% static "js/modernizr.js" %}"></script>
-
-	    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-	    <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
-
-	    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
-	    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-	    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	    <!--[if lt IE 9] -->
-	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	    <![endif]-->
+	    <title>VIFAC - Expedientes</title>
+	    <link href="{% static "css/materialize.css" %}" rel="stylesheet">
+	    <link href="{% static "css/dist/css/picedit.css" %}" rel="stylesheet">
+	    <link href="{% static "css/dist/sweetalert.css" %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	</head>
 	<body id="page-top" class="index">
+	<div contenteditable="true" style="position: absolute; left: -999px; width: 0px; height: 0px; overflow: hidden; outline: 0px; opacity: 0;"></div>
+
+<ul id="slide-out" class="side-nav" style="width: 320px; transform: translateX(-100%);">
+    <li>
+        <div class="userView">
+            <a href="/" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
+        </div>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Expediente</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/expedientes/nuevo_expediente/">Crear<i class="tiny material-icons blue-text"></i></a></li>
+                    <li><a href="/expedientes/lista_expedientes/">Consultar<i class="tiny material-icons blue-text"></i></a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li class="bold"><a href="Expediente_Busqueda.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i> Exp. Médico</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Usuarios</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/usuarios/registrar/"><i class="tiny material-icons blue-text"></i>Crear</a></li>
+                    <li><a href="/usuarios/lista_usuarios/"><i class="tiny material-icons blue-text"></i>Listar / Editar</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <div class="divider"></div>
+
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Donaciones</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
+                    <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Escolar</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/escolar/nueva_escuela/"><i class="tiny material-icons blue-text"></i>Nueva escuela</a></li>
+                    <li><a href="/escolar/lista_escuelas/"><i class="tiny material-icons blue-text"></i>Listar escuelas y asignar materiales</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="subheader">Vifac AC</a></li>
+</ul>
+
 		{% block content %}
 		{% endblock content %}
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="{% static "js/materialize.js" %}"></script>
+		<script src="{% static "js/picedit.js" %}"></script>
+		<script src="{% static "js/sweetalert.min.js" %}"></script>
+		<script src="{% static "js/nuevo_expediente.js" %}"></script>
 
-		<script src="{% static "js/jquery.validate.js" %}"></script>
-		<script src="{% static "js/jquery.min.js" %}"></script>
-		<script src="{% static "js/bootstrap.min.js" %}"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-		<script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-		<script src="{% static "js/contact_me.js" %}"></script>
-		<script src="{% static "js/freelancer.min.js" %}"></script>
 	</body>
 </html>

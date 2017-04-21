@@ -22,7 +22,7 @@ def nueva_escuela(request):
         estado = request.POST['estado']
         part = Escuela(name = name, ciudad=ciudad, estado=estado)
         part.save()
-        return HttpResponseRedirect(reverse('scholar:index'))
+        return HttpResponseRedirect(reverse('scholar:list_escuela'))
 
     return render(request, 'scholar/new_school.html')
 

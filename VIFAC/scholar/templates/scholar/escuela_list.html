@@ -3,16 +3,27 @@
 
 {% block content %}
 
-<section id="donaciones">
-    <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Escuelas</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
+<div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
     </div>
-    <div class="container">
+</div>
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de Escuelas</h4>
+</div>
+
+<main>
+
+    <div class="container" style="margin-top: 5%">
         <table class="table table-striped">
           <thead class="thead-default">
             <tr>
@@ -33,22 +44,21 @@
               <td>{{ escuela.estado }}</td>
               <td>{{ escuela.ciudad }}</td>
               <td>
-                  <a href="{% url "scholar:material_escuela" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil text-center"></span></a>
+                  <a href="{% url "scholar:material_escuela" escuela.id %}" class="btn btn-info btn-lg"><i class="large material-icons">toc</i></span></a>
               </td>
               <td>
-                  <a href="{% url "scholar:assign_material" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil text-center"></span></a>
+                  <a href="{% url "scholar:assign_material" escuela.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
               </td>
                 <td>
-                  <a href="{% url "scholar:escuela_update" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  <a href="{% url "scholar:escuela_update" escuela.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
               </td>
               <td>
-                  <a href="{% url "scholar:escuela_delete" escuela.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a href="{% url "scholar:escuela_delete" escuela.id %}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
               </td>
             </tr>
           {% endfor %}
           </tbody>
         </table>
     </div>
-</section>
-
+</main>
 {% endblock content %}
