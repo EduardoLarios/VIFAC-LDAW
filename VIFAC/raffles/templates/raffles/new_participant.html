@@ -1,0 +1,33 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <!-- Contact Section -->
+    <section id="donaciones">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Nuevo Participante</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+        </div>
+
+    <div class="container">
+        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-4 offset4" >
+                <input type="text" name="name" class="form-control" placeholder="Nombre Completo" >
+                <br>
+                <input type="text" name="phone" class="form-control" placeholder="Número de teléfono" >
+                <br>
+                    <div class="row">
+                        <button type="submit" name="_addother" class="btn btn-primary">Guarda y agregar una nueva panfleta</button>
+                    </div>
+            </div>
+
+        </form>
+    </div>
+    </section>
+
+{% endblock content %}
