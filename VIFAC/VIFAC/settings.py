@@ -27,6 +27,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'raffles.apps.RafflesConfig',
     'records.apps.RecordsConfig',
     'scholar.apps.ScholarConfig',
     'dashboard.apps.DashboardConfig',
