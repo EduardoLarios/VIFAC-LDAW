@@ -16,5 +16,3 @@ class Exp_Medico(models.Model):
     uso_anticonceptivos_FUM = models.CharField(
         max_length=512,
     )
-
-    
