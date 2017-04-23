@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from .models import Documento ,State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante, Vive, Trabajado
-from phonenumber_field.formfields import PhoneNumberField
 from django import forms
 
 
@@ -31,14 +30,14 @@ class RecordForm(forms.Form):
     
     telefono_casa = forms.CharField(
         required = False,
-        initial = '+52',
+         
         help_text = 'Teléfono de casa',
         label = 'Teléfono de casa'
     )
     
     telefono_particular = forms.CharField(
         required = False,
-        initial = '+52',
+         
         help_text = 'Teléfono de particular',
         label = 'Teléfono de particular'
     )
@@ -142,7 +141,6 @@ class RecordForm(forms.Form):
     telefono_vives = forms.CharField(
         required = False,
         help_text = 'Teléfono de la persona con quien vives',
-        initial='+52',
         label = 'Teléfono de la persona con quien vives'
     )
     
@@ -396,10 +394,8 @@ class RecordForm(forms.Form):
         help_text = 'Jefe inmediato'
     )
 
-    telefono_jefe = PhoneNumberField(
-        initial='+52',
+    telefono_jefe = forms.CharField(
         help_text='Teléfono',
-        
         required = False
     )
 
@@ -458,8 +454,7 @@ class RecordForm(forms.Form):
         choices = Relacion_Vives,
     )
 
-    telefono_recomendacion = PhoneNumberField(
-        initial = '+52',
+    telefono_recomendacion = forms.CharField(
         required = False
     )
 
@@ -535,8 +530,8 @@ class RecordForm(forms.Form):
         help_text = 'Relación con el contacto de emergencia'
     )
 
-    telefono_emergencia = PhoneNumberField(
-        initial = '+52',
+    telefono_emergencia = forms.CharField(
+         
         required = False
     )
 
@@ -588,9 +583,8 @@ class RecordForm(forms.Form):
         help_text = 'Nombre de la clínica'
     )
 
-    telefono_medico = PhoneNumberField(
-        initial = '+52',
-        
+    telefono_medico = forms.CharField(
+         
         required = False
     )
 

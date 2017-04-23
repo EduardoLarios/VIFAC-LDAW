@@ -1,5 +1,4 @@
 #--*-- UTF -8 --*--
-from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 
 
@@ -186,16 +185,20 @@ class Expediente(models.Model):
         help_text = 'Edad'
     )
     
-    telefono_casa = PhoneNumberField(
+    telefono_casa = models.CharField(
         default = '',
         blank = True,
+        null=True,
+        max_length=24,
         verbose_name =  "Teléfono  de casa",
         help_text = 'Teléfono  de casa'
     )
     
-    telefono_particular = PhoneNumberField(
+    telefono_particular = models.CharField(
         blank = True,
         default = '',
+        null=True,
+        max_length=24,
         verbose_name =  "Teléfono  particular",
         help_text = 'Teléfono  de particular'
     )
@@ -242,7 +245,7 @@ class Expediente(models.Model):
     
     migrante = models.CharField(
         blank = True,
-        max_length = 12,
+        max_length = 24,
         choices = Migrante,
         verbose_name = 'Migrante',
         help_text = 'Migrante'
@@ -321,9 +324,11 @@ class Expediente(models.Model):
         help_text = 'Con quien vives'
     )
     
-    telefono_vives = PhoneNumberField(
+    telefono_vives = models.CharField(
         default = '',
         blank = True,
+        null=True,
+        max_length=24,
         verbose_name =  "Teléfono ",
         help_text = 'Teléfono  de la persona con quien vives'
     )
@@ -403,7 +408,7 @@ class Expediente(models.Model):
     )
 
     padre_telefono_casa = models.CharField(
-        max_length = 8,
+        max_length = 24,
         default = '',
         blank = True,
         verbose_name = "Teléfono  de casa",
@@ -411,7 +416,7 @@ class Expediente(models.Model):
     )
 
     padre_telefono_particular = models.CharField(
-        max_length = 8,
+        max_length = 24,
         default = '',
         blank = True,
         verbose_name = "Teléfono  particular",
@@ -514,7 +519,7 @@ class Expediente(models.Model):
     )
 
     madre_telefono_casa = models.CharField(
-        max_length = 8,
+        max_length = 24,
         default = '',
         blank = True,
         verbose_name = "Teléfono  de casa",
@@ -522,7 +527,7 @@ class Expediente(models.Model):
     )
 
     madre_telefono_particular = models.CharField(
-        max_length = 8,
+        max_length = 24,
         default = '',
         blank = True,
         verbose_name = "Teléfono  particular",
@@ -609,12 +614,14 @@ class Expediente(models.Model):
     
     numero_hermanos = models.IntegerField(
         blank =  True,
+        null=True,
         default = 0,
         verbose_name = 'Numero de hermanos',
         help_text = 'Numero de hermanos'
     )
     
     lugar_dentro_familia = models.CharField(
+        null=True,
         max_length = 128,
         blank = True,
         verbose_name = 'Lugar dentro de la familia',
@@ -792,8 +799,13 @@ class Expediente(models.Model):
         verbose_name = 'Relación con la persona que recomienda'
     )
 
-    telefono_recomendacion = PhoneNumberField(
-        default = ''
+    telefono_recomendacion = models.CharField(
+        default = '',
+        blank = True,
+        null=True,
+        max_length=24,
+        verbose_name =  "Teléfono  de recomendacion",
+        help_text = 'Teléfono de recomendacion'
     )
 
     # Dirección
@@ -907,8 +919,13 @@ class Expediente(models.Model):
         verbose_name = 'Relación con el contacto de emergencia'
     )
 
-    telefono_emergencia = PhoneNumberField(
-        default = ''
+    telefono_emergencia = models.CharField(
+        default = '',
+        blank = True,
+        null=True,
+        max_length=24,
+        verbose_name =  "Teléfono de emergencia",
+        help_text = 'Teléfono de emergencia'
     )
 
     codigo_postal_emergencia = models.CharField(
@@ -984,10 +1001,13 @@ class Expediente(models.Model):
         verbose_name = 'Nombre de la clínica'
     )
 
-    telefono_medico = PhoneNumberField(
+    telefono_medico = models.CharField(
         default = '',
-        null = True,
-        blank = True
+        blank = True,
+        null=True,
+        max_length=24,
+        verbose_name =  "Teléfono de médico",
+        help_text = 'Teléfono de médico'
     )
 
     calle_medico = models.CharField(
@@ -1294,7 +1314,10 @@ class Documento(models.Model):
         verbose_name='Descripcion',
     )
     
-    document = models.FileField(upload_to='documents/')
+    document = models.FileField(
+        upload_to='documents/',
+        verbose_name='Documento'
+    )
     
     expediente = models.ForeignKey(Expediente, on_delete=models.CASCADE)
     
