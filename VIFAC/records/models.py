@@ -1286,3 +1286,17 @@ class Expediente(models.Model):
     class Meta(object):
         verbose_name = 'Expediente'
         verbose_name_plural = 'Expedientes'
+
+
+class Documento(models.Model):
+    descripcion = models.CharField(
+        max_length=256,
+        verbose_name='Descripcion',
+    )
+    
+    document = models.FileField(upload_to='documents/')
+    
+    expediente = models.ForeignKey(Expediente, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.descripcion

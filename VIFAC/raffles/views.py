@@ -101,7 +101,6 @@ class PanfletaEdit(UpdateView):
 
 
 def delete_panfleta(request):
-
     if request.method == "POST":
         Panfleta.objects.filter(pk__in=request.POST.getlist('item')).delete()
         part = Participante.objects.get(pk=request.POST["id_part"])

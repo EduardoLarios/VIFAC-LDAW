@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .models import State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante, Vive, Trabajado
+from .models import Documento ,State, Relacion_Vives, Estado_Civil, Referencia, Embarazo, Voluntario, Relacion, Estudios, Duracion, Ayuda, Religiones, Poblacion, Migrante, Vive, Trabajado
 from phonenumber_field.formfields import PhoneNumberField
 from django import forms
 
@@ -781,3 +781,8 @@ class RecordForm(forms.Form):
         choices = Estudios,
         help_text = 'Años cursados'
     )
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Documento
+        fields = ('descripcion', 'document')

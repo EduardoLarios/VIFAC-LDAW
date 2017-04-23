@@ -1,11 +1,17 @@
+import os
+
+from django.http import Http404
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 import datetime
+from django.conf import settings
+from django.http import HttpResponse
 
-from .models import Expediente
-from .forms import RecordForm
+from .models import Expediente, Documento
+from .forms import RecordForm, DocumentForm
 
 # Create your views here.
 
@@ -202,3 +208,47 @@ class RecordUpdate(UpdateView):
     ]
     template_name = 'records/record_edit_form.html'
     success_url = '/expedientes/lista_expedientes/'
+
+
+def model_form_upload(request, exp_id):
+    exp = get_object_or_404(Expediente, pk=exp_id)
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            documento = form.save(commit=False)
+            documento.expediente = exp
+            documento.save()
+            return HttpResponseRedirect(reverse('records:list_records'))
+    else:
+        form = DocumentForm()
+    return render(request, 'records/model_form_upload.html', {
+        'form': form,
+        'expediente': exp
+    })
+
+
+def list_documents(request, exp_id):
+    expediente = get_object_or_404(Expediente, pk=exp_id)
+    documentos = expediente.documento_set.all()
+    context = {
+        'expediente': expediente,
+        'documentos': documentos,
+    }
+    return render(request, 'records/document_list.html', context)
+
+
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    else:
+        raise Http404
+
+
+def delete_document(request, doc_id):
+    document = Documento.objects.get(pk=doc_id)
+    document.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

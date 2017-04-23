@@ -22,7 +22,7 @@
     <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
     <i class="large material-icons">menu</i>
     </a>
-    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de expedientes</h4>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de documentos de {{ expediente.nombre}} {{ expediente.apellido_paterno }} {{ expediente.apellido_materno }}</h4>
 </div>
 
 <main>
@@ -30,37 +30,20 @@
      <table style="margin-top: 3%" class="table table-striped">
               <thead class="thead-default">
                 <tr>
-                  <th>id</th>
-                  <th>Nombre</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Fecha de nacimiento</th>
-                  <th>Editar</th>
-                  <th>Eliminar</th>
-                  <th>Subir archivo</th>
-                  <th>Listar archivos</th>
+                  <th>Descripción del archivo</th>
+                  <th>Archivo</th>
+                  <th>Borrar</th>
                 </tr>
               </thead>
               <tbody>
 
-              {% for record in records %}
+              {% for documento in documentos %}
                 <tr>
-                  <td>{{ record.id }}</td>
-                  <td>{{ record.nombre }}</td>
-                  <td>{{ record.apellido_paterno }}</td>
-                  <td>{{ record.apellido_materno }}</td>
-                  <td>{{ record.fecha_nacimiento }}</td>
+                  <td>{{ documento.descripcion }}</td>
+                <td><a href="{% url 'records:download' documento.document %}" class="btn"><i class="large material-icons">play_for_work</i></a></td>
+
                   <td>
-                      <a href="{% url "records:record_update" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
-                  </td>
-                  <td>
-                      <a href="{% url "records:record_delete" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
-                  </td>
-                  <td>
-                      <a href="{% url "records:upload_document" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">present_to_all</i></a>
-                  </td>
-                  <td>
-                      <a href="{% url "records:list_documents" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">reorder</i></a>
+                      <a href="{% url "records:delete_file" documento.id%}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
                   </td>
                 </tr>
               {% endfor %}
