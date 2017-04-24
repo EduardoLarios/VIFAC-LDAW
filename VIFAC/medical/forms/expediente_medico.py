@@ -15,12 +15,10 @@ class MedicoForm(forms.Form):
     )
 
     edad = forms.IntegerField(
-        verbose_name='Edad',
         label='Edad'
     )
 
     fecha_nacimiento = forms.DateField(
-        verbose_name='Fecha nacimiento',
     )
 
     estado_civil = forms.CharField(
@@ -51,7 +49,6 @@ class MedicoForm(forms.Form):
     )
 
     edad_padre = forms.IntegerField(
-        verbose_name='Edad del padre',
         label='Edad del padre'
     )
 
@@ -63,7 +60,6 @@ class MedicoForm(forms.Form):
     )
 
     FUM = forms.DateField(
-        verbose_name='FUM',
         label='FUM'
     )
 
@@ -166,7 +162,6 @@ class MedicoForm(forms.Form):
     )
 
     embarazos_anteriores = forms.IntegerField(
-        verbose_name='Embarazos anteriores',
         label='Embarazos anteriores'
     )
 

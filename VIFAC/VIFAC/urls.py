@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^escolar/', include('scholar.urls', namespace = 'scolar')),
     url(r'^rifas/', include('raffles.urls', namespace = 'raffles')),
     url(r'^escolar/', include('scholar.urls', namespace="scholar")),
-    #url(r'^expediente_medico/', include('medical.urls', namespace="medical")),
+    url(r'^expediente_medico/', include('medical.urls', namespace="medical")),
 ]
