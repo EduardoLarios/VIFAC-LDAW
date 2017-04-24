@@ -1,14 +1,15 @@
 import os
 
-from django.http import Http404
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.views.generic import UpdateView
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-import datetime
-from django.conf import settings
+from django.views.generic.detail import DetailView
+from django.http import HttpResponseRedirect
+from django.views.generic import UpdateView
 from django.http import HttpResponse
+from django.urls import reverse_lazy
+from django.http import Http404
+from django.urls import reverse
+from django.conf import settings
+import datetime
 
 from .models import Expediente, Documento
 from .forms import RecordForm, DocumentForm
@@ -19,6 +20,14 @@ def index(request):
     context = {}
     return render(request, 'records/index.html', context)
 
+# Detail View
+class RecordDetailView(DetailView):
+
+    model = Expediente
+
+    def get_context_data(self, **kwargs):
+        context = super(RecordDetailView, self).get_context_data(**kwargs)
+        return context
 
 # New DB entries
 
