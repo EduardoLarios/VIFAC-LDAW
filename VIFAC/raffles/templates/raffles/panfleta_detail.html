@@ -37,12 +37,7 @@
           <div class="panel-body">
             <form method="post">
                 {% csrf_token %}
-                <p>
-                {{ form.devuelta }}
-                </p>
-                <p>
-                {{ form.monto_entregado|add_class:'form-control' }}
-                </p>
+
                 <input type="submit" value="Submit" />
             </form>
           </div>
