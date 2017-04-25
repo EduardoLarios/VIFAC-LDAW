@@ -32,6 +32,7 @@
                   <th>Descripción </th>
                   <th>Categoría</th>
                   <th>Fecha</th>
+                  <th>Ver detalle</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
                 </tr>
@@ -44,6 +45,9 @@
                   <td>{{ donation.description }}</td>
                   <td>{{ donation.category.name }}</td>
                   <td>{{ donation.date }}</td>
+                  <td>
+                      <a href="{% url "donations:donation_detail" donation.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  </td>
                   <td>
                       <a href="{% url "donations:donation_update" donation.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
                   </td>

@@ -177,4 +177,43 @@ class CategoryUpdate(UpdateView):
     slug_url_kwarg = 'slug'
     success_url = '/donaciones/lista_categorias'
 
+#Detail Views
 
+class DonorDetail(UpdateView):
+    model = Donor
+    fields = [
+        'full_name',
+        'integration_date',
+        'state',
+        'city',
+        'street',
+        'number',
+        'reference',
+        'contact_name',
+        'contact_phone_number',
+        'contact_email',
+        'contact_birthday',
+        'contact_anniversary'
+    ]
+    template_name = 'donations/donor_detail.html'
+    slug_field = 'full_name'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_donadores'
+
+
+class DonationDetail(UpdateView):
+    model = Donation
+    fields = ['donor', 'description', 'category']
+    template_name = 'donations/donation_detail.html'
+    slug_field = 'description'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_donaciones'
+
+
+class CategoryDetail(UpdateView):
+    model = Category
+    fields = ['name', 'description']
+    template_name = 'donations/category_detail.html'
+    slug_field = 'name'
+    slug_url_kwarg = 'slug'
+    success_url = '/donaciones/lista_categorias'

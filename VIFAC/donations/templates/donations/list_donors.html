@@ -33,6 +33,7 @@
                   <th>Locación</th>
                   <th>Dirección</th>
                   <th>Referencia</th>
+                  <th>Ver detalle</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
                 </tr>
@@ -46,6 +47,9 @@
                   <td>{{ donor.city }}, {{ donor.state }}</td>
                   <td>{{ donor.street }} {{ donor.number }}</td>
                   <td>{{ donor.reference }}</td>
+                  <td>
+                      <a href="{% url "donations:donor_detail" donor.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  </td>
                   <td>
                       <a href="{% url "donations:donor_update" donor.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
                   </td>

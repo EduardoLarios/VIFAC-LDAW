@@ -117,3 +117,15 @@ def delete_participante(request, participant_id):
     part = Participante.objects.get(pk=participant_id)
     part.delete()
     return reverse_lazy('raffles:index')
+
+
+class PanfletaView(UpdateView):
+    model = Panfleta
+    template_name = 'raffles/panfleta_detail.html'
+    success_url = reverse_lazy('raffles:index')
+    fields = ['devuelta', 'monto_entregado']
+    
+class ParticipanteView(UpdateView):
+    model = Participante
+    template_name = 'raffles/participante_detail.html'
+    success_url = reverse_lazy('raffles:index')

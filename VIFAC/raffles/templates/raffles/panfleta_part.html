@@ -25,6 +25,7 @@
               <th>Folio</th>
               <th>Devuelta</th>
               <th>Monto</th>
+              <th>Ver detalle</th>
               <th>Editar</th>
             </tr>
           </thead>
@@ -41,6 +42,7 @@
                     <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
                 {% endif %}
                 <td>{{ panf.monto_entregado }}</td>
+                <td><a href="{% url 'raffles:raffle_detalle' panf.id %}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 <td><a href="{% url 'raffles:raffle_detail' panf.id %}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
                </tr>
             {% endfor %}
