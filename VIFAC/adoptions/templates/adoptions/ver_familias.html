@@ -21,14 +21,14 @@
                 </tr>
               </thead>
               <tbody>
-                {% for family in all_families%}
+                {% for family in all_families %}
                   <tr>
-                    <td>{{ family.nombreFam }}</td>
-                    <td> </td>
-                    <td> </td>
-                    <td>{{ family.status }}</td>
-                    <td><a href=" " class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                    <td><a href=" " class="btn"><span class="glyphicon glyphicon-trash"></span></a></td>
+                      <td>{{ family.nombreFam }}</td>
+                      <td>{{ member }}</td>
+                      <td></td>
+                      <td>{{ family.status }}</td>
+                      <td><a href=" " class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                      <td><a href=" " class="btn"><span class="glyphicon glyphicon-trash"></span></a></td>
                    </tr>
                 {% endfor %}
 

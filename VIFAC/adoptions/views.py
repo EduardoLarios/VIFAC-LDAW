@@ -1,17 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-import datetime
-
 
 from .models.families import Family
+from .models.members import Member
 
 from .forms.families import FamilyForm
+from .forms.members import MemberForm
 
 
 def index(request):
 	all_families = Family.objects.all()
+	member = Member.objects.get(familia = all_families)
 	context = {
-		'all_families': all_families
+		'all_families': all_families,
+		'member': member,
 	}
 	return render(request, 'adoptions/index.html', context)
 
@@ -29,17 +31,39 @@ def read(request):
 
 
 def add_Family(request):
-	context = {'today': datetime.datetime.now()}
-	
-	if request.method == "POST":
+	context = { }
+	newFamilyForm = FamilyForm()
+	newDadForm = MemberForm()
+	newMomForm = MemberForm()
+	# if this is a POST request we need to process the form data
+	if request.method == 'POST':
+		# create a form instance and populate it with data from the request:
+		newFamilyForm = FamilyForm(request.POST)
+		newDadForm = MemberForm(request.POST)
+		newMomForm = MemberForm(request.POST)
 		
-		newFamilyForm = FamilyForm(request.POST, prefix="fam")
+		familyValid = newFamilyForm.is_valid()
+		dadValid = newDadForm.is_valid()
+		MomValid = newMomForm.is_valid()
 		
-		if newFamilyForm.is_valid():
-			context['family'] = Family.objects.create(**newFamilyForm.cleaned_data)
+		# check whether it's valid:
+		if familyValid and dadValid and MomValid:
+			family = newFamilyForm.save()
+			dad = newDadForm.save(commit=False)
+			mom = newMomForm.save(commit=False)
+			
+			dad.familia = family
+			dad.save()
+			mom.familia = family
+			mom.save()
+			
 			return read(request)
-		
-		context['form'] = newFamilyForm
-		return render(request, 'adoptions/family_form.html', context)
-
+	context = {
+		'newFamilyForm': newFamilyForm,
+		'newDadForm': newDadForm,
+		'newMomForm': newMomForm
+	}
+	return render(request, 'adoptions/family_form.html', context)
+	
+	# if a GET (or any other method) we'll create a blank form
 	return render(request, 'adoptions/family_form.html', context)

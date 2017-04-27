@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from datetime import *
 
 Status = (
 	(0, 'Vivos'),
@@ -16,8 +17,12 @@ class Family(models.Model):
 		default=' ',
 	)
 	
+	Aniversario = models.DateField(
+		default=date.today
+	)
+	
 	fRegistro = models.DateField(
-		auto_now = True,
+		default=date.today
 	)
 	
 	actaMatrimonioCivil=models.BooleanField(
@@ -90,7 +95,7 @@ class Family(models.Model):
 	)
 	
 	fBaja = models.DateField(
-		auto_now=True,
+		default=date.today,
 		help_text='Fecha que paso de Vivos a Muertos'
 	)
 	
@@ -100,7 +105,7 @@ class Family(models.Model):
 	)
 	
 	fAdopcion = models.DateField(
-		auto_now=True,
+		default=date.today,
 		help_text='Fecha que paso de Vivos a Adopcion'
 	)
 	
