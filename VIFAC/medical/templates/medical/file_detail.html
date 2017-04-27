@@ -8,9 +8,8 @@
     </a>
     </div-->
 <style>
-    .tabla-exp {
-        border-style: solid;
-        border-width: 1px;
+    td, th {
+        border: 1px solid #dddddd;
     }
 </style>
 <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
@@ -32,131 +31,194 @@
 </div>
 
 <main>
-    <div class="container">
-        <div class="row">
-        <h3>Expediente</h3>
-        </div>
-        <div class="row">
-        <div class="col s12 m12 l12 tabla-exp">
-        {% if registros %}
-            <h3>Registros</h3>
-            <table class="striped">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Fecha</th>
-                        <th>SDG</th>
-                        <th>TA</th>
-                        <th>Peso</th>
-                        <th>FU</th>
-                        <th>Posic</th>
-                        <th>FCF</th>
-                        <th>TV</th>
-                        <th>Edema</th>
-                        <th>MF</th>
-                        <th>CTX</th>
-                        <th>STV</th>
-                        <th>Disuria</th>
-                        <th>Flujo</th>
-                        <th>Comentarios</th>
+    <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s3"><a class="white-text " href="#expediente">Expediente</a></li>
+                <li class="tab col s3"><a class="white-text " href="#registro">Registros</a></li>
+                <li class="tab col s3"><a class="white-text " href="#laboratorios">Laboratorios</a></li>
+                <li class="tab col s3"><a class="white-text " href="#ultrasonidos">Ultrasonidos</a></li>
+                <li class="tab col s3 "><a class="white-text " href="#problemas">Problemas</a></li>
+              </ul>
+            </div>
 
-                    </tr>
-                </thead>
-                <tbody>
-            {% for registro in registros %}
-                        <tr>
-                            <td>{{ registro.id }}</td>
-                            <td>{{ registro.date }}</td>
-                            <td>{{ registro.sdg }}</td>
-                            <td>{{ registro.ta }}</td>
-                            <td>{{ registro.fu }}</td>
-                            <td>{{ registro.posic }}</td>
-                            <td>{{ registro.fcf }}</td>
-                            <td>{{ registro.tv }}</td>
-                            <td>{{ registro.edema }}</td>
-                            <td>{{ registro.mf }}</td>
-                            <td>{{ registro.ctx }}</td>
-                            <td>{{ registro.stv }}</td>
-                            <td>{{ registro.disuria }}</td>
-                            <td>{{ registro.flujo }}</td>
-                            <td>{{ registro.comentario }}</td>
-                        </tr>
-            {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
+    </div>
+    <div class="container">
+        <div id="expediente" class="col s12">
             <div class="row">
-                <<div class="col s4 m6 offset-m3">
-                        <h5>No se encontraron registros</h5>
+                <h3>Expediente</h3>
+            </div>
+        </div>
+        <div id="registro" class="col s12">
+            <div class="row">
+                <div class="col s12 m12 l12 ">
+                {% if registros %}
+                    <h3>Registros</h3>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha</th>
+                                <th>SDG</th>
+                                <th>TA</th>
+                                <th>Peso</th>
+                                <th>FU</th>
+                                <th>Posic</th>
+                                <th>FCF</th>
+                                <th>TV</th>
+                                <th>Edema</th>
+                                <th>MF</th>
+                                <th>CTX</th>
+                                <th>STV</th>
+                                <th>Disuria</th>
+                                <th>Flujo</th>
+                                <th>Comentarios</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                    {% for registro in registros %}
+                                <tr>
+                                    <td>{{ registro.id }}</td>
+                                    <td>{{ registro.date }}</td>
+                                    <td>{{ registro.sdg }}</td>
+                                    <td>{{ registro.ta }}</td>
+                                    <td>{{ registro.fu }}</td>
+                                    <td>{{ registro.posic }}</td>
+                                    <td>{{ registro.fcf }}</td>
+                                    <td>{{ registro.tv }}</td>
+                                    <td>{{ registro.edema }}</td>
+                                    <td>{{ registro.mf }}</td>
+                                    <td>{{ registro.ctx }}</td>
+                                    <td>{{ registro.stv }}</td>
+                                    <td>{{ registro.disuria }}</td>
+                                    <td>{{ registro.flujo }}</td>
+                                    <td>{{ registro.comentario }}</td>
+                                </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="row">
+                        <<div class="col s4 m6 offset-m3">
+                                <h5>No se encontraron registros</h5>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-        {% endif %}
-            </div>
         </div>
-        <div class="row">
-        <div class="col s6 m6 l6 tabla-exp">
-        {% if labs %}
-            <h3>Laboratorios</h3>
-            <table class="striped">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Resultado</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-            {% for lab in labs %}
-                        <tr>
-                            <td>{{ lab.date }}</td>
-                            <td>{{ lab.result }}</td>
-                            <td><a href="#" class="btn waves-effect"><i class="material-icons">mode_edit</i></a></td>
-                            <td><a href="#" class="btn waves-effect"><i class="material-icons">delete</i></a></td>
-                        </tr>
-            {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
+        <div id="laboratorios" class="col s12">
             <div class="row">
-                <<div class="col s4 m6 offset-m3">
-                        <h5>No se encontraron laboratorios</h5>
-                </div>
-            </div>
-        {% endif %}
-        </div>
-        <div class="col s6 m6 l6 tabla-exp">
-        {% if us %}
-            <h3>Registros</h3>
-            <table class="striped">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Resultado</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-            {% for u in us %}
+            <div class="col s12 m12 l12 ">
+            {% if labs %}
+                <h3>Laboratorios</h3>
+                <table class="striped">
+                    <thead>
                         <tr>
-                            <td>{{ u.date }}</td>
-                            <td>{{ u.result }}</td>
-                            <td><a href="#" class="btn waves-effect"><i class="material-icons">mode_edit</i></a></td>
-                            <td><a href="#" class="btn waves-effect"><i class="material-icons">delete</i></a></td>
+                            <th>Fecha</th>
+                            <th>Resultado</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
                         </tr>
-            {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="row">
-                <<div class="col s4 m6 offset-m3">
-                        <h5>No se encontraron ultrasonidos</h5>
+                    </thead>
+                    <tbody>
+                {% for lab in labs %}
+                            <tr>
+                                <td>{{ lab.date }}</td>
+                                <td>{{ lab.result }}</td>
+                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                            </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="row">
+                    <<div class="col s4 m6 offset-m3">
+                            <h5>No se encontraron laboratorios</h5>
+                    </div>
                 </div>
+            {% endif %}
             </div>
-        {% endif %}
+            </div>
         </div>
+
+        <div id="ultrasonidos" class="col s12">
+            <div class="row">
+
+            <div class="col s12 m12 l12 ">
+            {% if us %}
+                <h3>Registros</h3>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Resultado</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                {% for u in us %}
+                            <tr>
+                                <td>{{ u.date }}</td>
+                                <td>{{ u.result }}</td>
+                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                            </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="row">
+                    <<div class="col s4 m6 offset-m3">
+                            <h5>No se encontraron ultrasonidos</h5>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+            </div>
         </div>
+
+        <div id="problemas" class="col s12">
+            <div class="row">
+            <div class="col s12 m12 l12 ">
+            {% if problemas %}
+                <h3>Problemas</h3>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Medicamento</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                {% for problema in problemas %}
+                            <tr>
+                                <td>{{ problema.descripcion }}</td>
+                                <td>{{ problema.medicamento }}</td>
+                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                            </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="row">
+                    <<div class="col s4 m6 offset-m3">
+                            <h5>No se encontraron datos</h5>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+            </div>
+        </div>
+
+
+
 
     </div>
 </main>

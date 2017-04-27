@@ -35,6 +35,49 @@ def file_detail(request, file_id):
     }
     return render(request, 'medical/file_detail.html', context)
 
+class FileEdit(UpdateView):
+
+    model = Exp_Medico
+    fields = [
+        'nombre',
+        'tipo_sanguineo',
+        'edad',
+        'fecha_nacimiento',
+        'estado_civil',
+        'telefono',
+        'domicilio',
+        'padre_bebe',
+        'edad_padre',
+        'apoyo',
+        'FUM',
+        'ciclos',
+        'uso_anticonceptivos_FUM',
+        'fppxfum',
+        'fppxusg',
+        'fpp_definitiva',
+        'G',
+        'P',
+        'termino',
+        'Ab',
+        'ectop',
+        'multiples',
+        'cesarea',
+        'medicamento_desde_fum',
+        'contacto_con_enfermedad_infecciosa_fum',
+        'embarazos_anteriores',
+        'app',
+        'medicamentos',
+        'cirugias',
+        'alergias',
+        'apnp_fuma',
+        'alcohol',
+        'droga',
+        'trabajo',
+        'ahf',
+        'ahf_padre',
+    ]
+    template_name = "medical/new_file.html"
+    success_url = reverse_lazy('medical:index')
 
 def new_lab(request, file_id):
     form = LaboratorioForm(request.POST or None)
