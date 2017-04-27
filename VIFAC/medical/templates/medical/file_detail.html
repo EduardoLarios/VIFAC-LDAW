@@ -1,0 +1,177 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!--div class="fixed-action-btn" style="bottom: 42px; right: 28px;">
+    <a id="btn_menu" data-activates="slide-out" class="button-collapse btn-floating btn-large orange">
+      <i class="large material-icons">menu</i>
+    </a>
+    </div-->
+<style>
+    .tabla-exp {
+        border-style: solid;
+        border-width: 1px;
+    }
+</style>
+<div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Detalle expediente: {{ file.nombre }}</h4>
+</div>
+
+<main>
+    <div class="container">
+        <div class="row">
+        <h3>Expediente</h3>
+        </div>
+        <div class="row">
+        <div class="col s12 m12 l12 tabla-exp">
+        {% if registros %}
+            <h3>Registros</h3>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Fecha</th>
+                        <th>SDG</th>
+                        <th>TA</th>
+                        <th>Peso</th>
+                        <th>FU</th>
+                        <th>Posic</th>
+                        <th>FCF</th>
+                        <th>TV</th>
+                        <th>Edema</th>
+                        <th>MF</th>
+                        <th>CTX</th>
+                        <th>STV</th>
+                        <th>Disuria</th>
+                        <th>Flujo</th>
+                        <th>Comentarios</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+            {% for registro in registros %}
+                        <tr>
+                            <td>{{ registro.id }}</td>
+                            <td>{{ registro.date }}</td>
+                            <td>{{ registro.sdg }}</td>
+                            <td>{{ registro.ta }}</td>
+                            <td>{{ registro.fu }}</td>
+                            <td>{{ registro.posic }}</td>
+                            <td>{{ registro.fcf }}</td>
+                            <td>{{ registro.tv }}</td>
+                            <td>{{ registro.edema }}</td>
+                            <td>{{ registro.mf }}</td>
+                            <td>{{ registro.ctx }}</td>
+                            <td>{{ registro.stv }}</td>
+                            <td>{{ registro.disuria }}</td>
+                            <td>{{ registro.flujo }}</td>
+                            <td>{{ registro.comentario }}</td>
+                        </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="row">
+                <<div class="col s4 m6 offset-m3">
+                        <h5>No se encontraron registros</h5>
+                </div>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+        <div class="row">
+        <div class="col s6 m6 l6 tabla-exp">
+        {% if labs %}
+            <h3>Laboratorios</h3>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Resultado</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+            {% for lab in labs %}
+                        <tr>
+                            <td>{{ lab.date }}</td>
+                            <td>{{ lab.result }}</td>
+                            <td><a href="#" class="btn waves-effect"><i class="material-icons">mode_edit</i></a></td>
+                            <td><a href="#" class="btn waves-effect"><i class="material-icons">delete</i></a></td>
+                        </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="row">
+                <<div class="col s4 m6 offset-m3">
+                        <h5>No se encontraron laboratorios</h5>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+        <div class="col s6 m6 l6 tabla-exp">
+        {% if us %}
+            <h3>Registros</h3>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Resultado</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+            {% for u in us %}
+                        <tr>
+                            <td>{{ u.date }}</td>
+                            <td>{{ u.result }}</td>
+                            <td><a href="#" class="btn waves-effect"><i class="material-icons">mode_edit</i></a></td>
+                            <td><a href="#" class="btn waves-effect"><i class="material-icons">delete</i></a></td>
+                        </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="row">
+                <<div class="col s4 m6 offset-m3">
+                        <h5>No se encontraron ultrasonidos</h5>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+        </div>
+
+    </div>
+</main>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+
+{% endblock content %}

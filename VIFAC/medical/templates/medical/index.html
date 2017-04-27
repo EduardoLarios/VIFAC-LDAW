@@ -1,4 +1,4 @@
-{% extends './base.html' %}
+{% extends 'base/layout.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
@@ -27,12 +27,63 @@
 
 <main>
     <div class="container">
+
+
+        {% if no_results %}
         <div class="row">
-            <div class="col s4">
-                <h1>Este es el modulo de expediente médico</h1>
+            <<div class="col s4 m6 offset-m3">
+                    <h5>No se encontraron resultados</h5>
             </div>
         </div>
-    </div>
+        {% elif expedientes %}
+        <table style="margin-top: 3%" class="striped centered">
+         <thead class="thead-default">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha de nacimiento</th>
+                  <th>Ver detalles</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                  <th>Agregar Registro</th>
+                  <th>Agregar Laboratorio</th>
+                  <th>Agregar Ultrasonido</th>
+                  <th>Agregar Problema</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for expediente in expedientes %}
+                <tr>
+                  <td>{{ expediente.nombre }}</td>
+                  <td>{{ expediente.fecha_nacimiento }}</td>
+                  <td>
+                      <a href="{% url "medical:file_detail" expediente.id %}" class="btn "><i class="large material-icons">info_outline</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:file_update" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">mode_edit</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:file_delete" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">delete</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_register" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">assignment</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_lab" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">note_add</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_us" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">note_add</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_problem" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">assignment_late</i></a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
+
+</div>
 </main>
 
 

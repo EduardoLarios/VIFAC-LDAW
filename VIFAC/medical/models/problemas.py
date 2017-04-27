@@ -1,4 +1,5 @@
 from django.db import models
+from .expediente import Exp_Medico
 
 class Problemas(models.Model):
 
@@ -11,4 +12,7 @@ class Problemas(models.Model):
         max_length=512,
         null=False,
         blank=False,
+    )
+    paciente = models.ForeignKey(Exp_Medico,
+        null = True
     )

@@ -1,0 +1,234 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!--div class="fixed-action-btn" style="bottom: 42px; right: 28px;">
+    <a id="btn_menu" data-activates="slide-out" class="button-collapse btn-floating btn-large orange">
+      <i class="large material-icons">menu</i>
+    </a>
+    </div-->
+<div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Nuevo Expediente Médico</h4>
+</div>
+
+<main>
+    <div class="container">
+        <div class="row">
+        <form method="post" action="" class="col s12">
+        {% csrf_token %}
+          <div class="row">
+            <div class="input-field col s8">
+              {% render_field form.nombre placeholder="Nombre" %}
+              <label for="nombre">Nombre</label>
+            </div>
+            <div class="input-field col s4">
+              {% render_field form.edad %}
+              <label for="edad">Edad</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.tipo_sanguineo %}
+              <label for="tipo_sanguineo">Tipo Sanguíneo</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.fecha_nacimiento type="date" class="datepicker" %}
+              <label for="fecha_nacimiento">Fecha de nacimiento</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.estado_civil %}
+              <label for="estado_civil">Estado Civil</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.telefono %}
+              <label for="telefono">Teléfono</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.domicilio %}
+              <label for="domicilio">Domcilio</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.padre_bebe %}
+              <label for="padre_bebe">Nombre del padre</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.edad_padre %}
+              <label for="edad_padre">Edad Padre</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.apoyo %}
+              <label for="apoyo">Apoyo</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.FUM type="date" class="datepicker" %}
+              <label for="FUM">FUM</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.ciclos %}
+              <label for="ciclos">Ciclos</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.uso_anticonceptivos_FUM %}
+              <label for="uso_anticonceptivos_FUM">Uso de anticonceptivos desde FUM</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.fppxfum %}
+              <label for="fppxfum">FPP x FUM</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.fppxusg %}
+              <label for="fppxusg">FPP x USG</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.fpp_definitiva %}
+              <label for="fpp_definitiva">FPP Definitiva</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.G %}
+              <label for="G">G</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.P %}
+              <label for="P">P</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.termino %}
+              <label for="termino">Término</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.Ab %}
+              <label for="Ab">AB</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.ectop %}
+              <label for="ectop">ECTOP</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.multiples %}
+              <label for="multiples">Múltiples</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.cesarea %}
+              <label for="cesarea">Cesárea</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.medicamento_desde_fum %}
+              <label for="medicamento_desde_fum">Medicamento desde FUM</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.contacto_con_enfermedad_infecciosa_fum %}
+              <label for="contacto_con_enfermedad_infecciosa_fum">Contacto con enfermedad infecciosa desde FUM</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.embarazos_anteriores %}
+              <label for="embarazos_anteriores">Embarazos anteriores</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.app %}
+              <label for="app">App</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.medicamentos %}
+              <label for="medicamentos">Medicamentos</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.cirugias %}
+              <label for="cirugias">Cirugías</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.alergias %}
+              <label for="alergias">Alergias</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.apnp_fuma %}
+              <label for="apnp_fuma">APNP FUMA</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.alcohol %}
+              <label for="alcohol">Alcohol</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.droga %}
+              <label for="droga">Droga</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.trabajo %}
+              <label for="trabajo">Trabajo</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              {% render_field form.ahf %}
+              <label for="ahf">AHF</label>
+            </div>
+            <div class="input-field col s6">
+              {% render_field form.ahf_padre %}
+              <label for="ahf_padre">AHF Padre</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" name="submit" id="submit">Guardar y continuar
+            <i class="material-icons right"></i>
+          </button>
+        </form>
+      </div>
+</div>
+</main>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+
+{% endblock content %}

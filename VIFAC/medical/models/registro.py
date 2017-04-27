@@ -1,5 +1,8 @@
 from django.db import models
 from datetime import date
+from .expediente import Exp_Medico
+
+
 class Registro(models.Model):
 
     date = models.DateField(
@@ -8,7 +11,7 @@ class Registro(models.Model):
         default=date.today(),
         verbose_name="Register's date"
     )
-    SDG = models.CharField(
+    sdg = models.CharField(
         max_length=256,
         null=False,
         blank=True,
@@ -103,4 +106,6 @@ class Registro(models.Model):
         default='',
         verbose_name="fu"
     )
-
+    paciente = models.ForeignKey(Exp_Medico,
+        null = True
+    )

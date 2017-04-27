@@ -2,37 +2,65 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy, reverse
-from .forms import MedicoForm
+from .forms import MedicoForm, RegistroForm, LaboratorioForm, UltrasonidoForm, ProblemasForm
 from .models import Exp_Medico
-
+from django.views.generic import UpdateView
 
 def index(request):
+    query = Exp_Medico.objects.all()
+    if query:
+        context = {
+            'expedientes': query
+        }
+    else:
+        res = True
+        context = {
+            'no_results': res
+        }
+    return render(request, 'medical/index.html', context)
     return render(request, 'medical/index.html')
 
+def file_detail(request, file_id):
+    file = get_object_or_404(Exp_Medico, pk=file_id)
+    registros = file.registro_set.all()
+    labs = file.laboratorio_set.all()
+    us = file.ultrasonido_set.all()
+    problemas = file.problemas_set.all()
+    context = {
+        'file': file,
+        'registros': registros,
+        'labs': labs,
+        'us': us,
+        'problemas': problemas,
+    }
+    return render(request, 'medical/file_detail.html', context)
 
-def new_laboratorio(request):
-    context = {}
-    if request.method == "POST":
 
-        # Get the form through POST
-        new_record_form = MedicoForm(request.POST)
+def new_lab(request, file_id):
+    form = LaboratorioForm(request.POST or None)
+    file = get_object_or_404(Participante, pk=file_id)
+    if form.is_valid():
+        lab = form.save(commit=False)
+        lab.participante = file
+        lab.save()
 
-        # Validate form data
-        if new_record_form.is_valid():
-            # Get form variables
-            # Create donor object
-            context['record'] = Exp_Medico.objects.create(**new_record_form.cleaned_data)
-            return list_record(request)
+        if '_addother' in request.POST:
+            form = AsignPanfletForm()
+            context = {
+                'participante': part,
+                'panfleta': panfleta,
+                'form': form,
+            }
+            return render(request, 'raffles/new_raffle.html', context)
+        else:
+            return HttpResponseRedirect(reverse('raffles:panfletas_part', args=(part.id,)))
+        # return render(request, 'raffles/index.html', {'album': album})
 
-        context['form'] = new_record_form
-        return render(request, 'medical/new_record.html', context)
-
-    else:
-        new_record_form = MedicoForm()
-
-    context['form'] = new_record_form
-
-    return render(request, 'medical/new_record.html', context)
+    context = {
+        'participante': part,
+        'form': form,
+    }
+    return render(request, 'raffles/new_raffle.html', context)
 
 
 def new_ultrasonido(request):
@@ -53,42 +81,37 @@ def new_ultrasonido(request):
         return render(request, 'medical/new_record.html', context)
 
     else:
-        new_record_form = MedicoForm()
+        new_file_form = MedicoForm()
 
-    context['form'] = new_record_form
+    context['form'] = new_file_form
 
     return render(request, 'medical/new_record.html', context)
 
 
-def new_record(request):
-    context = {}
+def new_file(request):
     if request.method == "POST":
-        
         # Get the form through POST
-        new_record_form = MedicoForm(request.POST)
+        new_file_form = MedicoForm(request.POST or None)
         
         # Validate form data
-        if new_record_form.is_valid():
+        if new_file_form.is_valid():
             # Get form variables
             # Create donor object
-            context['record'] = Exp_Medico.objects.create(**new_record_form.cleaned_data)
-            return list_record(request)
-        
-        context['form'] = new_record_form
-        return render(request, 'medical/new_record.html', context)
+            exp = Exp_Medico.objects.create(**new_file_form.cleaned_data)
+            return reverse_lazy('medical:index')
+
+        context = {
+            'form': new_file_form,
+        }
+        return render(request, 'medical/new_file.html', context)
     
     else:
         new_record_form = MedicoForm()
     
-    context['form'] = new_record_form
-    
-    return render(request, 'medical/new_record.html', context)
-
-
-def list_record(request):
-    records = Exp_Medico.objects.all()
-
-    return render(request, 'medical/list_records.html', {'records': records})
+    context = {
+        'form': new_record_form
+    }
+    return render(request, 'medical/new_file.html', context)
 
 
 def RecordDelete(request, pk):
