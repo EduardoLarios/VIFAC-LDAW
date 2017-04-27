@@ -7,7 +7,7 @@ urlpatterns = [
 
     # Generic URLs
     url(r'^$', views.index, name='index'),
-    url(r'^nueva/$', views.new_file, name='file_create'),
+    url(r'^nuevo/$', views.new_file, name='file_create'),
     url(r'^(?P<file_id>[0-9]+)/$', views.file_detail, name = 'file_detail'),
     url(r'^editar_expediente/(?P<pk>[0-9]+)/$', views.FileEdit.as_view(), name = 'file_update'),
     url(r'^borrar/(?P<file_id>[0-9]+)/$', views.new_file, name = 'file_delete'),
