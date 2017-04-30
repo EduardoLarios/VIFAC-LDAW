@@ -66,6 +66,24 @@
                 <ul>
                     <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
                     <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                    <li><a href="/donaciones/nueva_donacion/"><i class="tiny material-icons blue-text"></i>Nueva donación</a></li>
+                    <li><a href="/donaciones/lista_donaciones/"><i class="tiny material-icons blue-text"></i>Listar donaciones</a>
+                    <li><a href="/donaciones/nueva_categoria/"><i class="tiny material-icons blue-text"></i>Nueva categoría</a></li>
+
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <div class="divider"></div>
+
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Rifas</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/rifas/nuevo_participante/"><i class="tiny material-icons blue-text"></i>Nuevo participante</a></li>
                 </ul>
             </div>
         </li>
@@ -90,24 +108,23 @@
         <div class="divider"></div>
     </li>
     <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
-
-    <ul class="collapsible collapsible-accordion">
-        <li class="bold">
-            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Cerrar Sesión</a>
-            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-                <ul>
-                    <li><a href="/logout/"><i class="tiny material-icons blue-text"></i>Salir</a>
-                </ul>
-            </div>
-        </li>
-    </ul>
-
     <li>
         <div class="divider"></div>
     </li>
 
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
+
+    <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>{{ request.user.username }}</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
 
 		{% block content %}
 		{% endblock content %}
@@ -116,11 +133,14 @@
 		<script src="{% static "js/picedit.js" %}"></script>
 		<script src="{% static "js/sweetalert.min.js" %}"></script>
 		<script src="{% static "js/nuevo_expediente.js" %}"></script>
-<script>
-	  $(document).ready(function() {
-    $('select').material_select();
-  });
-</script>
-
+        <script>
+            (function($){
+          $(function(){
+            $(document).ready(function() {
+                $('select').material_select();
+              });
+          });
+        })(jQuery);
+        </script>
 	</body>
 </html>
