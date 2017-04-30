@@ -48,11 +48,12 @@
 
 						<div class="row addmargin">
 
-							<div class="input-field col s3">
-
-								{{ form.state | add_class:'form-control' }}
-								<label for="state">Estado</label>
-							</div>
+                        <div class="input-field col m3">
+                            <div class="select-wrapper">
+                            {{ form.state }}
+                            <label for="state">Estado</label>
+                            </div>
+                        </div>
 								<div class="input-field col m4">
 									<label for="street">Calle:</label>
 									{{ form.street | add_class:'form-control' }}
@@ -112,6 +113,5 @@
 			</div>
 		</div>
 </main>
-
 
 {% endblock content %}

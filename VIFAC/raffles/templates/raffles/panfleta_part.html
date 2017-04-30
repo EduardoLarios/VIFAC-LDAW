@@ -1,6 +1,12 @@
 {% extends 'base/layout.html' %}
 {% load widget_tweaks %}
 {% block content %}
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Listar panfletas</h4>
+</div>
 
     <!-- Contact Section -->
     <section id="donaciones">
@@ -25,7 +31,7 @@
               <th>Folio</th>
               <th>Devuelta</th>
               <th>Monto</th>
-              <th>Editar</th>
+              <th>Detalles</th>
             </tr>
           </thead>
           <tbody>
@@ -41,7 +47,7 @@
                     <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
                 {% endif %}
                 <td>{{ panf.monto_entregado }}</td>
-                <td><a href="{% url 'raffles:raffle_detail' panf.id %}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                  <td><a href="{% url 'raffles:raffle_detail' panf.id %}" class="btn"><i class="large material-icons">list</i></a></td>
                </tr>
             {% endfor %}
           </tbody>

@@ -66,6 +66,7 @@
                 <ul>
                     <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
                     <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                    <li><a href="/donaciones/nueva_donacion/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
                 </ul>
             </div>
         </li>
@@ -116,6 +117,14 @@
 		<script src="{% static "js/picedit.js" %}"></script>
 		<script src="{% static "js/sweetalert.min.js" %}"></script>
 		<script src="{% static "js/nuevo_expediente.js" %}"></script>
-
+        <script>
+            (function($){
+          $(function(){
+            $(document).ready(function() {
+                $('select').material_select();
+              });
+          });
+        })(jQuery);
+        </script>
 	</body>
 </html>
