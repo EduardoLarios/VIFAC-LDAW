@@ -98,6 +98,17 @@
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
 
+    <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>{{ request.user.username }}</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
+
 		{% block content %}
 		{% endblock content %}
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -105,11 +116,6 @@
 		<script src="{% static "js/picedit.js" %}"></script>
 		<script src="{% static "js/sweetalert.min.js" %}"></script>
 		<script src="{% static "js/nuevo_expediente.js" %}"></script>
-<script>
-	  $(document).ready(function() {
-    $('select').material_select();
-  });
-</script>
 
 	</body>
 </html>

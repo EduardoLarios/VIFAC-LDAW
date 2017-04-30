@@ -87,7 +87,9 @@
             </div>
         </li>
     </ul>
-
+    <li>
+        <div class="divider"></div>
+    </li>
     <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
     <li>
         <div class="divider"></div>
@@ -95,6 +97,17 @@
 
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
+
+    <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>{{ request.user.username }}</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
 
 		{% block content %}
 		{% endblock content %}

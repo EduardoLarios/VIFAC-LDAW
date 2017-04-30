@@ -76,6 +76,20 @@
         <div class="divider"></div>
     </li>
 
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Escolar</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/escolar/nueva_escuela/"><i class="tiny material-icons blue-text"></i>Nueva escuela</a></li>
+                    <li><a href="/escolar/lista_escuelas/"><i class="tiny material-icons blue-text"></i>Listar escuelas y asignar materiales</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <li>
+        <div class="divider"></div>
+    </li>
     <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
     <li>
         <div class="divider"></div>
@@ -83,6 +97,17 @@
 
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
+
+    <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>{{ request.user.username }}</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
 
 		{% block content %}
 		{% endblock content %}
