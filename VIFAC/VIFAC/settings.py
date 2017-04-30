@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'scholar.apps.ScholarConfig',
     'dashboard.apps.DashboardConfig',
     'donations.apps.DonationsConfig',
+    'medical.apps.MedicalConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'rolepermissions',
-    'django_extensions',
+    #'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'VIFAC.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'vifacdb',
+        'NAME': 'vifac1db',
         'USER': 'esteban',
         'PASSWORD': 'gordolobo1',
         'HOST': 'localhost',

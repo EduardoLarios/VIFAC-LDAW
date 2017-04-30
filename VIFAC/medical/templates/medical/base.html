@@ -1,27 +1,115 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      {% load static %}
-      <meta charset="utf-8">
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.css" %}" media="screen,projection"/>
-      <title>{% block title %} {% endblock title %}</title>
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<html lang="en">{% load static %}
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
 
-    <body>
-    
+	    <title>VIFAC - Expedientes</title>
+	    <link href="{% static "css/materialize.css" %}" rel="stylesheet">
+	    <link href="{% static "css/dist/css/picedit.css" %}" rel="stylesheet">
+	    <link href="{% static "css/dist/sweetalert.css" %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      {% block content %}
+	</head>
+	<body id="page-top" class="index">
+	<div contenteditable="true" style="position: absolute; left: -999px; width: 0px; height: 0px; overflow: hidden; outline: 0px; opacity: 0;"></div>
 
-      {% endblock content %}
+<ul id="slide-out" class="side-nav" style="width: 320px; transform: translateX(-100%);">
+    <li>
+        <div class="userView">
+            <a href="/" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
+        </div>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Expediente</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/expedientes/nuevo_expediente/">Crear<i class="tiny material-icons blue-text"></i></a></li>
+                    <li><a href="/expedientes/lista_expedientes/">Consultar<i class="tiny material-icons blue-text"></i></a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li class="bold"><a href="/expediente_medico/" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i> Exp. Médico</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Usuarios</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/usuarios/registrar/"><i class="tiny material-icons blue-text"></i>Crear</a></li>
+                    <li><a href="/usuarios/lista_usuarios/"><i class="tiny material-icons blue-text"></i>Listar / Editar</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 
-      <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="{% static "js/material.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/vifac.js" %}"></script>
-    </body>
-  </html>
+    <div class="divider"></div>
+
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Donaciones</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
+                    <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Escolar</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/escolar/nueva_escuela/"><i class="tiny material-icons blue-text"></i>Nueva escuela</a></li>
+                    <li><a href="/escolar/lista_escuelas/"><i class="tiny material-icons blue-text"></i>Listar escuelas y asignar materiales</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="subheader">Vifac AC</a></li>
+</ul>
+
+		{% block content %}
+		{% endblock content %}
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="{% static "js/materialize.js" %}"></script>
+		<script src="{% static "js/picedit.js" %}"></script>
+		<script src="{% static "js/sweetalert.min.js" %}"></script>
+		<script src="{% static "js/nuevo_expediente.js" %}"></script>
+<script>
+	  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+
+	</body>
+</html>
