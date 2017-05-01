@@ -23,8 +23,11 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    context = {}
-    return render(request, 'donations/index.html', context)
+    if has_role(request.user, ['consejo', 'admin']):
+        context = {}
+        return render(request, 'donations/index.html', context)
+    else:
+        raise Http404
 
 # New DB entries
 
