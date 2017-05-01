@@ -1,14 +1,14 @@
 from django.db import models
 from datetime import date
 from .expediente import Exp_Medico
-
+from django.utils.timezone import now
 
 class Registro(models.Model):
 
     date = models.DateField(
         null=False,
         blank=False,
-        default=date.today(),
+        default=now,
         verbose_name="Register's date"
     )
     sdg = models.CharField(
@@ -107,5 +107,6 @@ class Registro(models.Model):
         verbose_name="fu"
     )
     paciente = models.ForeignKey(Exp_Medico,
-        null = True
+        null = True,
+        on_delete = models.CASCADE
     )

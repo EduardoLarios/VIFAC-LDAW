@@ -14,5 +14,6 @@ class Problemas(models.Model):
         blank=False,
     )
     paciente = models.ForeignKey(Exp_Medico,
-        null = True
+        null = True,
+        on_delete = models.CASCADE
     )

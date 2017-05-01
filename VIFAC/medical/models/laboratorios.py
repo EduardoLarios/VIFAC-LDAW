@@ -1,14 +1,14 @@
 from django.db import models
 from datetime import date
 from .expediente import Exp_Medico
-
+from django.utils.timezone import now
 
 class Laboratorio(models.Model):
 
     date = models.DateField(
         null=False,
         blank=False,
-        default=date.today,
+        default=now,
         verbose_name="Lab's date"
     )
     result = models.CharField(
@@ -17,7 +17,8 @@ class Laboratorio(models.Model):
         blank=False,
     )
     paciente = models.ForeignKey(Exp_Medico,
-        null = True
+        null = True,
+        on_delete = models.CASCADE
     )
 
 
@@ -26,7 +27,7 @@ class Ultrasonido(models.Model):
     date = models.DateField(
         null=False,
         blank=False,
-        default=date.today,
+        default = now,
         verbose_name="Ultrasonido's date"
     )
     result = models.CharField(
@@ -35,6 +36,7 @@ class Ultrasonido(models.Model):
         blank=False,
     )
     paciente = models.ForeignKey(Exp_Medico,
-        null = True
-)
+        null = True,
+        on_delete = models.CASCADE
+    )
 

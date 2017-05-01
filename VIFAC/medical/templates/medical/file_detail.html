@@ -47,8 +47,121 @@
         <div id="expediente" class="col s12">
             <div class="row">
                 <h3>Expediente</h3>
+                <div class="row">
+                <div class="col s8">
+                  <h3>Nombre: {{ file.nombre }}</h3>
+                </div>
+                <div class="col s4">
+                  <h3>Edad: {{ file.edad }}</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+                  <h4>Tipo Sanguíneo: {{ file.tipo_sanguineo }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Fecha de Nacimiento: {{ file.fecha_nacimiento }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Estado Civil: {{ file.estado_civil }}</h4>
+                </div>
+                <div class="col s6">
+                 <h4>Teléfono: {{ file.telefono }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Domicilio: {{ file.domicilio }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Edad: {{ file.padre_bebe }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Edad del padre: {{ file.edad_padre }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Apoyo: {{ file.apoyo }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>FUM: {{ file.FUM }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Ciclos: {{ file.ciclos }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Uso de anticonceptivos desde FUM: {{ file.uso_anticonceptivos_FUM }} </h4>
+                </div>
+                <div class="col s6">
+                  <h4>FPP x FUM: {{ file.fppxfum }} </h4>
+                </div>
+                <div class="col s6">
+                  <h4>FPP xUSG: {{ file.fppxusg }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>FPP Definitiva: {{ file.fpp_definitiva }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>G: {{ file.G }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>P: {{ file.P }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Termino: {{ file.termino }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>AB: {{ file.Ab }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>ECTOP: {{ file.ectop }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Múltiples: {{ file.multiples }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Cesárea: {{ file.cesarea }}</h4>
+                </div>
+                <div class="col s6">
+                    <h4>Medicamento desde FUM: {{ file.medicamento_desde_fum }}</h4>
+                </div>
+                <div class="col s6">
+                    <h4>Contacto con enfermedad infecciosa desde FUM: {{ file.contacto_con_enfermedad_infecciosa_fum }}</h4>
+                </div>
+                <div class="col s6">
+                    <h4>Embarazos anteriores: {{ file.embarazos_anteriores }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>APP: {{ file.app }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>medicamentos: {{ file.medicamentos }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Cirugías: {{ file.cirugias }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Alergias: {{ file.alergias }}</h4>
+                </div>
+                <div class="col s6">
+                    <h4>APNP FUMA: {{ file.apnp_fuma }}</h4>
+                </div>
+                <div class="col s6">
+                    <h4>Alcohol: {{ file.alcohol }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Droga: {{ file.droga }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>Trabajo: {{ file.trabajo }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>AHF: {{ file.ahf }}</h4>
+                </div>
+                <div class="col s6">
+                  <h4>AHF Padre: {{ file.ahf_padre }}</h4>
+                </div>
+              </div>
             </div>
         </div>
+
         <div id="registro" class="col s12">
             <div class="row">
                 <div class="col s12 m12 l12 ">
@@ -127,8 +240,8 @@
                             <tr>
                                 <td>{{ lab.date }}</td>
                                 <td>{{ lab.result }}</td>
-                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
-                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                                <td><a href="{% url "medical:edit_lab" lab.id %}" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="{% url "medical:lab_delete" lab.id %}" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="material-icons">delete</i></a></td>
                             </tr>
                 {% endfor %}
                     </tbody>
@@ -164,8 +277,8 @@
                             <tr>
                                 <td>{{ u.date }}</td>
                                 <td>{{ u.result }}</td>
-                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
-                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                                <td><a href="{% url "medical:edit_us" u.id %}" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="{% url "medical:us_delete" u.id %}" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="material-icons">delete</i></a></td>
                             </tr>
                 {% endfor %}
                     </tbody>
@@ -200,8 +313,8 @@
                             <tr>
                                 <td>{{ problema.descripcion }}</td>
                                 <td>{{ problema.medicamento }}</td>
-                                <td><a href="#" ><i class="material-icons">mode_edit</i></a></td>
-                                <td><a href="#" ><i class="material-icons">delete</i></a></td>
+                                <td><a href="{% url "medical:edit_problem" problema.id %}" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="{% url "medical:problem_delete" problema.id %}" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="material-icons">delete</i></a></td>
                             </tr>
                 {% endfor %}
                     </tbody>

@@ -63,7 +63,7 @@
                       <a href="{% url "medical:file_update" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">mode_edit</i></a>
                   </td>
                   <td>
-                      <a href="{% url "medical:file_delete" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">delete</i></a>
+                      <a href="{% url "medical:file_delete" expediente.id %}" class="btn waves-effect waves-light" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="large material-icons">delete</i></a>
                   </td>
                   <td>
                       <a href="{% url "medical:add_register" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">assignment</i></a>
@@ -85,6 +85,10 @@
 
 </div>
 </main>
+
+<script>
+
+</script>
 
 
 <footer class="page-footer">
