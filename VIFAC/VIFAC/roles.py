@@ -13,8 +13,6 @@ class Admin(AbstractUserRole):
         'expedientes': True,
     }
 
-
-
 class Consejo(AbstractUserRole):
     available_permissions = {
         'donaciones': True,
