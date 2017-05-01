@@ -10,7 +10,9 @@ from .forms import UserForm, UpdateForm
 from django.views.generic import View
 from django.urls import reverse
 import csv
+from django.shortcuts import get_object_or_404
 from VIFAC.roles import *
+from rolepermissions.decorators import has_role_decorator
 
 
 class UserFormView(View):
@@ -47,25 +49,32 @@ def index(request):
         return redirect('/usuarios/login/')
 
 
-class UserDelete(DeleteView):
-    model = User
-    success_url = reverse_lazy('users:lista_usuarios')
+def UserDelete(request, pk):
+    if has_role(request.user, ['consejo', 'admin']):
+        usuario = get_object_or_404(User, pk=pk)
+        usuario.delete()
+        return HttpResponseRedirect(reverse('users:lista_usuarios'))
+    else:
+        raise Http404
 
 
 def list_users(request):
-    queryset = User.objects.all()
-    role = []
-    count = 0
-    for user in queryset:
-        role.append(get_user_roles(user))
-        count += 1
-        print(role)
-
-    context = {
-        'users': queryset,
-        'roles': role,
-    }
-    return render(request, 'users/list_users.html', context)
+    if has_role(request.user, ['consejo', 'admin']):
+        queryset = User.objects.all()
+        role = []
+        count = 0
+        for user in queryset:
+            role.append(get_user_roles(user))
+            count += 1
+            print(role)
+    
+        context = {
+            'users': queryset,
+            'roles': role,
+        }
+        return render(request, 'users/list_users.html', context)
+    else:
+        raise Http404
 
 
 class UserUpdate(UpdateView):
