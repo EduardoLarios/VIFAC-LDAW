@@ -35,19 +35,23 @@
                   <th>Locación</th>
                   <th>Dirección</th>
                   <th>Referencia</th>
+                  <th>Ver detalle</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
                 </tr>
-              </thead>
+                </thead>
               <tbody>
     
               {% for donor in donors %}
                 <tr>
                   <td>{{ donor.full_name }}</td>
                   <td>{{ donor.integration_date }}</td>
-                  <td>{{ donor.city }}, {{ donor.state }}</td>
-                  <td>{{ donor.street }} {{ donor.number }}</td>
+                  <td>{{ donor.state }}{{ donor.city }}</td>
+                  <td>{{ donor.street }}{{ donor.number }}</td>
                   <td>{{ donor.reference }}</td>
+                  <td>
+                      <a href="{% url "donations:donor_detail" donor.id %}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
+                  </td>
                   <td>
                       <a href="{% url "donations:donor_update" donor.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i>   </a>
                   </td>
