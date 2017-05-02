@@ -40,7 +40,7 @@
                   <a href="{% url "users:user-update" user.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
               </td>
               <td>
-                  <a href="{% url "users:delete" user.id %}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
+                  <a href="{% url "users:delete" user.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
               </td>
               <td>
                   <a href="{% url "users:asignar_rol" user.id %}" class="btn btn-info btn-lg"><i class="large material-icons">perm_identity</i></a>

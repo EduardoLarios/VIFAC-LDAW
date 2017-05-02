@@ -52,7 +52,7 @@
                       <a href="{% url "donations:donor_update" donor.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i>   </a>
                   </td>
                   <td>
-                      <a href="{% url "donations:donor_delete" donor.id %}" class="btn btn-info btn-lg"><i class="large material-icons">warning</i></a>
+                      <a href="{% url "donations:donor_delete" donor.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
                   </td>
                 </tr>
               {% endfor %}
