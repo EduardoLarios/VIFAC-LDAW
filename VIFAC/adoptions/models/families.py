@@ -3,9 +3,9 @@ from django.db import models
 from datetime import *
 
 Status = (
-	(0, 'Vivos'),
-	(1, 'Muertos'),
-	(2, 'Adopcion'),
+	('Vivos', 'Vivos'),
+	('Muertos', 'Muertos'),
+	('Adopcion', 'Adopcion'),
 )
 
 class Family(models.Model):
@@ -84,9 +84,10 @@ class Family(models.Model):
 		default=False,
 	)
 
-	status = models.PositiveIntegerField(
+	status = models.CharField(
+		max_length=100,
 		choices=Status,
-		default=0
+		default='Vivos'
 	)
 	
 	motivoBaja = models.CharField(

@@ -13,8 +13,9 @@
               <thead class="thead-default">
                 <tr>
                   <th>Familia</th>
-                  <th>Sr.</th>
-                  <th>Sra.</th>
+                  <th>Aniversario</th>
+                  <th>Sr.   </th>
+                    <th>Sra. </th>
                   <th>Status</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
@@ -22,13 +23,16 @@
               </thead>
               <tbody>
                 {% for family in all_families %}
+
                   <tr>
                       <td>{{ family.nombreFam }}</td>
-                      <td>{{ member }}</td>
-                      <td></td>
+                      <td>{{ family.Aniversario }}</td>
+                        <td>{{ dad.nombre }} {{ dad.aPaterno }} {{ dad.aMaterno }}</td>
+                        <td>{{ mom.nombre }} {{ mom.aPaterno }} {{ mom.aMaterno }}</td>
                       <td>{{ family.status }}</td>
                       <td><a href=" " class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                      <td><a href=" " class="btn"><span class="glyphicon glyphicon-trash"></span></a></td>
+                      <td><a href="{% url 'FamilyDelete' family.id %}"
+                             class="btn"><span class="glyphicon glyphicon-trash"></span></a></td>
                    </tr>
                 {% endfor %}
 
