@@ -166,7 +166,9 @@
             <div class="row">
                 <div class="col s12 m12 l12 ">
                 {% if registros %}
+                    <a href="{% url "medical:add_register" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <h3>Registros</h3>
+                     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <table class="striped">
                         <thead>
                             <tr>
@@ -186,6 +188,8 @@
                                 <th>Disuria</th>
                                 <th>Flujo</th>
                                 <th>Comentarios</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
 
                             </tr>
                         </thead>
@@ -196,6 +200,7 @@
                                     <td>{{ registro.date }}</td>
                                     <td>{{ registro.sdg }}</td>
                                     <td>{{ registro.ta }}</td>
+                                    <td>{{ registro.weight }}</td>
                                     <td>{{ registro.fu }}</td>
                                     <td>{{ registro.posic }}</td>
                                     <td>{{ registro.fcf }}</td>
@@ -207,12 +212,15 @@
                                     <td>{{ registro.disuria }}</td>
                                     <td>{{ registro.flujo }}</td>
                                     <td>{{ registro.comentario }}</td>
+                                    <td><a href="{% url "medical:edit_register" registro.id %}" ><i class="material-icons">mode_edit</i></a></td>
+                                <td><a href="{% url "medical:registro_delete" registro.id %}" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="material-icons">delete</i></a></td>
                                 </tr>
                     {% endfor %}
                         </tbody>
                     </table>
                 {% else %}
                     <div class="row">
+                        <a href="{% url "medical:add_register" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                         <<div class="col s4 m6 offset-m3">
                                 <h5>No se encontraron registros</h5>
                         </div>
@@ -225,6 +233,7 @@
             <div class="row">
             <div class="col s12 m12 l12 ">
             {% if labs %}
+                <a href="{% url "medical:add_lab" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                 <h3>Laboratorios</h3>
                 <table class="striped">
                     <thead>
@@ -248,6 +257,7 @@
                 </table>
             {% else %}
                 <div class="row">
+                    <a href="{% url "medical:add_lab" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <<div class="col s4 m6 offset-m3">
                             <h5>No se encontraron laboratorios</h5>
                     </div>
@@ -262,7 +272,8 @@
 
             <div class="col s12 m12 l12 ">
             {% if us %}
-                <h3>Registros</h3>
+                <a href="{% url "medical:add_us" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <h3>Ultrasonidos</h3>
                 <table class="striped">
                     <thead>
                         <tr>
@@ -285,6 +296,7 @@
                 </table>
             {% else %}
                 <div class="row">
+                    <a href="{% url "medical:add_us" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <<div class="col s4 m6 offset-m3">
                             <h5>No se encontraron ultrasonidos</h5>
                     </div>
@@ -298,6 +310,7 @@
             <div class="row">
             <div class="col s12 m12 l12 ">
             {% if problemas %}
+                <a href="{% url "medical:add_problem" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                 <h3>Problemas</h3>
                 <table class="striped">
                     <thead>
@@ -321,6 +334,7 @@
                 </table>
             {% else %}
                 <div class="row">
+                    <a href="{% url "medical:add_problem" file.id %}" style="float: right;" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
                     <<div class="col s4 m6 offset-m3">
                             <h5>No se encontraron datos</h5>
                     </div>

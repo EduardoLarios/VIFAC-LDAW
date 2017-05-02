@@ -22,31 +22,21 @@
     <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
     <i class="large material-icons">menu</i>
     </a>
-    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Editar Ultrasonido</h4>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Editar Registro</h4>
 </div>
 
 <main>
     <div class="container">
         <div class="row">
-            <form method="post" action="" class="col s12">
+        <form method="post" action="" class="col s12">
             {% csrf_token %}
-            <div class="row">
-
-                <div class="input-field col s6">
-                  {% render_field form.date type="date" class="datepicker" value=us.date %}
-                  <label for="date">Nueva Fecha</label>
-                </div>
-                <div class="input-field col s6">
-                  {% render_field form.result value=us.result  %}
-                  <label for="date">Resultados</label>
-                </div>
-             <button class="btn waves-effect waves-light" type="submit" name="submit" id="submit">Guardar y continuar
-                <i class="material-icons right"></i>
-              </button>
-            </div>
-            </form>
-        </div>
-    </div>
+            {{ form.as_p }}
+            <button class="btn waves-effect waves-light" type="submit" name="submit" id="submit">Guardar y continuar
+            <i class="material-icons right"></i>
+          </button>
+        </form>
+      </div>
+</div>
 </main>
 
 

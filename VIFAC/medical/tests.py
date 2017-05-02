@@ -1,195 +1,185 @@
+from .models.laboratorios import Laboratorio, Ultrasonido
+from .models.expediente import Exp_Medico
+from .models.registro import Registro
+from .models.problemas import Problemas
+from django.db.models import QuerySet
 from django.test import TestCase
+import datetime
 
 # Create your tests here.
 
 class LaboratorioTest(TestCase):
     def setUp(self):
         date = datetime.date.today()
-        paciente = Donor.objects.create(
-            full_name = 'Nombre Completo',
-            integration_date = date,
-            state = 'Guanajuato',
-            city = 'Irapuato',
-            street = 'Una calle',
-            number = '105',
-            reference = 'Una referencia',
-            contact_name = 'Nombre de contacto',
-            contact_email = 'correo@ejemplo.com',
-            contact_phone_number = '+524426884356',
-            contact_birthday = date,
-            contact_anniversary = date
+        paciente = Exp_Medico.objects.create(
+            nombre = "Test 1",
+            tipo_sanguineo = "o+",
+            edad = "20",
+            fecha_nacimiento = "1996-04-08"
+        )
+        Laboratorio.objects.create(
+            date = date,
+            result = "Result test",
+            paciente = paciente
         )
 
-        # Tests if a a categories' queryset can be retrieved
 
     def test_laboratorio_can_be_viewed(self):
-        categories = Laboratorio.objects.all()
-        self.assertIsInstance(categories, QuerySet)
+        labs = Laboratorio.objects.all()
+        self.assertIsInstance(labs, QuerySet)
 
-        # Tests if a Laboratorio can be edited
 
     def test_Laboratorio_can_be_edited(self):
-        Laboratorio_1 = Laboratorio.objects.get(name = 'Categoria 1')
-        Laboratorio_1.name = 'Categoria Editada'
-        self.assertEqual(Laboratorio_1.name, 'Categoria Editada')
+        Laboratorio_1 = Laboratorio.objects.get(result = 'Result test')
+        Laboratorio_1.result = 'Test Result'
+        self.assertEqual(Laboratorio_1.result, 'Test Result')
 
-        # Tests if a Laboratorio can be deleted
-
-    def test_Laboratorio_can_be_deleted(self):
-        Laboratorio_1 = Laboratorio.objects.get(name = 'Categoria 1')
-        Laboratorio_1.delete()
-        Laboratorio_counts = Laboratorio.objects.filter(name = 'Categoria 1').count()
-        self.assertEqual(Laboratorio_counts, 0)
-
-        # Tests if a new Laboratorio can be created
 
     def test_Laboratorio_be_created(self):
-        Laboratorio.objects.create(name = 'Prueba 1', description = 'Prueba 1')
-        Laboratorio_counts = Laboratorio.objects.filter(name = 'Prueba 1').count()
+        Laboratorio.objects.create(date = '2017-05-02', result = 'Prueba 1')
+        Laboratorio_counts = Laboratorio.objects.filter(result = 'Prueba 1').count()
         self.assertEqual(Laboratorio_counts, 1)
 
+    def test_Laboratorio_can_be_deleted(self):
+        Laboratorio_1 = Laboratorio.objects.get(result = 'Result test')
+        Laboratorio_1.delete()
+        Laboratorio_counts = Laboratorio.objects.filter(result = 'Result test').count()
+        self.assertEqual(Laboratorio_counts, 0)
 
-# Automatized tests for donors model
-
-class DonorTest(TestCase):
+class UltrasonidoTest(TestCase):
     def setUp(self):
         date = datetime.date.today()
-        Donor.objects.create(
-            full_name = 'Nombre Completo',
-            integration_date = date,
-            state = 'Guanajuato',
-            city = 'Irapuato',
-            street = 'Una calle',
-            number = '105',
-            reference = 'Una referencia',
-            contact_name = 'Nombre de contacto',
-            contact_email = 'correo@ejemplo.com',
-            contact_phone_number = '+524426884356',
-            contact_birthday = date,
-            contact_anniversary = date
+        paciente = Exp_Medico.objects.create(
+            nombre = "Test 1",
+            tipo_sanguineo = "o+",
+            edad = "20",
+            fecha_nacimiento = "1996-04-08"
+        )
+        Ultrasonido.objects.create(
+            date = date,
+            result = "Result test",
+            paciente = paciente
         )
 
-        # Tests if a donors' queryset can be retrieved
+    def test_Ultrasonido_can_be_viewed(self):
+        us = Ultrasonido.objects.all()
+        self.assertIsInstance(us, QuerySet)
 
-    def test_donor_can_be_viewed(self):
-        donors = Donor.objects.all()
-        self.assertIsInstance(donors, QuerySet)
+    def test_Ultrasonido_can_be_edited(self):
+        Ultrasonido_1 = Ultrasonido.objects.get(result = 'Result test')
+        Ultrasonido_1.result = 'Test Result'
+        self.assertEqual(Ultrasonido_1.result, 'Test Result')
 
-        # Tests if a donor can be edited
+    def test_Ultrasonido_be_created(self):
+        Ultrasonido.objects.create(date = '2017-05-02', result = 'Prueba 1')
+        Ultrasonido_counts = Ultrasonido.objects.filter(result = 'Prueba 1').count()
+        self.assertEqual(Ultrasonido_counts, 1)
 
-    def test_donor_can_be_edited(self):
-        donor = Donor.objects.get(full_name = 'Nombre Completo')
-        donor.full_name = 'Nombre Editado'
-        self.assertEqual(donor.full_name, 'Nombre Editado')
+    def test_Ultrasonido_can_be_deleted(self):
+        Ultrasonido_1 = Ultrasonido.objects.get(result = 'Result test')
+        Ultrasonido_1.delete()
+        Ultrasonido_counts = Ultrasonido.objects.filter(result = 'Result test').count()
+        self.assertEqual(Ultrasonido_counts, 0)
 
-        # Tests if a donor can be deleted
-
-    def test_donor_can_be_deleted(self):
-        donor = Donor.objects.get(full_name = 'Nombre Completo')
-        donor.delete()
-        donor_counts = Donor.objects.filter(full_name = 'Nombre Completo').count()
-        self.assertEqual(donor_counts, 0)
-
-        # Tests if a new donor can be created
-
-    def test_donor_can_be_created(self):
-        date = datetime.date.today()
-        Donor.objects.create(
-            full_name = 'Nombre Completo',
-            integration_date = date,
-            state = 'Guanajuato',
-            city = 'Irapuato',
-            street = 'Una calle',
-            number = '105',
-            reference = 'Una referencia',
-            contact_name = 'Nombre de contacto',
-            contact_email = 'correo@ejemplo.com',
-            contact_phone_number = '+524426884356',
-            contact_birthday = date,
-            contact_anniversary = date
-        )
-        donor_counts = Donor.objects.filter(full_name = 'Nombre Completo').count()
-        self.assertEqual(donor_counts, 2)
-
-
-# Automatized tests for donations model
-
-class DonationsTest(TestCase):
+class ProblemasTest(TestCase):
     def setUp(self):
         date = datetime.date.today()
-        donor = Donor.objects.create(
-            full_name = 'Nombre Completo',
-            integration_date = date,
-            state = 'Guanajuato',
-            city = 'Irapuato',
-            street = 'Una calle',
-            number = '105',
-            reference = 'Una referencia',
-            contact_name = 'Nombre de contacto',
-            contact_email = 'correo@ejemplo.com',
-            contact_phone_number = '+524426884356',
-            contact_birthday = date,
-            contact_anniversary = date
+        paciente = Exp_Medico.objects.create(
+            nombre = "Test 1",
+            tipo_sanguineo = "o+",
+            edad = "20",
+            fecha_nacimiento = "1996-04-08"
+        )
+        Problemas.objects.create(
+            descripcion = "Result test",
+            medicamento = 'Test medicamento',
+            paciente = paciente
         )
 
-        category = Category.objects.create(
-            name = 'Categoria 1',
-            description = 'Descripcion 1'
+    def test_Problemas_can_be_viewed(self):
+        problemas = Problemas.objects.all()
+        self.assertIsInstance(problemas, QuerySet)
 
-        )
+    def test_Problemas_can_be_edited(self):
+        Problemas_1 = Problemas.objects.get(descripcion = 'Result test')
+        Problemas_1.descripcion = 'Test Result'
+        self.assertEqual(Problemas_1.descripcion, 'Test Result')
 
-        Donation.objects.create(
-            donor = donor,
-            description = 'Descripcion',
-            category = category
-        )
+    def test_Problemas_be_created(self):
+        Problemas.objects.create(descripcion = 'Prueba 1', medicamento = "medicamento")
+        Problemas_counts = Problemas.objects.filter(descripcion = 'Prueba 1').count()
+        self.assertEqual(Problemas_counts, 1)
 
-        # Tests if a donations' queryset can be retrieved
+    def test_Problemas_can_be_deleted(self):
+        Problemas_1 = Problemas.objects.get(descripcion = 'Result test')
+        Problemas_1.delete()
+        Problemas_counts = Problemas.objects.filter(descripcion = 'Result test').count()
+        self.assertEqual(Problemas_counts, 0)
 
-    def test_donation_can_be_viewed(self):
-        donations = Donation.objects.all()
-        self.assertIsInstance(donations, QuerySet)
 
-        # Tests if a donation can be edited
-
-    def test_donation_can_be_edited(self):
-        donation = Donation.objects.get(description = 'Descripcion')
-        donation.description = 'Descripcion Editada'
-        self.assertEqual(donation.description, 'Descripcion Editada')
-
-        # Tests if a donation can be deleted
-
-    def test_donation_can_be_deleted(self):
-        donation = Donation.objects.get(description = 'Descripcion')
-        donation.delete()
-        donation_counts = Donation.objects.filter(description = 'Descripcion').count()
-        self.assertEqual(donation_counts, 0)
-
-        # Tests if a new donation can be created
-
-    def test_donation_be_created(self):
+class RegistroTest(TestCase):
+    def setUp(self):
         date = datetime.date.today()
-        donor = Donor.objects.create(
-            full_name = 'Nombre Completo',
-            integration_date = date,
-            state = 'Guanajuato',
-            city = 'Irapuato',
-            street = 'Una calle',
-            number = '105',
-            reference = 'Una referencia',
-            contact_name = 'Nombre de contacto',
-            contact_email = 'correo@ejemplo.com',
-            contact_phone_number = '+524426884356',
-            contact_birthday = date,
-            contact_anniversary = date
+        paciente = Exp_Medico.objects.create(
+            nombre = "Test 1",
+            tipo_sanguineo = "o+",
+            edad = "20",
+            fecha_nacimiento = "1996-04-08"
+        )
+        Registro.objects.create(
+            date = date,
+            sdg = 'Test sdg',
+            ta = 'Test ta',
+            weight = 60,
+            paciente = paciente
         )
 
-        category = Category.objects.create(
-            name = 'Categoria 1',
-            description = 'Descripcion 1'
+    def test_Registro_can_be_viewed(self):
+        registros = Registro.objects.all()
+        self.assertIsInstance(registros, QuerySet)
 
+    def test_Registro_can_be_edited(self):
+        Registro_1 = Registro.objects.get(sdg = 'Test sdg')
+        Registro_1.sdg = 'Test Result'
+        self.assertEqual(Registro_1.sdg, 'Test Result')
+
+    def test_Registro_be_created(self):
+        Registro.objects.create(date = '2017-05-02', sdg = 'Prueba 1', weight = 50)
+        Registro_counts = Registro.objects.filter(sdg = 'Prueba 1').count()
+        self.assertEqual(Registro_counts, 1)
+
+    def test_Registro_can_be_deleted(self):
+        Registro_1 = Registro.objects.get(sdg = 'Test sdg')
+        Registro_1.delete()
+        Registro_counts = Registro.objects.filter(sdg = 'Test sdg').count()
+        self.assertEqual(Registro_counts, 0)
+
+class ExpedienteTest(TestCase):
+    def setUp(self):
+        date = datetime.date.today()
+        Exp_Medico.objects.create(
+            nombre = "Test 1",
+            tipo_sanguineo = "o+",
+            edad = "20",
+            fecha_nacimiento = "1996-04-08"
         )
 
-        Donation.objects.create(donor = donor, description = 'Descripcion', category = category)
-        donation_counts = Donation.objects.filter(description = 'Descripcion').count()
-        self.assertEqual(donation_counts, 2)
+    def test_Exp_Medico_can_be_viewed(self):
+        exp = Exp_Medico.objects.all()
+        self.assertIsInstance(exp, QuerySet)
+
+    def test_Exp_Medico_can_be_edited(self):
+        Exp_Medico_1 = Exp_Medico.objects.get(nombre = 'Test 1')
+        Exp_Medico_1.nombre = 'Test Result'
+        self.assertEqual(Exp_Medico_1.nombre, 'Test Result')
+
+    def test_Exp_Medico_be_created(self):
+        Exp_Medico.objects.create(nombre = "Test 2", tipo_sanguineo = "a+", edad = "50", fecha_nacimiento = "1996-04-08")
+        Exp_Medico_counts = Exp_Medico.objects.filter(nombre = 'Test 2').count()
+        self.assertEqual(Exp_Medico_counts, 1)
+
+    def test_Exp_Medico_can_be_deleted(self):
+        Exp_Medico_1 = Exp_Medico.objects.get(nombre = "Test 1")
+        Exp_Medico_1.delete()
+        Exp_Medico_counts = Exp_Medico.objects.filter(nombre = "Test 1").count()
+        self.assertEqual(Exp_Medico_counts, 0)
