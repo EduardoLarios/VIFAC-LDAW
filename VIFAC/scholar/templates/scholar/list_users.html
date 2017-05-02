@@ -34,7 +34,7 @@
                   <a href="{% url "users:user-update" user.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
               </td>
               <td>
-                  <a href="{% url "users:delete" user.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                  <a href="{% url "users:delete" user.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><span class="glyphicon glyphicon-trash"></span></a>
               </td>
             </tr>
           {% endfor %}
