@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'rolepermissions',
-    #'django_extensions',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vifacdb',
-        'USER': 'esteban',
-        'PASSWORD': 'gordolobo1',
+        'USER': 'eduardo',
+        'PASSWORD': 'Haswell1150',
         'HOST': 'localhost',
         #'PORT': '',
     }
