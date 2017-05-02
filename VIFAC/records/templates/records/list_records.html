@@ -30,6 +30,7 @@
                   <th>Eliminar</th>
                   <th>Subir archivo</th>
                   <th>Listar archivos</th>
+                  <th>Exportar a Excel</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,6 +56,9 @@
                   </td>
                   <td>
                       <a href="{% url "records:list_documents" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">reorder</i></a>
+                  </td>
+                  <td>
+                      <a href="records:export_records_csv" class="btn btn-info btn-lg"><i class="large material-icons">equalizer</i></a>
                   </td>
                 </tr>
               {% endfor %}

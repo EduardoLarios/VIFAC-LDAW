@@ -475,11 +475,6 @@ class RecordForm(forms.Form):
         help_text = 'Código Postal'
     )
 
-    colonia = forms.CharField(
-        required = False,
-        help_text = 'Colonia'
-    )
-
     ciudad_referencia = forms.CharField(
         required = False,
         help_text = 'Ciudad'

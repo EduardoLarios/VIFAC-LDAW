@@ -158,6 +158,14 @@ Trabajado = (
 class Expediente(models.Model):
     
     #Datos Generales
+    fecha_ingreso = models.DateField(
+        auto_now_add = True,
+        null = False,
+        blank = False,
+        verbose_name = 'Fecha de Ingreso',
+        help_text = 'Fecha de Ingreso'
+    )
+    
     nombre = models.CharField(
         blank = False,
         null=False,

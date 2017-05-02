@@ -1,5 +1,4 @@
-import os
-
+#
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseRedirect
@@ -10,6 +9,8 @@ from django.http import Http404
 from django.urls import reverse
 from django.conf import settings
 import datetime
+import csv
+import os
 
 from .models import Expediente, Documento
 from .forms import RecordForm, DocumentForm
@@ -26,12 +27,70 @@ def index(request):
         raise Http404
 
 # Detail View
+
 class RecordDetailView(DetailView):
     model = Expediente
 
     def get_context_data(self, **kwargs):
         context = super(RecordDetailView, self).get_context_data(**kwargs)
         return context
+
+# Export to CSV
+
+def export_records_csv(request):
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename="records.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(
+        ['Expediente N°',
+         'Nombre',
+         'Apellido Paterno',
+         'Apellido Materno',
+         'Edad',
+         'Teléfono de Casa',
+         'Teléfono Particular',
+         'Estado de Nacimiento',
+         'Fecha de Nacimiento',
+         'Estado Civil',
+         'Religión',
+         'Tipo de Población',
+         'Migrante',
+         'Estado',
+         'Ciudad',
+         'Colonia',
+         'Calle',
+         'Código Postal',
+         'Fecha de Ingreso'
+         ]
+    )
+
+    records = Expediente.objects.all().values_list(
+       'id',
+       'nombre',
+       'apellido_paterno',
+       'apellido_materno',
+       'edad',
+       'telefono_casa',
+       'telefono_particular',
+       'estado_nacimiento',
+       'fecha_nacimiento',
+       'estado_civil',
+       'religion',
+       'tipo_poblacion',
+       'migrante',
+       'estado',
+       'ciudad',
+       'colonia',
+       'calle',
+       'codigo_postal',
+       'fecha_ingreso'
+    )
+    
+    for record in records:
+        writer.writerow(record)
+
+    return response
 
 # New DB entries
 

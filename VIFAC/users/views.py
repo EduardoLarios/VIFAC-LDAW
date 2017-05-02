@@ -1,18 +1,18 @@
 from rolepermissions.roles import assign_role, remove_role, get_user_roles, clear_roles
 from django.views.generic.edit import DeleteView, UpdateView
 from django.http import Http404, HttpResponseRedirect, HttpResponse
+from rolepermissions.decorators import has_role_decorator
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import get_object_or_404
 from rolepermissions.checkers import has_role
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import UserForm, UpdateForm
 from django.views.generic import View
 from django.urls import reverse
-import csv
-from django.shortcuts import get_object_or_404
 from VIFAC.roles import *
-from rolepermissions.decorators import has_role_decorator
+import csv
 
 
 class UserFormView(View):
