@@ -32,6 +32,7 @@ def file_detail(request, file_id):
         'problemas': problemas,
     }
     return render(request, 'medical/file_detail.html', context)
+
 def file_delete(request, file_id):
     file = Exp_Medico.objects.get(pk=file_id)
     file.delete()
@@ -47,7 +48,7 @@ def new_file(request):
             # Get form variables
             # Create donor object
             exp = Exp_Medico.objects.create(**new_file_form.cleaned_data)
-            return reverse_lazy('medical:index')
+            return HttpResponseRedirect(reverse('medical:index'))
 
         context = {
             'form': new_file_form,
