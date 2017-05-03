@@ -165,8 +165,8 @@ class MemberTest(TestCase):
 		self.assertIsInstance(members, QuerySet)
 	
 	
-	# CRUD Mom
-	def testMomDELETE(self):
+	# CRUD Mom - UPDATE
+	def testMomUpdate(self):
 		date = datetime.date.today()
 		Family.objects.create(
 			nombreFam='FamilyCreate',
@@ -183,12 +183,54 @@ class MemberTest(TestCase):
 		)
 		mom.aPaterno='Ruiz'
 		self.assertEqual(mom.aPaterno, 'Ruiz')
-		
-		
-	# # CRUD FAMILY
-	# def test_MemberDelete(self):
-	# 	family = Family.objects.get(nombreFam='FamiliaMember')
-	# 	family.del
-	# 	family_acum = Family.objects.filter(nombreFam='FamiliaMember').count()
-	# 	self.assertEqual(family_acum, 0)
+
 	
+	# CRUD Dad - UPDATE
+	def testDadUpdate(self):
+		date = datetime.date.today()
+		Family.objects.create(
+			nombreFam='FamilyCreate',
+			Aniversario=date)
+		
+		family = Family.objects.get(nombreFam='FamilyCreate')
+		dad = Member.objects.create(
+			familia=family,
+			nombre='Juan',
+			aPaterno='M',
+			aMaterno='M',
+			FNacimiento=date,
+			Genero='Masculino'
+		)
+		dad.aPaterno = 'Juarez'
+		self.assertEqual(dad.aPaterno, 'Juarez')
+		
+	# CRUD MomDad - DELETE
+	def test_MemberDelete(self):
+		date = datetime.date.today()
+		Family.objects.create(
+			nombreFam='FamilyCreate',
+			Aniversario=date)
+		
+		family = Family.objects.get(nombreFam='FamilyCreate')
+		
+		Member.objects.create(
+			familia=family,
+			nombre='Juan',
+			aPaterno='M',
+			aMaterno='M',
+			FNacimiento=date,
+			Genero='Masculino'
+		)
+		
+		Member.objects.create(
+			familia=family,
+			nombre='Maria',
+			aPaterno='M',
+			aMaterno='M',
+			FNacimiento=date,
+			Genero='Femenino'
+		)
+		
+		family.delete()
+		family_acum = Family.objects.filter(nombreFam='FamilyCreate').count()
+		self.assertEqual(family_acum, 0)
