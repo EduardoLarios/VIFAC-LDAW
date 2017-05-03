@@ -92,7 +92,7 @@ class Family(models.Model):
 	
 	motivoBaja = models.CharField(
 		max_length=1000,
-		default='',
+		default=' ',
 	)
 	
 	fBaja = models.DateField(

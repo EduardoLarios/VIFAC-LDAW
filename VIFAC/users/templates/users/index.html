@@ -1,0 +1,74 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+{% load permission_tags %}
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+            </div>
+
+            <!-- Collect the nav links, formas, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Regresar a tus módulos</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <h1 class="name">VIFAC</h1>
+                        <hr class="star-light">
+                        <span class="skills">Módulo de usuarios</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Opciones</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <table class="table text-center">
+                    <tr>
+                        <td><a href="/usuarios/registrar">Registrar un usuario nuevo</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/usuarios/lista_usuarios">Ver lista de usuarios</a></td>
+                    </tr>
+                    {% if user|has_role:'admin' %}
+                    <tr>
+                        <td>Agregar permisos a un usuario</td>
+                    </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}
