@@ -15,6 +15,10 @@ import datetime
 def index(request):
 	date = datetime.date.today()
 	
+	dad = Member
+	mom = Member
+	dadBirth = Member
+	MomBirth = Member
 	#Aniversario
 	all_families = Family.objects.filter(Aniversario = date, status='Vivos')
 	for family in all_families:
@@ -68,8 +72,12 @@ def buscar(request):
 	
 	try:
 		family = Family.objects.get(nombreFam = query)
+		dad = Member.objects.get(familia=family, Genero='Masculino')
+		mom = Member.objects.get(familia=family, Genero='Femenino')
 		context ={
-			'family': family
+			'family': family,
+			'dad': dad,
+			'mom': mom
 		}
 		return render(request, 'adoptions/family_busqueda.html', context)
 	except:
