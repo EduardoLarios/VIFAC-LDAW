@@ -5,5 +5,8 @@ from django.shortcuts import redirect
 
 def index(request):
     context = {}
-    return render(request, 'dashboard/index.html', context)
+    if request.user.is_authenticated():
+        return render(request, 'dashboard/index.html', context)
+    else:
+        return redirect('/usuarios/login/')
 

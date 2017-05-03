@@ -1,0 +1,4 @@
+<form method="post">{% csrf_token %}
+        ¿Estás seguro que deseas borrar la panfleta? "{{ panfleta.folio }}"?
+        <input type="submit" value="Submit" />
+</form>

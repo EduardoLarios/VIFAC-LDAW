@@ -31,6 +31,7 @@
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
+                  <th>Ver detalle</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
                 </tr>
@@ -43,10 +44,13 @@
                   <td>{{ category.name }}</td>
                   <td>{{ category.description }}</td>
                   <td>
+                      <a href="{% url "donations:category_detail" category.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                  </td>
+                  <td>
                       <a href="{% url "donations:category_update" category.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
                   </td>
                   <td>
-                      <a href="{% url "donations:category_delete" category.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
+                      <a href="{% url "donations:category_delete" category.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><span class="glyphicon glyphicon-trash"></span></a>
                   </td>
                 </tr>
               {% endfor %}

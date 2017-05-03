@@ -3,67 +3,52 @@
 
 {% block content %}
 
- <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de materiales</h4>
+</div>
+
+<main>
+    <div style="margin-top: 5%">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
-            </div>
-
-            <!-- Collect the nav links, formas, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/escolar/lista_escuelas">Regresar</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-<section id="donaciones">
-    <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Material de: {{escuela.name}}</h2>
-                    <hr class="star-primary">
+                <div class="row">
+                    <div class="col l12 text-center">
+                        <h2>Materiales de: {{escuela.name}}</h2>
+                        <hr class="star-primary">
+                    </div>
                 </div>
-            </div>
-    </div>
-    <div class="container">
-        <table class="table table-striped">
-          <thead class="thead-default">
-            <tr>
-              <th>Nombre</th>
-              <th>Categoría</th>
-              <th>Responsable</th>
-              <th>Editar</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-          <tbody>
+        </div>
+        <div class="container">
+            <table class="table table-striped">
+              <thead class="thead-default">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Categoría</th>
+                  <th>Responsable</th>
+                  <th>Editar</th>
+                  <th>Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
 
-          {% for material in materiales %}
-            <tr>
-              <td>{{ material.descripcion }} </td>
-              <td>{{ material.categoria }}</td>
-              <td>{{ material.entrego }}</td>
-                <td>
-                  <a href="{% url "scholar:edit_material" material.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>
-              </td>
-              <td>
-                  <a href="{% url "scholar:material_delete" material.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></a>
-              </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+              {% for material in materiales %}
+                <tr>
+                  <td>{{ material.descripcion }} </td>
+                  <td>{{ material.categoria }}</td>
+                  <td>{{ material.entrego }}</td>
+                    <td>
+                      <a href="{% url "scholar:edit_material" material.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "scholar:material_delete" material.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
     </div>
-</section>
-
+</main>
 {% endblock content %}

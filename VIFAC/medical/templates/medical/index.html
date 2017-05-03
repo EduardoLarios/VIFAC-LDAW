@@ -1,0 +1,106 @@
+{% extends './base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!--div class="fixed-action-btn" style="bottom: 42px; right: 28px;">
+    <a id="btn_menu" data-activates="slide-out" class="button-collapse btn-floating btn-large orange">
+      <i class="large material-icons">menu</i>
+    </a>
+    </div-->
+<div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>Alam Téllez Villagómez</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de expedientes</h4>
+</div>
+
+<main>
+    <div class="container">
+
+
+        {% if no_results %}
+        <div class="row">
+            <<div class="col s4 m6 offset-m3">
+                    <h5>No se encontraron resultados</h5>
+            </div>
+        </div>
+        {% elif expedientes %}
+        <table style="margin-top: 3%" class="striped centered">
+         <thead class="thead-default">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha de nacimiento</th>
+                  <th>Ver detalles</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                  <th>Agregar Registro</th>
+                  <th>Agregar Laboratorio</th>
+                  <th>Agregar Ultrasonido</th>
+                  <th>Agregar Problema</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for expediente in expedientes %}
+                <tr>
+                  <td>{{ expediente.nombre }}</td>
+                  <td>{{ expediente.fecha_nacimiento }}</td>
+                  <td>
+                      <a href="{% url "medical:file_detail" expediente.id %}" class="btn "><i class="large material-icons">info_outline</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:file_update" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">mode_edit</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:file_delete" expediente.id %}" class="btn waves-effect waves-light" onclick="return confirm('¿Estás seguro de querer borrarlo?')" ><i class="large material-icons">delete</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_register" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">assignment</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_lab" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">note_add</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_us" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">note_add</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "medical:add_problem" expediente.id %}" class="btn waves-effect waves-light"><i class="large material-icons">assignment_late</i></a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
+
+</div>
+</main>
+
+<script>
+
+</script>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+
+{% endblock content %}
