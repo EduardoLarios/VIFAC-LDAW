@@ -41,7 +41,6 @@ class RecordSearchListView(ListView):
         
         if query is not None and query:
             
-            print ('here')
             result = result.filter(Q(nombre__icontains = query) | Q(apellido_paterno__icontains = query) | Q(apellido_materno__icontains = query))
             result = result.order_by('apellido_paterno', 'apellido_materno', 'nombre')
 
