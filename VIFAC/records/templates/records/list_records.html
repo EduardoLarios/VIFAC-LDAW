@@ -17,6 +17,16 @@
 
 <main>
     <div class="container">
+
+    <div>
+        <form id="searchform" action="{% url 'records:record_search_view' %}" method="get" accept-charset="utf-8">
+            <input  class="searchfield" id="searchbox" name="q" type="text" placeholder="Buscar expediente">
+            <button class="btn btn-info btn-lg" type="submit">
+                <i class="large material-icons">search</i></a>
+            </button>
+        </form>
+    </div>
+
      <table style="margin-top: 3%" class="table table-striped">
               <thead class="thead-default">
                 <tr>
@@ -35,7 +45,7 @@
               </thead>
               <tbody>
 
-              {% for record in records %}
+              {% for record in page_obj %}
                 <tr>
                   <td>{{ record.id }}</td>
                   <td>{{ record.nombre }}</td>
@@ -58,7 +68,7 @@
                       <a href="{% url "records:list_documents" record.id %}" class="btn btn-info btn-lg"><i class="large material-icons">reorder</i></a>
                   </td>
                   <td>
-                      <a href="records:export_records_csv" class="btn btn-info btn-lg"><i class="large material-icons">equalizer</i></a>
+                      <a href={% url "records:export_records_csv" %} class="btn btn-info btn-lg"><i class="large material-icons">equalizer</i></a>
                   </td>
                 </tr>
               {% endfor %}

@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^editar_expediente/(?P<pk>\d+)/$', views.RecordUpdate.as_view(), name = 'record_update'),
     url(r'^detalle_expediente/(?P<pk>\d+)/$', views.RecordDetailView.as_view(), name='record_detail'),
     url(r'^exportar_csv/$', views.export_records_csv, name='export_records_csv'),
+    url(r'^buscar_expedientes$', views.RecordSearchListView.as_view(), name='record_search_view'),
     
     #URLS for Archivos
     url(r'^subir_documento/(?P<exp_id>[0-9]+)$', views.model_form_upload, name='upload_document'),

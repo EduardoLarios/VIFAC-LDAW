@@ -237,7 +237,7 @@ class ExpedienteTests(TestCase):
         else:
             return False
 
-    def test_expediente_incompleto_general(self):
+    def test_expediente_incompleto_general_2(self):
         try:
             Expediente.objects.create(
                 nombre = 'Prueba 3',
