@@ -1,0 +1,72 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+	<!-- Navigation -->
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Editar material</h4>
+</div>
+
+<main>
+	<div style="margin-top: 5%">
+		<div class="container">
+			<div class="row">
+				<div class="col l12 text-center">
+					<h2>Editar Escuela</h2>
+					<hr class="star-primary">
+				</div>
+			</div>
+        <br>
+			<div class="row">
+				<div class="container">
+					{% if form.non_field_errors or form.errors %}
+					<div class="row">
+
+						{% for name, e in form.non_field_errors.items %}
+							<div class="alert">{{ e }}</div>
+						{% endfor %}
+
+						{% for name, e in form.errors.items %}
+							<div class="alert">{{ name }}: {{ e }}</div>
+						{% endfor %}
+
+					</div>
+					{% endif %}
+					<form method="POST">
+						{% csrf_token %}
+						<div class="row">
+							<div class="col m12">
+								<h5>Introduce la nueva información de la escuela</h5>
+							</div>
+						</div>
+						<div class="row">
+							{% for field in form %}
+							<div class="col m4">
+								<label class="control-label" for="song_title">{{ field.label_tag }}</label>
+								{{ field | add_class:'form-control'}}
+							</div>
+							{% endfor %}
+						</div>
+                        <div class="row addmargin5">
+							<div class="col s12 center">
+								<button type="submit" class="btn btn-success btn-lg">Guardar</button>
+							</div>
+						</div>
+				</div>
+            </div>
+			</div>
+		</div>
+</main>
+
+
+	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+	<div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+		<a class="btn btn-primary" href="#page-top">
+			<i class="fa fa-chevron-up"></i>
+		</a>
+	</div>
+{% endblock content %}

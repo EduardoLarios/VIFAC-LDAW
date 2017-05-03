@@ -1,0 +1,67 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+            <h4 style="color: white; text-align: center">Lista de Usuarios</h4>
+
+</div>
+
+<main>
+
+<section id="donaciones" style="margin-top: 5%">
+
+    <div class="container">
+        <table class="table table-striped">
+          <thead class="thead-default">
+            <tr>
+              <th>Nombre</th>
+              <th>Rol</th>
+              <th>Usuario</th>
+              <th>Email</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <th>Asignar rol</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {% for user in users %}
+            <tr>
+              <td>{{ user.first_name }}</td>
+              <td>{{ roles }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }} , {{ donor.state }}</td>
+              <td>
+                  <a href="{% url "users:user-update" user.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
+              </td>
+              <td>
+                  <a href="{% url "users:delete" user.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
+              </td>
+              <td>
+                  <a href="{% url "users:asignar_rol" user.id %}" class="btn btn-info btn-lg"><i class="large material-icons">perm_identity</i></a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</section>
+</main>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+{% endblock content %}

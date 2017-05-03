@@ -1,0 +1,62 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+{% load static %}
+{% load permission_tags %}
+  <!-- Navigation -->
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+</div>
+
+<main>
+
+    <div class="container">
+          <br><br>
+          <h1 class="header center orange-text">Sistema de gestión de VIFAC</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">Selecciona un módulo</h5>
+          </div>
+
+          <br><br>
+          <div class="row">
+
+                <div class="col s2 offset-s2">
+                    <a href="/donaciones/lista_donaciones"><img src="{% static "images/donaciones.png" %}" width="100%"></a>
+                    <h5 style="text-align: center">Donaciones</h5>
+                </div>
+              <div class="col s2">
+                  <a href="/expedientes/lista_expedientes/"><img src="{% static "images/folder.png" %}" width="100%"></a>
+                  <h5 style="text-align: center">Expedientes</h5>
+                </div>
+              <div class="col s2">
+                    <a href=""><img src="{% static "images/medico.png" %}" width="100%"></a>
+                  <h5 style="text-align: center">Médico</h5>
+                </div>
+              <div class="col s2">
+                    <img src="{% static "images/escuela.png" %}" width="100%">
+                  <h5 style="text-align: center">Escolar</h5>
+                </div>
+          </div>
+    </div>
+
+
+</main>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+
+{% endblock content %}

@@ -1,0 +1,108 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Participantes</h4>
+</div>
+    <!-- Contact Section -->
+    <section id="indexRifas" style="margin-top: 2%">
+        <div class="container">
+            <div class="row">
+                <div class="col l12">
+                    <h3>RIFAS</h3>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m4">
+                    <a href="{% url 'raffles:nuevo_participante' %}" class="btn btn-large btn-default"><span class="glyphicon glyphicon-plus "></span>Nuevo participante</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col m4">
+                    <form class="form-inline" role="search" method="get" action="">
+                        <div class="form-group">
+                        <input type="text" class="form-control" id="" name="busqueda_part" placeholder="Buscar por participante">
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="large material-icons">zoom_in</i></button>
+                    </form>
+                </div>
+
+                <div class="col m4">
+                    <form class="form-inline" role="search" method="get" action="">
+                        <div class="form-group">
+                        <input type="text" class="form-control" id="" name="busqueda_panf" placeholder="Buscar por folio(panfleta)">
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="large material-icons">zoom_in</i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <section id="content">
+    <div class="container">
+        {% if no_results %}
+            <<div class="col l12 center">
+                    <h4>No se encontraron resultados</h4>
+            </div>
+        {% elif participantes %}
+        <table class="table table-striped table-center">
+          <thead class="thead-default">
+            <tr>
+              <th>Nombre</th>
+              <th>Editar</th>
+              <th>Ver Panfletas</th>
+              <th>Elimnar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for part in participantes %}
+              <tr>
+                <td>{{ part.full_name }}</td>
+                <td><a href="#" class="btn"><i class="large material-icons">mode_edit</i></span></a></td>
+                <td><a href="{% url 'raffles:panfletas_part' part.id %}" class="btn"><i class="large material-icons">list</i></a></td>
+                <td></td>
+               </tr>
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+
+        {% elif panfletas %}
+        <table class="table table-striped table-center">
+          <thead class="thead-default">
+            <tr>
+              <th>Folio</th>
+              <th>Devuelta</th>
+              <th>Monto</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for panf in panfletas %}
+              <tr>
+                <td>{{ panf.folio }}</td>
+                {% if panf.devuelta == True %}
+                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                {% else %}
+                    <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                {% endif %}
+                <td>{{ panf.monto_entregado }}</td>
+                <td><a href="{% url 'raffles:raffle_detail' panf.id %}" class="btn"><span class="glyphicon glyphicon-pencil"></span></a></td>
+               </tr>
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+        {% endif %}
+    </div>
+    </section>
+    </section>
+
+{% endblock content %}

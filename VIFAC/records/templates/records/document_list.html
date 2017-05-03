@@ -1,0 +1,59 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<!--div class="fixed-action-btn" style="bottom: 42px; right: 28px;">
+    <a id="btn_menu" data-activates="slide-out" class="button-collapse btn-floating btn-large orange">
+      <i class="large material-icons">menu</i>
+    </a>
+    </div-->
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de documentos de {{ expediente.nombre}} {{ expediente.apellido_paterno }} {{ expediente.apellido_materno }}</h4>
+</div>
+
+<main>
+    <div class="container">
+     <table style="margin-top: 3%" class="table table-striped">
+              <thead class="thead-default">
+                <tr>
+                  <th>Descripción del archivo</th>
+                  <th>Archivo</th>
+                  <th>Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for documento in documentos %}
+                <tr>
+                  <td>{{ documento.descripcion }}</td>
+                <td><a href="{% url 'records:download' documento.document %}" class="btn"><i class="large material-icons">play_for_work</i></a></td>
+
+                  <td>
+                      <a href="{% url "records:delete_file" documento.id%}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+</div>
+</main>
+
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 VIFAC
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+    </div>
+</footer>
+<div class="hiddendiv common"></div>
+<div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;">
+</div>
+
+{% endblock content %}

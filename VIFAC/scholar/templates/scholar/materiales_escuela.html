@@ -1,0 +1,54 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Lista de materiales</h4>
+</div>
+
+<main>
+    <div style="margin-top: 5%">
+        <div class="container">
+                <div class="row">
+                    <div class="col l12 text-center">
+                        <h2>Materiales de: {{escuela.name}}</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <table class="table table-striped">
+              <thead class="thead-default">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Categoría</th>
+                  <th>Responsable</th>
+                  <th>Editar</th>
+                  <th>Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for material in materiales %}
+                <tr>
+                  <td>{{ material.descripcion }} </td>
+                  <td>{{ material.categoria }}</td>
+                  <td>{{ material.entrego }}</td>
+                    <td>
+                      <a href="{% url "scholar:edit_material" material.id %}" class="btn btn-info btn-lg"><i class="large material-icons">mode_edit</i></a>
+                  </td>
+                  <td>
+                      <a href="{% url "scholar:material_delete" material.id %}" class="btn btn-info btn-lg" onclick="return confirm('¿Estás segura de querer eliminar esto?');"><i class="large material-icons">warning</i></a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'base/layout.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div id="titulo" class="z-depth-2">
+    <a style="float: left; margin-left: 30px; margin-top: 5px;" id="btn_menu" data-activates="slide-out" class="button-collapse btn-large waves-effect waves-light teal lighten-1 white-text">
+    <i class="large material-icons">menu</i>
+    </a>
+    <h4 style="color: #ffffff; margin-right: 130px;" id="titulo_info">Nuevo participante</h4>
+</div>
+
+    <!-- Contact Section -->
+    <section id="donaciones">
+        <div class="container">
+            <div class="row">
+                <div class="col l12">
+                    <h2>Nuevo Participante</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+        </div>
+
+    <div class="container col l12">
+        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col l4" >
+                <input type="text" name="name" class="form-control" placeholder="Nombre Completo" >
+            </div>
+            <div class="col l4">
+                <input type="text" name="phone" class="form-control" placeholder="Número de teléfono" >
+            </div>
+
+            <div class="row">
+                <button type="submit" name="_addother" class="btn btn-primary">Guarda y agregar una nueva panfleta</button>
+            </div>
+        </form>
+    </div>
+    </section>
+
+{% endblock content %}
