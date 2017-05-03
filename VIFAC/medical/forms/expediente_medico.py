@@ -3,7 +3,6 @@ from django import forms
 
 class MedicoForm(forms.Form):
     nombre = forms.CharField(
-        required=False,
         help_text='Nombre',
         label='Nombre de la beneficiaria'
     )
@@ -49,6 +48,7 @@ class MedicoForm(forms.Form):
     )
 
     edad_padre = forms.IntegerField(
+        required = False,
         label='Edad del padre'
     )
 
@@ -60,6 +60,7 @@ class MedicoForm(forms.Form):
     )
 
     FUM = forms.DateField(
+        required = False,
         label='FUM'
     )
 
@@ -162,6 +163,7 @@ class MedicoForm(forms.Form):
     )
 
     embarazos_anteriores = forms.IntegerField(
+        required = False,
         label='Embarazos anteriores'
     )
 
