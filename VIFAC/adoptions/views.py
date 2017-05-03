@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.generic import UpdateView
 
-from django.template import loader, Context
 
 from .models.families import Family
 from .models.members import Member
@@ -11,11 +10,29 @@ from .models.members import Member
 from .forms.families import FamilyForm
 from .forms.members import MemberForm
 
+import datetime
 
 def index(request):
-	all_families = Family.objects.all()
+	date = datetime.date.today()
+	
+	#Aniversario
+	all_families = Family.objects.filter(Aniversario = date, status='Vivos')
+	for family in all_families:
+		dad = Member.objects.get(familia=family, Genero='Masculino')
+		mom = Member.objects.get(familia=family, Genero='Femenino')
+	
+	#Cumpleaños
+	families_all = Family.objects.filter(status='Vivos')
+	for family in families_all:
+		dadBirth = Member.objects.get(familia=family, Genero='Masculino', FNacimiento = date)
+		MomBirth = Member.objects.get(familia=family, Genero='Femenino', FNacimiento=date)
 	context = {
 		'all_families': all_families,
+		'dad': dad,
+		'mom': mom,
+		'families_all': families_all,
+		'dadBirth': dadBirth,
+		'MomBirth': MomBirth,
 	}
 	return render(request, 'adoptions/index.html', context)
 
@@ -48,8 +65,9 @@ def buscar(request):
 	}
 	
 	query = request.GET['q']
+	
 	try:
-		family = Family.objects.filter(nombreFam = query)
+		family = Family.objects.get(nombreFam = query)
 		context ={
 			'family': family
 		}
