@@ -228,6 +228,7 @@ def edit_us(request, us_id):
     }
     return render(request, 'medical/edit_lab.html', context)
 
+
 def us_delete(request, us_id):
     us = Ultrasonido.objects.get(pk=us_id)
     file = us.paciente
@@ -236,6 +237,7 @@ def us_delete(request, us_id):
     extra_params = '#ultrasonidos'
     full_redirect_url = '%s%s' % (redirect_url, extra_params)
     return HttpResponseRedirect(full_redirect_url)
+
 
 def new_problema(request, file_id):
     form = ProblemasForm(request.POST or None)
