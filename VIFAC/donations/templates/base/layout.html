@@ -40,8 +40,17 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li class="bold"><a href="Expediente_Busqueda.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i> Exp. Médico</a></li>
-    <li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Expediente Médico</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/expediente_medico/nuevo/">Crear<i class="tiny material-icons blue-text"></i></a></li>
+                    <li><a href="/expediente_medico/">Consultar<i class="tiny material-icons blue-text"></i></a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>    <li>
         <div class="divider"></div>
     </li>
     <ul class="collapsible collapsible-accordion">
@@ -91,10 +100,18 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Rifas</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/rifas/nuevo_participante/"><i class="tiny material-icons blue-text"></i>Nuevo participante</a></li>
+                    <li><a href="/rifas/"><i class="tiny material-icons blue-text"></i>Listar rifas</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div class="divider"></div>
 
     <li><a class="subheader">Vifac AC</a></li>
 </ul>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">{% load static %}
+<html lang="en">{% load static %}
 	<head>
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
 <ul id="slide-out" class="side-nav" style="width: 320px; transform: translateX(-100%);">
     <li>
         <div class="userView">
-            <a href="/" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>
+{#            <a href="/" id="inicio"><img id="logo" src="http://vifac-chihuahua.org/wp-content/uploads/2014/09/logo-vifac1-300x116.png"></a>#}
         </div>
     </li>
     <li>
@@ -40,7 +40,6 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li>
     <ul class="collapsible collapsible-accordion">
         <li class="bold">
             <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Expediente Médico</a>
@@ -51,8 +50,7 @@
                 </ul>
             </div>
         </li>
-    </ul>
-    </li>
+    </ul>    <li>
         <div class="divider"></div>
     </li>
     <ul class="collapsible collapsible-accordion">
@@ -77,6 +75,7 @@
                 <ul>
                     <li><a href="/donaciones/nuevo_donador/"><i class="tiny material-icons blue-text"></i>Nuevo donador</a></li>
                     <li><a href="/donaciones/lista_donadores/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
+                    <li><a href="/donaciones/nueva_donacion/"><i class="tiny material-icons blue-text"></i>Listar donadores</a></li>
                 </ul>
             </div>
         </li>
@@ -101,13 +100,32 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li class="bold"><a href="ReporteExcel.php" class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Reportes</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
+    <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+            <a class="collapsible-header  waves-effect waves-teal"><i id="icon" class="small material-icons blue-text"></i>Rifas</a>
+            <div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                <ul>
+                    <li><a href="/rifas/nuevo_participante/"><i class="tiny material-icons blue-text"></i>Nuevo participante</a></li>
+                    <li><a href="/rifas/"><i class="tiny material-icons blue-text"></i>Listar rifas</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div class="divider"></div>
 
     <li><a class="subheader">Vifac AC</a></li>
 </ul>
+
+    <div id="barraSesion" class="col s12 m12 l12 z-depth-3">
+    <div class="row">
+        <div class="col s11 m11 l11 ">
+            <h5 class="white-text"><i class="small material-icons white-text"></i>{{ request.user.username }}</h5>
+        </div>
+        <div class="col s1 m1 l1">
+            <a class="white-text" href="/logout/"><i class="small material-icons white-text"></i>Salir</a>
+        </div>
+    </div>
+</div>
 
 		{% block content %}
 		{% endblock content %}
@@ -116,11 +134,14 @@
 		<script src="{% static "js/picedit.js" %}"></script>
 		<script src="{% static "js/sweetalert.min.js" %}"></script>
 		<script src="{% static "js/nuevo_expediente.js" %}"></script>
-<script>
-	  $(document).ready(function() {
-    $('select').material_select();
-  });
-</script>
-
+        <script>
+            (function($){
+          $(function(){
+            $(document).ready(function() {
+                $('select').material_select();
+              });
+          });
+        })(jQuery);
+        </script>
 	</body>
 </html>
